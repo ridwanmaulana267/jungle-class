@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Memories — XI IPS 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } } } } }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
+    
+    <div class="max-w-6xl mx-auto">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+
+        <div class="mb-8">
+            <span class="text-xs font-bold uppercase text-blue-400">Memory Lake</span>
+            <h1 class="text-3xl font-extrabold text-white">JUNGLE MEMORIES (GALERI FOTO)</h1>
+            <p class="text-xs text-slate-400 mt-1">Dokumentasi momen indah perjalanan XI IPS 2.</p>
+        </div>
+
+        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"></div>
+    </div>
+
+    <script>
+        const classData = {
+            gallery: [
+                { img: "https://iili.io/n2LU2CN.md.jpg", title: "Maulid Nabi Muhammad SAW 2026" },
+                { img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80", title: "Diskusi Kelompok Ekonomi" },
+                { img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80", title: "Juara 1 Futsal Classmeeting" },
+                { img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80", title: "Ulang Tahun Wali Kelas" }
+            ]
+        };
+
+        document.getElementById('gallery-grid').innerHTML = classData.gallery.map(g => `
+            <div class="bg-jungle-900 rounded-2xl overflow-hidden group cursor-pointer border border-white/10">
+                <div class="h-48 overflow-hidden relative">
+                    <img src="${g.img}" alt="${g.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-transparent opacity-80"></div>
+                    <p class="absolute bottom-3 left-3 right-3 text-xs font-bold text-white">${g.title}</p>
+                </div>
+            </div>
+        `).join('');
+    </script>
+</body>
+</html>

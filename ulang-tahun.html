@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Birthday — XI IPS 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } } } } }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
+    
+    <div class="max-w-4xl mx-auto">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+
+        <div class="mb-8 text-center">
+            <span class="text-xs font-bold uppercase text-pink-400">Birthday Garden</span>
+            <h1 class="text-3xl font-extrabold text-white">JUNGLE BIRTHDAYS</h1>
+        </div>
+
+        <div class="bg-jungle-900 p-6 rounded-3xl border border-pink-500/30 text-center mb-8">
+            <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs font-bold">🎉 Ulang Tahun Terdekat</span>
+            <h2 class="text-2xl font-bold text-white mt-3">Raffi Ahmad Pratama</h2>
+            <p class="text-xs text-pink-400 font-semibold mt-1">14 September • Menuju 17 Tahun</p>
+        </div>
+
+        <div id="birthday-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+    </div>
+
+    <script>
+        const classData = {
+            birthdays: [
+                { name: "Raffi Ahmad Pratama", date: "14 September", age: "17 Thn" },
+                { name: "Siti Nurhaliza", date: "28 September", age: "17 Thn" },
+                { name: "Aditya Wijaya", date: "05 Oktober", age: "17 Thn" },
+                { name: "Nabila Putri", date: "19 November", age: "17 Thn" }
+            ]
+        };
+
+        document.getElementById('birthday-grid').innerHTML = classData.birthdays.map(b => `
+            <div class="bg-jungle-900 p-4 rounded-xl border border-white/10 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-cake-candles"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-white text-sm">${b.name}</h3>
+                    <p class="text-xs text-slate-400">${b.date} • <span class="text-pink-300">${b.age}</span></p>
+                </div>
+            </div>
+        `).join('');
+    </script>
+</body>
+</html>

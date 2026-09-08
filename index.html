@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUNGLE CLASS — Home | XI IPS 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { jungle: { 950: '#09130d', 900: '#0f2217', 800: '#163323', 500: '#10b981', 400: '#34d399' } },
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 font-sans min-h-screen">
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 bg-jungle-900/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 font-bold text-white text-lg">
+            <div class="w-10 h-10 rounded-xl bg-jungle-500 text-jungle-950 flex items-center justify-center font-black"><i class="fa-solid fa-compass"></i></div>
+            <span>JUNGLE CLASS <span class="text-xs text-jungle-400 block font-normal">XI IPS 2</span></span>
+        </a>
+        <div class="hidden md:flex gap-6 text-sm font-semibold">
+            <a href="index.html" class="text-jungle-400">Home</a>
+            <a href="anggota.html" class="hover:text-jungle-400 transition">Anggota</a>
+            <a href="jadwal.html" class="hover:text-jungle-400 transition">Jadwal</a>
+            <a href="misi.html" class="hover:text-jungle-400 transition">Misi</a>
+            <a href="memori.html" class="hover:text-jungle-400 transition">Memori</a>
+            <a href="pengumuman.html" class="hover:text-jungle-400 transition">Berita</a>
+            <a href="prestasi.html" class="hover:text-jungle-400 transition">Prestasi</a>
+            <a href="ulang-tahun.html" class="hover:text-jungle-400 transition">Ultah</a>
+            <a href="kas.html" class="hover:text-jungle-400 transition">Kas</a>
+        </div>
+    </nav>
+
+    <!-- HERO WITH PHOTO BANNER -->
+    <section class="py-12 text-center px-4 max-w-5xl mx-auto">
+        <span class="px-4 py-1.5 rounded-full bg-jungle-500/20 text-jungle-400 text-xs font-bold border border-jungle-500/30">Dunia Virtual XI IPS 2</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white mt-4">WELCOME TO <br><span class="text-jungle-400">JUNGLE CLASS</span></h1>
+        <p class="text-slate-400 mt-3 max-w-xl mx-auto text-sm">“Grow Together, Make Memories” — Tempat belajar bersama, berbagi informasi, dan menyimpan kenangan.</p>
+
+        <!-- BANNER FOTO KELAS -->
+        <div class="mt-8 relative rounded-3xl overflow-hidden border-2 border-jungle-500/30 shadow-2xl group">
+            <img src="foto-kelas.jpg" alt="Foto Kelas XI IPS 2" class="w-full h-72 md:h-[420px] object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-6 right-6 text-left flex justify-between items-end">
+                <div>
+                    <span class="text-xs font-bold text-jungle-400 uppercase tracking-wider">Angkatan 2025</span>
+                    <h3 class="text-xl md:text-2xl font-bold text-white">Keluarga Besar XI IPS 2</h3>
+                </div>
+                <a href="memori.html" class="text-xs bg-jungle-500 hover:bg-jungle-400 text-jungle-950 px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-1">
+                    Galeri <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex justify-center gap-4 mt-8">
+            <a href="#map" class="px-6 py-3 bg-jungle-500 text-jungle-950 font-bold rounded-xl hover:brightness-110">Jungle Map</a>
+            <a href="anggota.html" class="px-6 py-3 bg-jungle-900 border border-white/10 text-white font-bold rounded-xl hover:bg-jungle-800">Lihat Anggota</a>
+        </div>
+    </section>
+
+    <!-- MAP NAVIGASI -->
+    <section id="map" class="py-12 max-w-6xl mx-auto px-4">
+        <h2 class="text-2xl font-bold text-white text-center mb-8"><i class="fa-solid fa-map text-jungle-400 mr-2"></i> Jungle Map Explorer</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="jadwal.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-jungle-500 transition text-center">
+                <i class="fa-solid fa-tree text-3xl text-jungle-400 mb-2"></i>
+                <h3 class="font-bold text-white">Knowledge Forest</h3>
+                <p class="text-xs text-slate-400">Jadwal Pelajaran</p>
+            </a>
+            <a href="misi.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-amber-500 transition text-center">
+                <i class="fa-solid fa-campground text-3xl text-amber-400 mb-2"></i>
+                <h3 class="font-bold text-white">Mission Camp</h3>
+                <p class="text-xs text-slate-400">Tugas & PR</p>
+            </a>
+            <a href="memori.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-blue-500 transition text-center">
+                <i class="fa-solid fa-water text-3xl text-blue-400 mb-2"></i>
+                <h3 class="font-bold text-white">Memory Lake</h3>
+                <p class="text-xs text-slate-400">Galeri Foto</p>
+            </a>
+            <a href="anggota.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-emerald-500 transition text-center">
+                <i class="fa-solid fa-users text-3xl text-emerald-400 mb-2"></i>
+                <h3 class="font-bold text-white">Explorers Hub</h3>
+                <p class="text-xs text-slate-400">Anggota Kelas</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-8 border-t border-white/10 text-xs text-slate-500 mt-20">
+        &copy; 2026 JUNGLE CLASS — XI IPS 2. Grow Together, Make Memories.
+    </footer>
+</body>
+</html>

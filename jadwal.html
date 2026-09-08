@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Schedule — XI-2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } } } } }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
+    
+    <div class="max-w-4xl mx-auto">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+
+        <div class="mb-8 text-center">
+            <span class="text-xs font-bold uppercase text-jungle-400">Knowledge Forest</span>
+            <h1 class="text-3xl font-extrabold text-white">JUNGLE SCHEDULE (XI-2)</h1>
+        </div>
+
+        <!-- Tab Hari -->
+        <div class="flex flex-wrap justify-center gap-2 mb-6" id="day-tabs">
+            <button onclick="renderSchedule('senin')" class="px-4 py-2 rounded-xl bg-jungle-500 text-jungle-950 font-bold text-xs tab-btn">Senin</button>
+            <button onclick="renderSchedule('selasa')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Selasa</button>
+            <button onclick="renderSchedule('rabu')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Rabu</button>
+            <button onclick="renderSchedule('kamis')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Kamis</button>
+            <button onclick="renderSchedule('jumat')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Jumat</button>
+            <button onclick="renderSchedule('sabtu')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Sabtu</button>
+        </div>
+
+        <div id="schedule-container" class="space-y-4"></div>
+    </div>
+
+    <script>
+        const classData = {
+            schedules: {
+                senin: [
+                    { time: "07:00 - 07:30", subject: "Upacara Bendera", teacher: "Seluruh Siswa", room: "Lap. Upacara" },
+                    { time: "07:30 - 08:00", subject: "Sosiologi", teacher: "Pak Dehas", room: "Ruang XI-2" },
+                    { time: "08:30 - 09:00", subject: "Bahasa Sunda", teacher: "Bu Ai", room: "Ruang XI-2" },
+                    { time: "09:00 - 10:30", subject: "Matematika", teacher: "Bu Rini", room: "Ruang XI-2" },
+                    { time: "10:30 - 11:30", subject: "Ekonomi", teacher: "Pak Dehas", room: "Ruang XI-2" },
+                    { time: "12:15 - 12:45", subject: "Sosiologi", teacher: "Pak Dehas", room: "Ruang XI-2" },
+                    { time: "12:45 - 13:15", subject: "ASWJ", teacher: "Pak Ilham", room: "Ruang XI-2" },
+                    { time: "13:15 - 13:45", subject: "Bahasa Inggris", teacher: "Bu Ulpah", room: "Ruang XI-2" }
+                ],
+                selasa: [
+                    { time: "07:00 - 07:30", subject: "Aqidah Akhlak", teacher: "Pak Erik", room: "Ruang XI-2" },
+                    { time: "07:30 - 08:00", subject: "Aqidah Akhlak", teacher: "Pak Erik", room: "Ruang XI-2" },
+                    { time: "08:30 - 09:30", subject: "Kimia", teacher: "Pak Irfan", room: "Ruang XI-2" },
+                    { time: "10:00 - 11:00", subject: "Bahasa Indonesia", teacher: "Pak Adit", room: "Ruang XI-2" },
+                    { time: "11:00 - 12:45", subject: "Bahasa Arab", teacher: "Bu Ulpah", room: "Ruang XI-2" },
+                    { time: "12:45 - 13:45", subject: "Matematika", teacher: "Bu Rini", room: "Ruang XI-2" }
+                ],
+                rabu: [
+                    { time: "07:00 - 08:00", subject: "Geografi", teacher: "Bu Andin", room: "Ruang XI-2" },
+                    { time: "08:30 - 09:30", subject: "Bahasa Inggris", teacher: "Bu Ulpah", room: "Ruang XI-2" },
+                    { time: "10:00 - 11:00", subject: "Seni Budaya ", teacher: "Bu Rani", room: "Ruang XI-2" },
+                    { time: "11:00 - 11:30", subject: "Al-Qur'an Hadits", teacher: "Pak Ilham", room: "Ruang XI-2" },
+                    { time: "12:15 - 12:45", subject: "Al-Qur'an Hadits", teacher: "Pak Ilham", room: "Ruang XI-2" },
+                    { time: "12:45 - 13:15", subject: "Sosiologi", teacher: "Pak Dehas", room: "Ruang XI-2" },
+                    { time: "13:15 - 13:45", subject: "Bahasa Arab", teacher: "Bu Ulpah", room: "Ruang XI-2" }
+                ],
+                kamis: [
+                    { time: "07:00 - 08:00", subject: "Ekonomi", teacher: "Pak Dehas", room: "Ruang XI-2" },
+                    { time: "08:30 - 09:30", subject: "Bahasa Inggris", teacher: "Bu Ulpah", room: "Ruang XI-2" },
+                    { time: "10:00 - 11:00", subject: "PJOK / Olahraga", teacher: "Pak Dian", room: "Lap. Olahraga" },
+                    { time: "11:00 - 12:45", subject: "Fiqih", teacher: "Bu Ai", room: "Ruang XI-2" },
+                    { time: "12:45 - 13:45", subject: "PPKn", teacher: "Pak Dera", room: "Ruang XI-2" }
+                ],
+                jumat: [
+                    { time: "07:00 - 08:00", subject: "Yasin & Istigosah", teacher: "Seluruh Siswa", room: "Masjid Al-Mukhtar" },
+                    { time: "08:00 - 08:30", subject: "Pendalaman Materi TIK", teacher: "Pengajar TIK", room: "Lab Komputer" },
+                    { time: "08:30 - 09:30", subject: "Pendalaman Materi Jurusan", teacher: "Guru Jurusan", room: "Ruang Jurusan" },
+                    { time: "10:10 - 11:10", subject: "Praktek Jurusan", teacher: "Guru Jurusan", room: "Ruang Jurusan" }
+                ],
+                sabtu: [
+                    { time: "07:00 - 08:00", subject: "Sejarah Tingkat Lanjut", teacher: "Pak Deni", room: "Ruang XI-2" },
+                    { time: "08:30 - 09:30", subject: "Bahasa Indonesia", teacher: "Pak Adit", room: "Ruang XI-2" },
+                    { time: "10:00 - 11:00", subject: "Sejarah Kebudayaan Islam (SKI)", teacher: "Bu Ai", room: "Ruang XI-2" },
+                    { time: "11:00 - 12:45", subject: "Prakarya & KWU", teacher: "Pak Sahrul", room: "Ruang XI-2" },
+                    { time: "12:45 - 13:45", subject: "Fisika", teacher: "Bu Sisi", room: "Ruang XI-2" }
+                ]
+            }
+        };
+
+        function renderSchedule(day) {
+            // Ubah tampilan tombol tab aktif
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes(day)) {
+                    btn.className = "px-4 py-2 rounded-xl bg-jungle-500 text-jungle-950 font-bold text-xs tab-btn";
+                } else {
+                    btn.className = "px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn";
+                }
+            });
+
+            // Render isi jadwal
+            document.getElementById('schedule-container').innerHTML = classData.schedules[day].map(s => `
+                <div class="bg-jungle-900 p-5 rounded-2xl border-l-4 border-jungle-500 flex justify-between items-center hover:border-jungle-400 transition">
+                    <div>
+                        <span class="text-xs font-bold text-jungle-400">${s.time}</span>
+                        <h3 class="font-bold text-white text-base">${s.subject}</h3>
+                        <p class="text-xs text-slate-400">${s.teacher}</p>
+                    </div>
+                    <span class="text-xs bg-white/5 px-3 py-1.5 rounded-lg text-slate-300 font-semibold">${s.room}</span>
+                </div>
+            `).join('');
+        }
+
+        // Default tampilkan Senin
+        renderSchedule('senin');
+    </script>
+</body>
+</html>

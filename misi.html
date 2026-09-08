@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Board — Jungle Class</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } } } } }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
+    
+    <div class="max-w-5xl mx-auto">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+        
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <span class="text-xs font-bold uppercase text-amber-400">Mission Camp</span>
+                <h1 class="text-3xl font-extrabold text-white">MISSION BOARD (TUGAS KELAS)</h1>
+            </div>
+            <span class="text-xs bg-jungle-900 px-3 py-1.5 rounded-lg border border-white/10 text-slate-400">3 Misi Aktif</span>
+        </div>
+
+        <div id="misi-list" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </div>
+
+    <script>
+        const classData = {
+            missions: [
+                { title: "Makalah Analisis Ekonomi Mikro", subject: "Ekonomi", deadline: "12 Sept 2026", status: "In Progress", color: "amber", desc: "Tugas kelompok analisis pasar tradisional vs modern di kota sekitar." },
+                { title: "Laporan Penelitian Sosiologi Desa", subject: "Sosiologi", deadline: "18 Sept 2026", status: "Upcoming", color: "blue", desc: "Observasi dinamika kelompok sosial masyarakat lokal." },
+                { title: "Peta Persebaran Flora Fauna", subject: "Geografi", deadline: "05 Sept 2026", status: "Completed", color: "emerald", desc: "Menggambar peta kontur dan wilayah konservasi Indonesia." }
+            ]
+        };
+
+        document.getElementById('misi-list').innerHTML = classData.missions.map(m => `
+            <div class="bg-jungle-900 p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded bg-${m.color}-500/20 text-${m.color}-300">${m.status}</span>
+                        <span class="text-xs text-slate-400">${m.deadline}</span>
+                    </div>
+                    <h3 class="font-bold text-white text-lg">${m.title}</h3>
+                    <p class="text-xs text-jungle-400 font-semibold mt-1">Mapel: ${m.subject}</p>
+                    <p class="text-xs text-slate-300 mt-3">${m.desc}</p>
+                </div>
+                <button onclick="alert('Membuka detail misi...')" class="mt-6 py-2 bg-white/5 hover:bg-jungle-500 hover:text-jungle-950 text-xs font-bold rounded-xl transition">Detail Misi</button>
+            </div>
+        `).join('');
+    </script>
+</body>
+</html>

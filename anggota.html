@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Jungle Explorers — XI IPS 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } } } } }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
+    
+    <div class="max-w-6xl mx-auto">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+            <div>
+                <span class="text-xs font-bold uppercase text-emerald-400">Anggota Penjelajah</span>
+                <h1 class="text-3xl font-extrabold text-white">OUR JUNGLE EXPLORERS</h1>
+            </div>
+
+            <!-- Search & Filter -->
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="search-input" placeholder="Cari nama atau posisi..." class="px-4 py-2 bg-jungle-900 border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-jungle-500">
+                <div class="flex gap-2">
+                    <button onclick="filterType('all')" class="px-3 py-2 bg-jungle-500 text-jungle-950 rounded-xl font-bold text-xs btn-filter">Semua</button>
+                    <button onclick="filterType('leader')" class="px-3 py-2 bg-jungle-900 border border-white/10 rounded-xl font-bold text-xs btn-filter">Leaders</button>
+                    <button onclick="filterType('explorer')" class="px-3 py-2 bg-jungle-900 border border-white/10 rounded-xl font-bold text-xs btn-filter">Explorers</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="members-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"></div>
+    </div>
+
+    <script>
+        // Data dimasukkan langsung ke sini
+        const classData = {
+            members: [
+                { name: "Muhammad Yassir Al-Munawar", role: "Ketua Kelas", type: "leader", icon: "fa-crown", quote: "Memimpin dengan aksi, bertumbuh bersama." },
+                { name: "Muhammad Fikri Abdul Aziz", role: "Wakil Ketua", type: "leader", icon: "fa-star", quote: "Selalu ada solusi di setiap petualangan." },
+                { name: "Puput", role: "Sekretaris 1", type: "leader", icon: "fa-pen", quote: "Catatan rapi, kelas terkendali." },
+                { name: "Ulpah", role: "Bendahara 1", type: "leader", icon: "fa-wallet", quote: "Kas aman, kegiatan jalan!" },
+                { name: "Aditya Wijaya", role: "Explorer / IPS Squad", type: "explorer", icon: "fa-compass", quote: "Geografi & Sosiologi favoritku." },
+                { name: "Bagas Setiawan", role: "Explorer / Olahraga", type: "explorer", icon: "fa-futbol", quote: "Pantang menyerah sebelum peluit akhir." },
+                { name: "Citra Dewi", role: "Explorer / Seni", type: "explorer", icon: "fa-palette", quote: "Menciptakan warna di kelas IPS 2." },
+                { name: "Dion Febrian", role: "Explorer / E-Sport Lead", type: "explorer", icon: "fa-gamepad", quote: "Strategi di game, solid di kelas." }
+            ]
+        };
+
+        function render(data) {
+            document.getElementById('members-grid').innerHTML = data.map(m => `
+                <div class="bg-jungle-900 p-5 rounded-2xl text-center border border-white/10 hover:border-jungle-500 transition">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-jungle-500/20 text-jungle-400 flex items-center justify-center text-2xl mb-3">
+                        <i class="fa-solid ${m.icon}"></i>
+                    </div>
+                    <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded ${m.type === 'leader' ? 'bg-amber-500/20 text-amber-300' : 'bg-jungle-500/20 text-jungle-300'}">${m.role}</span>
+                    <h3 class="font-bold text-white text-base mt-2">${m.name}</h3>
+                    <p class="text-xs text-slate-400 italic mt-1">"${m.quote}"</p>
+                </div>
+            `).join('');
+        }
+
+        function filterType(type) {
+            if (type === 'all') render(classData.members);
+            else render(classData.members.filter(m => m.type === type));
+        }
+
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            render(classData.members.filter(m => m.name.toLowerCase().includes(val) || m.role.toLowerCase().includes(val)));
+        });
+
+        render(classData.members);
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Treasury — XI IPS 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } } } } }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
+    
+    <div class="max-w-5xl mx-auto">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+
+        <div class="mb-8">
+            <span class="text-xs font-bold uppercase text-jungle-400">Transparansi Keuangan</span>
+            <h1 class="text-3xl font-extrabold text-white">JUNGLE TREASURY (KAS KELAS)</h1>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8" id="kas-stats"></div>
+
+        <div class="bg-jungle-900 rounded-2xl border border-white/10 overflow-hidden">
+            <div class="p-4 border-b border-white/10 font-bold text-sm text-white">Riwayat Transaksi Terbaru</div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-jungle-950 text-slate-400 uppercase">
+                        <tr>
+                            <th class="p-4">Tanggal</th>
+                            <th class="p-4">Keterangan</th>
+                            <th class="p-4">Kategori</th>
+                            <th class="p-4 text-right">Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody id="treasury-history" class="divide-y divide-white/5"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const classData = {
+            treasury: {
+                income: "Rp 2.450.000",
+                expense: "Rp 1.120.000",
+                balance: "Rp 1.330.000",
+                history: [
+                    { date: "01/09/2026", desc: "Iuran Kas Mingguan September (Minggu 1)", cat: "Pemasukan", type: "in", amount: "Rp 160.000" },
+                    { date: "28/08/2026", desc: "Pembelian Perlengkapan Kebersihan & Tanaman", cat: "Pengeluaran", type: "out", amount: "Rp 85.000" },
+                    { date: "20/08/2026", desc: "Cetak Spanduk & Banner Jungle Class", cat: "Pengeluaran", type: "out", amount: "Rp 120.000" }
+                ]
+            }
+        };
+
+        const t = classData.treasury;
+        document.getElementById('kas-stats').innerHTML = `
+            <div class="bg-jungle-900 p-5 rounded-2xl border-l-4 border-emerald-500">
+                <span class="text-xs text-slate-400">Total Pemasukan</span>
+                <p class="text-2xl font-bold text-emerald-400 mt-1">${t.income}</p>
+            </div>
+            <div class="bg-jungle-900 p-5 rounded-2xl border-l-4 border-rose-500">
+                <span class="text-xs text-slate-400">Total Pengeluaran</span>
+                <p class="text-2xl font-bold text-rose-400 mt-1">${t.expense}</p>
+            </div>
+            <div class="bg-jungle-900 p-5 rounded-2xl border-l-4 border-jungle-400">
+                <span class="text-xs text-slate-400">Saldo Saat Ini</span>
+                <p class="text-2xl font-bold text-jungle-300 mt-1">${t.balance}</p>
+            </div>
+        `;
+
+        document.getElementById('treasury-history').innerHTML = t.history.map(h => `
+            <tr>
+                <td class="p-4">${h.date}</td>
+                <td class="p-4 font-semibold text-white">${h.desc}</td>
+                <td class="p-4"><span class="px-2 py-0.5 rounded ${h.type === 'in' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">${h.cat}</span></td>
+                <td class="p-4 text-right font-bold ${h.type === 'in' ? 'text-emerald-400' : 'text-rose-400'}">${h.amount}</td>
+            </tr>
+        `).join('');
+    </script>
+</body>
+</html>
