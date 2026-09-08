@@ -21,12 +21,33 @@
 <body class="bg-jungle-950 text-slate-200 font-sans min-h-screen">
 
     <!-- NAVBAR -->
-    <nav class="sticky top-0 z-50 bg-jungle-900/80 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
-        <a href="index.html" class="flex items-center gap-3 font-bold text-white text-lg">
-            <div class="w-10 h-10 rounded-xl bg-jungle-500 text-jungle-950 flex items-center justify-center font-black"><i class="fa-solid fa-compass"></i></div>
-            <span>JUNGLE CLASS <span class="text-xs text-jungle-400 block font-normal">XI IPS 2</span></span>
-        </a>
-        <div class="hidden md:flex gap-6 text-sm font-semibold">
+    <nav class="sticky top-0 z-50 bg-jungle-900/90 backdrop-blur-md border-b border-white/10 px-6 py-4">
+        <div class="flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 font-bold text-white text-lg">
+                <div class="w-10 h-10 rounded-xl bg-jungle-500 text-jungle-950 flex items-center justify-center font-black"><i class="fa-solid fa-compass"></i></div>
+                <span>JUNGLE CLASS <span class="text-xs text-jungle-400 block font-normal">XI IPS 2</span></span>
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex gap-6 text-sm font-semibold">
+                <a href="index.html" class="text-jungle-400">Home</a>
+                <a href="anggota.html" class="hover:text-jungle-400 transition">Anggota</a>
+                <a href="jadwal.html" class="hover:text-jungle-400 transition">Jadwal</a>
+                <a href="misi.html" class="hover:text-jungle-400 transition">Misi</a>
+                <a href="memori.html" class="hover:text-jungle-400 transition">Memori</a>
+                <a href="pengumuman.html" class="hover:text-jungle-400 transition">Berita</a>
+                <a href="prestasi.html" class="hover:text-jungle-400 transition">Prestasi</a>
+                <a href="ulang-tahun.html" class="hover:text-jungle-400 transition">Ultah</a>
+            </div>
+
+            <!-- Tombol Hamburger (Cuma Muncul di HP) -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none p-1">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menu Dropdown HP -->
+        <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 mt-4 pt-4 border-t border-white/10 text-sm font-semibold">
             <a href="index.html" class="text-jungle-400">Home</a>
             <a href="anggota.html" class="hover:text-jungle-400 transition">Anggota</a>
             <a href="jadwal.html" class="hover:text-jungle-400 transition">Jadwal</a>
@@ -35,7 +56,6 @@
             <a href="pengumuman.html" class="hover:text-jungle-400 transition">Berita</a>
             <a href="prestasi.html" class="hover:text-jungle-400 transition">Prestasi</a>
             <a href="ulang-tahun.html" class="hover:text-jungle-400 transition">Ultah</a>
-            <a href="kas.html" class="hover:text-jungle-400 transition">Kas</a>
         </div>
     </nav>
 
@@ -97,5 +117,16 @@
     <footer class="text-center py-8 border-t border-white/10 text-xs text-slate-500 mt-20">
         &copy; 2026 JUNGLE CLASS — XI IPS 2. Grow Together, Make Memories.
     </footer>
+
+    <!-- SCRIPT TOGGLE MENU HP -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+    </script>
 </body>
 </html>
