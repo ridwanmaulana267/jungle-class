@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jungle Schedule — XI-2</title>
+    <title>Jungle Schedule — XI IPS 2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -19,17 +19,18 @@
 
         <div class="mb-8 text-center">
             <span class="text-xs font-bold uppercase text-jungle-400">Knowledge Forest</span>
-            <h1 class="text-3xl font-extrabold text-white">JUNGLE SCHEDULE (XI-2)</h1>
+            <h1 class="text-3xl font-extrabold text-white">JUNGLE SCHEDULE (XI IPS 2)</h1>
+            <p id="live-time" class="text-xs text-slate-400 mt-2 font-mono"></p>
         </div>
 
         <!-- Tab Hari -->
         <div class="flex flex-wrap justify-center gap-2 mb-6" id="day-tabs">
-            <button onclick="renderSchedule('senin')" class="px-4 py-2 rounded-xl bg-jungle-500 text-jungle-950 font-bold text-xs tab-btn">Senin</button>
-            <button onclick="renderSchedule('selasa')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Selasa</button>
-            <button onclick="renderSchedule('rabu')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Rabu</button>
-            <button onclick="renderSchedule('kamis')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Kamis</button>
-            <button onclick="renderSchedule('jumat')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Jumat</button>
-            <button onclick="renderSchedule('sabtu')" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Sabtu</button>
+            <button onclick="renderSchedule('senin')" id="btn-senin" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Senin</button>
+            <button onclick="renderSchedule('selasa')" id="btn-selasa" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Selasa</button>
+            <button onclick="renderSchedule('rabu')" id="btn-rabu" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Rabu</button>
+            <button onclick="renderSchedule('kamis')" id="btn-kamis" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Kamis</button>
+            <button onclick="renderSchedule('jumat')" id="btn-jumat" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Jumat</button>
+            <button onclick="renderSchedule('sabtu')" id="btn-sabtu" class="px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn">Sabtu</button>
         </div>
 
         <div id="schedule-container" class="space-y-4"></div>
@@ -59,7 +60,7 @@
                 rabu: [
                     { time: "07:00 - 08:00", subject: "Geografi", teacher: "Bu Andin", room: "Ruang XI-2" },
                     { time: "08:30 - 09:30", subject: "Bahasa Inggris", teacher: "Bu Ulpah", room: "Ruang XI-2" },
-                    { time: "10:00 - 11:00", subject: "Seni Budaya ", teacher: "Bu Rani", room: "Ruang XI-2" },
+                    { time: "10:00 - 11:00", subject: "Seni Budaya", teacher: "Bu Rani", room: "Ruang XI-2" },
                     { time: "11:00 - 11:30", subject: "Al-Qur'an Hadits", teacher: "Pak Ilham", room: "Ruang XI-2" },
                     { time: "12:15 - 12:45", subject: "Al-Qur'an Hadits", teacher: "Pak Ilham", room: "Ruang XI-2" },
                     { time: "12:45 - 13:15", subject: "Sosiologi", teacher: "Pak Dehas", room: "Ruang XI-2" },
@@ -88,32 +89,88 @@
             }
         };
 
+        const dayNames = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
+        let currentActiveDay = 'senin';
+
+        function checkIsActiveTime(timeRange, dayKey) {
+            const now = new Date();
+            const todayKey = dayNames[now.getDay()];
+
+            // Jika hari ini bukan hari yang sedang diteliti
+            if (todayKey !== dayKey) return false;
+
+            const [startStr, endStr] = timeRange.split(' - ');
+            const [startH, startM] = startStr.split(':').map(Number);
+            const [endH, endM] = endStr.split(':').map(Number);
+
+            const nowMinutes = now.getHours() * 60 + now.getMinutes();
+            const startMinutes = startH * 60 + startM;
+            const endMinutes = endH * 60 + endM;
+
+            return nowMinutes >= startMinutes && nowMinutes < endMinutes;
+        }
+
         function renderSchedule(day) {
-            // Ubah tampilan tombol tab aktif
+            currentActiveDay = day;
+
+            // Update Tab Style
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
-                if (btn.getAttribute('onclick').includes(day)) {
-                    btn.className = "px-4 py-2 rounded-xl bg-jungle-500 text-jungle-950 font-bold text-xs tab-btn";
+                if (btn.id === `btn-${day}`) {
+                    btn.className = "px-4 py-2 rounded-xl bg-jungle-500 text-jungle-950 font-bold text-xs tab-btn shadow-md shadow-jungle-500/20";
                 } else {
                     btn.className = "px-4 py-2 rounded-xl bg-jungle-900 border border-white/10 font-bold text-xs tab-btn";
                 }
             });
 
-            // Render isi jadwal
-            document.getElementById('schedule-container').innerHTML = classData.schedules[day].map(s => `
-                <div class="bg-jungle-900 p-5 rounded-2xl border-l-4 border-jungle-500 flex justify-between items-center hover:border-jungle-400 transition">
-                    <div>
-                        <span class="text-xs font-bold text-jungle-400">${s.time}</span>
-                        <h3 class="font-bold text-white text-base">${s.subject}</h3>
-                        <p class="text-xs text-slate-400">${s.teacher}</p>
+            // Render List Jadwal
+            document.getElementById('schedule-container').innerHTML = classData.schedules[day].map(s => {
+                const isActive = checkIsActiveTime(s.time, day);
+
+                return `
+                    <div class="p-5 rounded-2xl border transition duration-300 flex justify-between items-center ${
+                        isActive 
+                        ? 'bg-jungle-900 border-jungle-400 ring-2 ring-jungle-500/50 shadow-xl shadow-jungle-500/10' 
+                        : 'bg-jungle-900 border-white/10 hover:border-white/20'
+                    }">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-xs font-bold ${isActive ? 'text-jungle-400 font-extrabold' : 'text-jungle-400'}">${s.time}</span>
+                                ${isActive ? '<span class="animate-pulse text-[10px] bg-jungle-500 text-jungle-950 px-2 py-0.5 rounded-full font-black">SEDANG BERLANGSUNG</span>' : ''}
+                            </div>
+                            <h3 class="font-bold text-white text-base">${s.subject}</h3>
+                            <p class="text-xs text-slate-400">${s.teacher}</p>
+                        </div>
+                        <span class="text-xs bg-white/5 px-3 py-1.5 rounded-lg text-slate-300 font-semibold border border-white/5">${s.room}</span>
                     </div>
-                    <span class="text-xs bg-white/5 px-3 py-1.5 rounded-lg text-slate-300 font-semibold">${s.room}</span>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
-        // Default tampilkan Senin
-        renderSchedule('senin');
+        function initSchedulePage() {
+            const todayIndex = new Date().getDay();
+            const todayKey = dayNames[todayIndex];
+
+            // Update Jam Digital
+            setInterval(() => {
+                const now = new Date();
+                document.getElementById('live-time').innerText = `Waktu Sistem: ${now.toLocaleTimeString('id-ID')} WIB`;
+            }, 1000);
+
+            // Buka tab hari ini (jika Minggu, default ke Senin)
+            if (todayKey !== 'minggu' && classData.schedules[todayKey]) {
+                renderSchedule(todayKey);
+            } else {
+                renderSchedule('senin');
+            }
+
+            // Auto-refresh tampilan setiap 30 detik agar perubahan jam langsung menyala otomatis
+            setInterval(() => {
+                renderSchedule(currentActiveDay);
+            }, 30000);
+        }
+
+        initSchedulePage();
     </script>
 </body>
 </html>
