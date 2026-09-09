@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Duty — XI IPS 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } 
+                    } 
+                } 
+            } 
+        }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
+    
+    <div class="max-w-6xl mx-auto">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+
+        <div class="mb-8 text-center">
+            <span class="text-xs font-bold uppercase text-jungle-400 tracking-wider">Cleaning Duty Squad</span>
+            <h1 class="text-3xl font-extrabold text-white mt-1">JADWAL PIKET KELAS</h1>
+            <p class="text-xs text-slate-400 mt-2">Jaga kebersihan kelas demi kenyamanan bersama!</p>
+        </div>
+
+        <!-- Grid Jadwal Piket -->
+        <div id="piket-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"></div>
+    </div>
+
+    <script>
+        const piketData = [
+            {
+                dayId: 1, // 1 = Senin
+                dayName: "Senin",
+                icon: "fa-leaf",
+                members: ["Aceng Miftah Farid", "Ahmad Barokah", "Akmal Latif Al-Khoarizmi", "Asmawa'ati"]
+            },
+            {
+                dayId: 2, // 2 = Selasa
+                dayName: "Selasa",
+                icon: "fa-broom",
+                members: ["Asti Sukmawati", "Dethala Inari Putri", "Dewi Nadariyah", "Ega Odikta Septiani"]
+            },
+            {
+                dayId: 3, // 3 = Rabu
+                dayName: "Rabu",
+                icon: "fa-sparkles",
+                members: ["Lutfia Septia Ramadhani", "M Fikri Abdul Aziz", "M Yasir Al Munawar", "Puput Putriani"]
+            },
+            {
+                dayId: 4, // 4 = Kamis
+                dayName: "Kamis",
+                icon: "fa-dumpster",
+                members: ["Randi Mardiana Rahmat", "Rehan Maulana", "Revi Febriyani Syapariyah"]
+            },
+            {
+                dayId: 5, // 5 = sabtu
+                dayName: "Sabtu",
+                icon: "fa-hand-sparkles",
+                members: ["Ridwan Mukti Maulana", "Rival Maulana", "Ulpah Jain Inayah"]
+            }
+        ];
+
+        const todayIndex = new Date().getDay(); // 1 = Senin, ..., 5 = Sabtu
+
+        document.getElementById('piket-grid').innerHTML = piketData.map(p => {
+            const isToday = p.dayId === todayIndex;
+
+            return `
+                <div class="p-5 rounded-2xl border transition duration-300 flex flex-col justify-between ${
+                    isToday 
+                    ? 'bg-jungle-900 border-jungle-500 shadow-lg shadow-jungle-500/20 ring-2 ring-jungle-500/50' 
+                    : 'bg-jungle-900/60 border-white/10 hover:border-white/20'
+                }">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="font-bold text-lg text-white flex items-center gap-2">
+                                <i class="fa-solid ${p.icon} ${isToday ? 'text-jungle-400' : 'text-slate-400'}"></i>
+                                ${p.dayName}
+                            </h2>
+                            ${isToday ? '<span class="text-[10px] bg-jungle-500 text-jungle-950 font-extrabold px-2 py-0.5 rounded-full">HARI INI</span>' : ''}
+                        </div>
+
+                        <ul class="space-y-2.5">
+                            ${p.members.map(m => `
+                                <li class="text-xs text-slate-300 flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-[10px] ${isToday ? 'text-jungle-400' : 'text-slate-500'}"></i>
+                                    <span>${m}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="mt-6 pt-3 border-t border-white/5 text-[11px] text-slate-500 text-center">
+                        ${p.members.length} Anggota
+                    </div>
+                </div>
+            `;
+        }).join('');
+    </script>
+</body>
+</html>
