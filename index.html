@@ -33,6 +33,7 @@
                 <a href="index.html" class="text-jungle-400">Home</a>
                 <a href="anggota.html" class="hover:text-jungle-400 transition">Anggota</a>
                 <a href="jadwal.html" class="hover:text-jungle-400 transition">Jadwal</a>
+                <a href="piket.html" class="hover:text-jungle-400 transition">Piket</a>
                 <a href="misi.html" class="hover:text-jungle-400 transition">Misi</a>
                 <a href="memori.html" class="hover:text-jungle-400 transition">Memori</a>
                 <a href="pengumuman.html" class="hover:text-jungle-400 transition">Berita</a>
@@ -51,6 +52,7 @@
             <a href="index.html" class="text-jungle-400">Home</a>
             <a href="anggota.html" class="hover:text-jungle-400 transition">Anggota</a>
             <a href="jadwal.html" class="hover:text-jungle-400 transition">Jadwal</a>
+            <a href="piket.html" class="hover:text-jungle-400 transition">Piket</a>
             <a href="misi.html" class="hover:text-jungle-400 transition">Misi</a>
             <a href="memori.html" class="hover:text-jungle-400 transition">Memori</a>
             <a href="pengumuman.html" class="hover:text-jungle-400 transition">Berita</a>
@@ -86,30 +88,67 @@
         </div>
     </section>
 
-    <!-- MAP NAVIGASI -->
+    <!-- MAP NAVIGASI LENGKAP -->
     <section id="map" class="py-12 max-w-6xl mx-auto px-4">
         <h2 class="text-2xl font-bold text-white text-center mb-8"><i class="fa-solid fa-map text-jungle-400 mr-2"></i> Jungle Map Explorer</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="jadwal.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-jungle-500 transition text-center">
-                <i class="fa-solid fa-tree text-3xl text-jungle-400 mb-2"></i>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            
+            <!-- Jadwal Pelajaran -->
+            <a href="jadwal.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-jungle-500 transition text-center group">
+                <i class="fa-solid fa-tree text-3xl text-jungle-400 mb-2 group-hover:scale-110 transition"></i>
                 <h3 class="font-bold text-white">Knowledge Forest</h3>
-                <p class="text-xs text-slate-400">Jadwal Pelajaran</p>
+                <p class="text-xs text-slate-400 mt-1">Jadwal Pelajaran</p>
             </a>
-            <a href="misi.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-amber-500 transition text-center">
-                <i class="fa-solid fa-campground text-3xl text-amber-400 mb-2"></i>
+
+            <!-- Piket Kelas -->
+            <a href="piket.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-teal-400 transition text-center group">
+                <i class="fa-solid fa-broom text-3xl text-teal-400 mb-2 group-hover:scale-110 transition"></i>
+                <h3 class="font-bold text-white">Clean Station</h3>
+                <p class="text-xs text-slate-400 mt-1">Jadwal Piket</p>
+            </a>
+
+            <!-- Misi/Tugas -->
+            <a href="misi.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-amber-500 transition text-center group">
+                <i class="fa-solid fa-campground text-3xl text-amber-400 mb-2 group-hover:scale-110 transition"></i>
                 <h3 class="font-bold text-white">Mission Camp</h3>
-                <p class="text-xs text-slate-400">Tugas & PR</p>
+                <p class="text-xs text-slate-400 mt-1">Tugas & PR</p>
             </a>
-            <a href="memori.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-blue-500 transition text-center">
-                <i class="fa-solid fa-water text-3xl text-blue-400 mb-2"></i>
+
+            <!-- Memori/Galeri -->
+            <a href="memori.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-blue-500 transition text-center group">
+                <i class="fa-solid fa-water text-3xl text-blue-400 mb-2 group-hover:scale-110 transition"></i>
                 <h3 class="font-bold text-white">Memory Lake</h3>
-                <p class="text-xs text-slate-400">Galeri Foto</p>
+                <p class="text-xs text-slate-400 mt-1">Galeri Foto</p>
             </a>
-            <a href="anggota.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-emerald-500 transition text-center">
-                <i class="fa-solid fa-users text-3xl text-emerald-400 mb-2"></i>
+
+            <!-- Anggota -->
+            <a href="anggota.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-emerald-500 transition text-center group">
+                <i class="fa-solid fa-users text-3xl text-emerald-400 mb-2 group-hover:scale-110 transition"></i>
                 <h3 class="font-bold text-white">Explorers Hub</h3>
-                <p class="text-xs text-slate-400">Anggota Kelas</p>
+                <p class="text-xs text-slate-400 mt-1">Anggota Kelas</p>
             </a>
+
+            <!-- Ulang Tahun -->
+            <a href="ulang-tahun.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-pink-500 transition text-center group">
+                <i class="fa-solid fa-cake-candles text-3xl text-pink-400 mb-2 group-hover:scale-110 transition"></i>
+                <h3 class="font-bold text-white">Birthday Garden</h3>
+                <p class="text-xs text-slate-400 mt-1">Ulang Tahun</p>
+            </a>
+
+            <!-- Berita/Pengumuman -->
+            <a href="pengumuman.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-purple-500 transition text-center group">
+                <i class="fa-solid fa-bullhorn text-3xl text-purple-400 mb-2 group-hover:scale-110 transition"></i>
+                <h3 class="font-bold text-white">Echo Canopy</h3>
+                <p class="text-xs text-slate-400 mt-1">Berita & Pengumuman</p>
+            </a>
+
+            <!-- Prestasi -->
+            <a href="prestasi.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-yellow-500 transition text-center group">
+                <i class="fa-solid fa-trophy text-3xl text-yellow-400 mb-2 group-hover:scale-110 transition"></i>
+                <h3 class="font-bold text-white">Trophy Peak</h3>
+                <p class="text-xs text-slate-400 mt-1">Prestasi Kelas</p>
+            </a>
+
         </div>
     </section>
 
