@@ -22,47 +22,113 @@
             <h1 class="text-3xl font-extrabold text-white">JUNGLE BIRTHDAYS</h1>
         </div>
 
-        <div class="bg-jungle-900 p-6 rounded-3xl border border-pink-500/30 text-center mb-8">
-            <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs font-bold">🎉 Ulang Tahun Terdekat</span>
-            <h2 class="text-2xl font-bold text-white mt-3">Ridwan Mukti Maulana</h2>
-            <p class="text-xs text-pink-400 font-semibold mt-1">26 Juni • Menuju 17 Tahun</p>
-        </div>
+        <!-- Wadah Kartu Ulang Tahun Terdekat -->
+        <div id="closest-card"></div>
 
+        <!-- Grid Semua Anggota -->
         <div id="birthday-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
     </div>
 
     <script>
-        const classData = {
-            birthdays: [
-                { name: "Ridwan Mukti Maulana", date: "26 Juni", age: "16 Thn" },
-                { name: "Rehan Maulana", date: "16 Februari", age: "17 Thn" },
-                { name: "Asti Sukmawati", date: "13 Oktober", age: "15 Thn" },
-                { name: "Lutfia Septia Ramadhani", date: "3 September", age: "17 Thn" },
-                { name: "Ega Odikta Septiani", date: "30 September", age: "16 Thn" },
-                { name: "Puput Putriani", date: "5 September", age: "17 Thn" },
-                { name: "Ulpah Jayyin Inayah", date: "1 Januari", age: "16 Thn" },
-                { name: "Revi Febriyani Syapariyah", date: "15 Februari", age: "15 Thn" },
-            ]
-            ]
-            ]
-            ]
-            ]
-            ]
-            ]
-            ]
-        };
+        const classData = [
+            { name: "Aceng Miftah Farid", dob: "2008-12-06" },
+            { name: "Ahmad Barokah", dob: null },
+            { name: "Asmawa'ati", dob: "2009-06-17" },
+            { name: "Asti Sukmawati", dob: "2010-10-13" },
+            { name: "Dethala Inari Putri", dob: null },
+            { name: "Dewi Nadariyah", dob: "2009-11-08" },
+            { name: "Ega Odikta Septiani", dob: "2009-09-30" },
+            { name: "Lutfia Septia Ramadhani", dob: "2009-09-03" },
+            { name: "M Fikri Abdul Aziz", dob: "2009-10-15" },
+            { name: "M Yasir Al Munawar", dob: "2010-08-03" },
+            { name: "Puput Putriani", dob: "2009-09-05" },
+            { name: "Randi Mardiana Rahmat", dob: "2009-01-13" },
+            { name: "Rehan Maulana", dob: "2008-02-16" },
+            { name: "Revi Febriyani Syapariyah", dob: "2011-02-15" },
+            { name: "Ridwan Mukti Maulana", dob: "2010-06-26" },
+            { name: "Rival Maulana", dob: "2009-12-23" },
+            { name: "Ulpah Jayin Inayah", dob: "2010-01-01" }
+        ];
 
-        document.getElementById('birthday-grid').innerHTML = classData.birthdays.map(b => `
-            <div class="bg-jungle-900 p-4 rounded-xl border border-white/10 flex items-center gap-4">
-                <div class="w-10 h-10 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold">
-                    <i class="fa-solid fa-cake-candles"></i>
+        const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+        function initBirthdaySystem() {
+            const today = new Date();
+            const now = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+            let upcomingList = [];
+
+            classData.forEach(person => {
+                if (!person.dob) {
+                    person.displayDate = "-";
+                    person.currentAge = null;
+                    return;
+                }
+
+                const [year, month, day] = person.dob.split('-').map(Number);
+                const birthDate = new Date(year, month - 1, day);
+                person.displayDate = `${day.toString().padStart(2, '0')} ${monthNames[month - 1]} ${year}`;
+
+                // Hitung umur saat ini
+                let age = now.getFullYear() - year;
+                const hasHadBdayThisYear = (now.getMonth() > month - 1) || (now.getMonth() === month - 1 && now.getDate() >= day);
+                if (!hasHadBdayThisYear) age--;
+                person.currentAge = age;
+
+                // Hitung tanggal ultah berikutnya
+                let nextBday = new Date(now.getFullYear(), month - 1, day);
+                if (nextBday < now) {
+                    nextBday.setFullYear(now.getFullYear() + 1);
+                }
+
+                const diffDays = Math.round((nextBday - now) / (1000 * 60 * 60 * 24));
+                const ageTurning = nextBday.getFullYear() - year;
+
+                upcomingList.push({
+                    name: person.name,
+                    diffDays: diffDays,
+                    ageTurning: ageTurning,
+                    dateStr: `${day.toString().padStart(2, '0')} ${monthNames[month - 1]}`
+                });
+            });
+
+            // Urutkan berdasarkan jarak hari terdekat
+            upcomingList.sort((a, b) => a.diffDays - b.diffDays);
+            const closest = upcomingList[0];
+
+            // Render Kartu Terdekat
+            if (closest) {
+                let statusStr = closest.diffDays === 0 
+                    ? `🎂 Selamat Ulang Tahun ke-${closest.ageTurning} Hari Ini!` 
+                    : `${closest.dateStr} • Menuju ${closest.ageTurning} Tahun (${closest.diffDays} hari lagi)`;
+
+                document.getElementById('closest-card').innerHTML = `
+                    <div class="bg-jungle-900 p-6 rounded-3xl border border-pink-500/30 text-center mb-8 shadow-lg">
+                        <span class="px-3 py-1 bg-pink-500/20 text-pink-300 rounded-full text-xs font-bold">🎉 Ulang Tahun Terdekat</span>
+                        <h2 class="text-2xl font-bold text-white mt-3">${closest.name}</h2>
+                        <p class="text-xs text-pink-400 font-semibold mt-1">${statusStr}</p>
+                    </div>
+                `;
+            }
+
+            // Render Grid Anggota
+            document.getElementById('birthday-grid').innerHTML = classData.map(b => `
+                <div class="bg-jungle-900 p-4 rounded-xl border border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-cake-candles"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-sm">${b.name}</h3>
+                            <p class="text-xs text-slate-400">${b.displayDate}</p>
+                        </div>
+                    </div>
+                    ${b.currentAge !== null ? `<span class="text-xs font-bold bg-white/5 text-pink-300 px-3 py-1 rounded-lg">${b.currentAge} Thn</span>` : ''}
                 </div>
-                <div>
-                    <h3 class="font-bold text-white text-sm">${b.name}</h3>
-                    <p class="text-xs text-slate-400">${b.date} • <span class="text-pink-300">${b.age}</span></p>
-                </div>
-            </div>
-        `).join('');
+            `).join('');
+        }
+
+        initBirthdaySystem();
     </script>
 </body>
 </html>
