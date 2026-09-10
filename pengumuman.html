@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle News — XI IPS 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } } } } }
+    </script>
+</head>
+<body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
+    
+    <div class="max-w-5xl mx-auto">
+        <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+
+        <div class="mb-8">
+            <span class="text-xs font-bold uppercase text-jungle-400">Pusat Informasi</span>
+            <h1 class="text-3xl font-extrabold text-white">JUNGLE NEWS & ANNOUNCEMENTS</h1>
+        </div>
+
+        <div id="news-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </div>
+
+    <script>
+        const classData = {
+            news: [
+                { title: "Persiapan Classmeeting Semester Ganjil", date: "02 Sept 2026", cat: "Kegiatan", desc: "Pendaftaran tim futsal, basket, dan e-sports XI IPS 2 telah dibuka!" },
+                { title: "Jadwal Ulangan Harian Sosiologi Bab 2", date: "30 Aug 2026", cat: "Akademik", desc: "Materi fokus pada struktur sosial dan diferensiasi sosial." },
+                { title: "Gotong Royong Kebersihan Taman Kelas", date: "25 Aug 2026", cat: "Kebersihan", desc: "Penataan pot bunga dan hiasan tema jungle di teras kelas kita." }
+            ]
+        };
+
+        document.getElementById('news-grid').innerHTML = classData.news.map(n => `
+            <div class="bg-jungle-900 p-6 rounded-2xl border border-white/10">
+                <div class="flex justify-between items-center text-xs text-slate-400 mb-3">
+                    <span class="text-jungle-400 font-bold">${n.cat}</span>
+                    <span>${n.date}</span>
+                </div>
+                <h3 class="font-bold text-white text-lg mb-2">${n.title}</h3>
+                <p class="text-xs text-slate-300 leading-relaxed">${n.desc}</p>
+            </div>
+        `).join('');
+    </script>
+</body>
+</html>
