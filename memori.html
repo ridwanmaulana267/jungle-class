@@ -7,44 +7,191 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        tailwind.config = { theme: { extend: { colors: { jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } } } } }
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 
+                        jungle: { 950: '#09130d', 900: '#0f2217', 500: '#10b981', 400: '#34d399' } 
+                    } 
+                } 
+            } 
+        }
     </script>
+    <style>
+        .glass-card {
+            background: rgba(13, 31, 20, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
 </head>
 <body class="bg-jungle-950 text-slate-200 p-6 min-h-screen">
     
     <div class="max-w-6xl mx-auto">
+        <!-- Back Button -->
         <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 mb-6 hover:underline">
             <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
         </a>
 
+        <!-- Page Header -->
         <div class="mb-8">
-            <span class="text-xs font-bold uppercase text-blue-400">Memory Lake</span>
-            <h1 class="text-3xl font-extrabold text-white">JUNGLE MEMORIES (GALERI FOTO)</h1>
-            <p class="text-xs text-slate-400 mt-1">Dokumentasi momen indah perjalanan XI IPS 2.</p>
+            <span class="text-xs font-bold uppercase tracking-widest text-blue-400">Memory Lake</span>
+            <h1 class="text-3xl font-extrabold text-white mt-1">JUNGLE MEMORIES (GALERI FOTO)</h1>
+            <p class="text-xs text-slate-400 mt-1">Dokumentasi momen indah dan keseruan perjalanan XI IPS 2.</p>
         </div>
 
+        <!-- Banner Link Nostalgia -->
+        <div class="glass-card p-4 rounded-2xl mb-8 flex flex-col sm:flex-row justify-between items-center gap-3 border border-amber-500/30 bg-amber-500/5">
+            <div class="flex items-center gap-3 text-center sm:text-left">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg flex-shrink-0">
+                    <i class="fa-solid fa-box-archive"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-white">Kangen Momen Kelas 10?</h4>
+                    <p class="text-xs text-slate-400">Lihat foto-foto jadul dan kisah bimbingan bareng Pak Adiyatma Nur Hidayat.</p>
+                </div>
+            </div>
+            <a href="nostalgia.html" class="px-4 py-2 bg-amber-500 text-jungle-950 text-xs font-bold rounded-xl hover:bg-amber-400 transition whitespace-nowrap">
+                Buka Nostalgia X <i class="fa-solid fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+
+        <!-- FILTER TAB BUTTONS -->
+        <div class="flex flex-wrap gap-2 mb-6">
+            <button onclick="filterGallery('all', this)" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-jungle-500 text-jungle-950 border border-jungle-400 shadow-lg shadow-jungle-500/20">
+                <i class="fa-solid fa-border-all mr-1.5"></i> Semua Foto
+            </button>
+            <button onclick="filterGallery('classmeeting', this)" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                <i class="fa-solid fa-trophy mr-1.5 text-amber-400"></i> Classmeeting
+            </button>
+            <button onclick="filterGallery('acara', this)" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                <i class="fa-solid fa-calendar-star mr-1.5 text-purple-400"></i> Acara Sekolah
+            </button>
+            <button onclick="filterGallery('sehari-hari', this)" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                <i class="fa-solid fa-mug-hot mr-1.5 text-blue-400"></i> Momen Sehari-hari
+            </button>
+        </div>
+
+        <!-- GALLERY GRID -->
         <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"></div>
     </div>
 
     <script>
+        // Data Foto Lengkap dengan Kategori
         const classData = {
             gallery: [
-                { img: "https://iili.io/n2LU2CN.md.jpg", title: "Maulid Nabi Muhammad SAW 2026" },
-                { img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80", title: "Diskusi Kelompok Ekonomi" },
-                { img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80", title: "Juara 1 Futsal Classmeeting" },
-                { img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80", title: "Ulang Tahun Wali Kelas" }
+                { 
+                    img: "https://iili.io/n2LU2CN.md.jpg", 
+                    title: "Maulid Nabi Muhammad SAW 2026", 
+                    category: "acara" 
+                },
+                { 
+                    img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80", 
+                    title: "Diskusi Kelompok Ekonomi", 
+                    category: "sehari-hari" 
+                },
+                { 
+                    img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80", 
+                    title: "Juara 1 Futsal Classmeeting", 
+                    category: "classmeeting" 
+                },
+                { 
+                    img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80", 
+                    title: "Surprise Ulang Tahun Wali Kelas", 
+                    category: "acara" 
+                },
+                { 
+                    img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80", 
+                    title: "Lomba Tarik Tambang Classmeeting", 
+                    category: "classmeeting" 
+                },
+                { 
+                    img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80", 
+                    title: "Nongkrong Pas Jam Istirahat", 
+                    category: "sehari-hari" 
+                },
+                { 
+                    img: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80", 
+                    title: "Pentas Seni & Budaya Sekolah", 
+                    category: "acara" 
+                },
+                { 
+                    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80", 
+                    title: "Kerja Kelompok Pasca Sekolah", 
+                    category: "sehari-hari" 
+                }
             ]
         };
 
-        document.getElementById('gallery-grid').innerHTML = classData.gallery.map(g => `
-            <div class="bg-jungle-900 rounded-2xl overflow-hidden group cursor-pointer border border-white/10">
-                <div class="h-48 overflow-hidden relative">
-                    <img src="${g.img}" alt="${g.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-transparent opacity-80"></div>
-                    <p class="absolute bottom-3 left-3 right-3 text-xs font-bold text-white">${g.title}</p>
-                </div>
-            </div>
-        `).join('');
+        // Format Label Kategori Badges
+        function getCategoryBadge(category) {
+            switch(category) {
+                case 'classmeeting':
+                    return { name: 'Classmeeting', color: 'bg-amber-500/20 text-amber-400 border-amber-500/30' };
+                case 'acara':
+                    return { name: 'Acara Sekolah', color: 'bg-purple-500/20 text-purple-400 border-purple-500/30' };
+                case 'sehari-hari':
+                    return { name: 'Sehari-hari', color: 'bg-blue-500/20 text-blue-400 border-blue-500/30' };
+                default:
+                    return { name: 'General', color: 'bg-jungle-500/20 text-jungle-400 border-jungle-500/30' };
+            }
+        }
+
+        // Render Galeri
+        function renderGallery(items) {
+            const grid = document.getElementById('gallery-grid');
+            
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-jungle-900/50 rounded-2xl border border-white/5">
+                        <i class="fa-solid fa-images text-3xl text-slate-600 mb-2"></i>
+                        <p class="text-xs text-slate-400">Belum ada foto untuk kategori ini.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = items.map(g => {
+                const badge = getCategoryBadge(g.category);
+                return `
+                    <div class="bg-jungle-900 rounded-2xl overflow-hidden group cursor-pointer border border-white/10 hover:border-jungle-400/50 transition duration-300">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="${g.img}" alt="${g.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/20 to-transparent opacity-90"></div>
+                            
+                            <!-- Category Badge -->
+                            <span class="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md backdrop-blur-md border ${badge.color}">
+                                ${badge.name}
+                            </span>
+
+                            <p class="absolute bottom-3 left-3 right-3 text-xs font-bold text-white group-hover:text-jungle-300 transition line-clamp-2">${g.title}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Fungsi Filter Kategori & Update Button Active
+        function filterGallery(category, btnElement) {
+            // Reset semua style tombol filter
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10';
+            });
+
+            // Set style tombol aktif yang diklik
+            btnElement.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-jungle-500 text-jungle-950 border border-jungle-400 shadow-lg shadow-jungle-500/20';
+
+            // Filter data foto
+            if (category === 'all') {
+                renderGallery(classData.gallery);
+            } else {
+                const filtered = classData.gallery.filter(item => item.category === category);
+                renderGallery(filtered);
+            }
+        }
+
+        // Render awal saat halaman dimuat
+        renderGallery(classData.gallery);
     </script>
 </body>
 </html>
