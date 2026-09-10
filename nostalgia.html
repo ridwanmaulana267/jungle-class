@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostalgia Kelas 10 — JUNGLE CLASS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        jungle: {
+                            950: '#060d08',
+                            900: '#0d1f14',
+                            800: '#142e1e',
+                            700: '#1d422c',
+                            500: '#10b981',
+                            400: '#34d399',
+                            300: '#6ee7b7'
+                        }
+                    },
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(13, 31, 20, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(52, 211, 153, 0.35);
+            box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.2);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #6ee7b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-jungle-500 selection:text-jungle-950 p-4 sm:p-6">
+
+    <!-- Ambient Glow -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-jungle-500/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="max-w-5xl mx-auto">
+        
+        <!-- Header Navigasi -->
+        <div class="flex items-center justify-between mb-8">
+            <a href="index.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-jungle-400 hover:bg-white/10 transition">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+            </a>
+            <span class="text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-jungle-900 border border-jungle-500/30 text-jungle-400">
+                <i class="fa-solid fa-clock-rotate-left mr-1"></i> Chapter 10 Archive
+            </span>
+        </div>
+
+        <!-- Section Title -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                THE ORIGINS <br><span class="text-gradient">NOSTALGIA KELAS 10</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-400 mt-3 max-w-xl mx-auto">
+                Kilas balik awal mula terbentuknya ikatan keluarga kita saat pertama kali menginjakkan kaki di bangku SMA.
+            </p>
+        </div>
+
+        <!-- HALL OF FAME: WALI KELAS 10 -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 mb-12 border border-jungle-500/30 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-6 opacity-10 text-9xl text-jungle-400 font-black pointer-events-none">X</div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-6 relative z-10">
+                <!-- Avatar / Photo Wrapper -->
+                <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-gradient-to-tr from-jungle-500 to-teal-300 p-1 flex-shrink-0 shadow-xl shadow-jungle-500/20">
+                    <div class="w-full h-full rounded-[14px] bg-jungle-900 flex items-center justify-center overflow-hidden">
+                        <i class="fa-solid fa-user-tie text-5xl text-jungle-400"></i>
+                    </div>
+                </div>
+
+                <!-- Info Wali Kelas -->
+                <div class="text-center sm:text-left">
+                    <span class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                        <i class="fa-solid fa-crown mr-1"></i> Wali Kelas X
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Adiyatma Nur Hidayat</h2>
+                    <p class="text-xs text-slate-400 mt-1">Pembimbing & Sosok Inspiratif Kelas 10</p>
+                    
+                    <blockquote class="text-xs text-slate-300 italic mt-4 bg-white/5 p-3 rounded-xl border-l-2 border-jungle-400">
+                        “Terima kasih Pak Adiyatma telah membimbing dan membentuk pondasi kebersamaan awal kelas kami.”
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIMELINE PERJALANAN KELAS 10 -->
+        <div class="mb-12">
+            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-timeline text-jungle-400"></i> Timeline Momen Penting
+            </h3>
+
+            <div class="space-y-4">
+                <!-- Event 1 -->
+                <div class="glass-card p-5 rounded-2xl flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-extrabold text-sm flex-shrink-0">
+                        01
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-purple-400 font-bold uppercase tracking-wider">Acara Sekolah</span>
+                        <h4 class="text-base font-bold text-white mt-0.5">MPLS & Pembentukan Kelas Pertama</h4>
+                        <p class="text-xs text-slate-400 mt-1">
+                            Momen pertama kali kumpul satu ruangan, masih canggung, malu-malu, sampai akhirnya milih ketua kelas pertama.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="glass-card p-5 rounded-2xl flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-extrabold text-sm flex-shrink-0">
+                        02
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Classmeeting</span>
+                        <h4 class="text-base font-bold text-white mt-0.5">Classmeeting Perdana X IPS</h4>
+                        <p class="text-xs text-slate-400 mt-1">
+                            Ajang pembuktian kekompakan pertama kali di bidang olahraga dan seni antar kelas sepantaran.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="glass-card p-5 rounded-2xl flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-extrabold text-sm flex-shrink-0">
+                        03
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-blue-400 font-bold uppercase tracking-wider">Momen Sehari-hari</span>
+                        <h4 class="text-base font-bold text-white mt-0.5">Projek & Kelompok Belajar</h4>
+                        <p class="text-xs text-slate-400 mt-1">
+                            Kerja kelompok sampai sore, tugas presentasi, dan bimbingan bareng Pak Adiyatma Nur Hidayat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALBUM FOTO KELAS 10 WITH FILTER -->
+        <div class="mb-12">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h3 class="text-xl font-bold text-white">Galeri Kenangan Kelas 10</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Kumpulan foto masa-masa awal berdasarkan momen</p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterNostalgia('all', this)" class="nostalgia-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-jungle-500 text-jungle-950 border border-jungle-400">
+                        Semua
+                    </button>
+                    <button onclick="filterNostalgia('classmeeting', this)" class="nostalgia-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                        <i class="fa-solid fa-trophy mr-1 text-amber-400"></i> Classmeeting
+                    </button>
+                    <button onclick="filterNostalgia('acara', this)" class="nostalgia-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                        <i class="fa-solid fa-calendar-star mr-1 text-purple-400"></i> Acara Sekolah
+                    </button>
+                    <button onclick="filterNostalgia('sehari-hari', this)" class="nostalgia-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10">
+                        <i class="fa-solid fa-mug-hot mr-1 text-blue-400"></i> Sehari-hari
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid Foto -->
+            <div id="nostalgia-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+        </div>
+
+        <!-- FOOTER SIMPLE -->
+        <footer class="text-center text-xs text-slate-500 py-6 border-t border-white/10">
+            &copy; 2026 XI IPS 2 — Archives & Memories.
+        </footer>
+
+    </div>
+
+    <script>
+        // Data Foto Nostalgia Kelas 10
+        const nostalgiaData = [
+            {
+                img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80",
+                title: "Kerja Kelompok Pertama",
+                category: "sehari-hari"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80",
+                title: "Supporteran Classmeeting X",
+                category: "classmeeting"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80",
+                title: "Sesi Foto Bareng Pak Adiyatma",
+                category: "acara"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80",
+                title: "Lomba Futsal Antar Kelas X",
+                category: "classmeeting"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
+                title: "Pentas Seni MPLS Kelas 10",
+                category: "acara"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",
+                title: "Makan Bareng Pas Jam Istirahat",
+                category: "sehari-hari"
+            }
+        ];
+
+        function getNostalgiaBadge(category) {
+            switch(category) {
+                case 'classmeeting':
+                    return { name: 'Classmeeting', color: 'bg-amber-500/20 text-amber-400 border-amber-500/30' };
+                case 'acara':
+                    return { name: 'Acara Sekolah', color: 'bg-purple-500/20 text-purple-400 border-purple-500/30' };
+                case 'sehari-hari':
+                    return { name: 'Sehari-hari', color: 'bg-blue-500/20 text-blue-400 border-blue-500/30' };
+                default:
+                    return { name: 'Memory', color: 'bg-jungle-500/20 text-jungle-400 border-jungle-500/30' };
+            }
+        }
+
+        function renderNostalgia(items) {
+            const grid = document.getElementById('nostalgia-grid');
+
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-10 glass-card rounded-2xl">
+                        <i class="fa-solid fa-camera-retro text-2xl text-slate-600 mb-2"></i>
+                        <p class="text-xs text-slate-400">Belum ada foto nostalgia di kategori ini.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = items.map(item => {
+                const badge = getNostalgiaBadge(item.category);
+                return `
+                    <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                        <div class="h-44 overflow-hidden relative">
+                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/20 to-transparent opacity-90"></div>
+                            
+                            <span class="absolute top-3 left-3 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md backdrop-blur-md border ${badge.color}">
+                                ${badge.name}
+                            </span>
+
+                            <span class="absolute bottom-3 left-3 right-3 text-xs font-bold text-white group-hover:text-jungle-300 transition line-clamp-2">${item.title}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterNostalgia(category, btnElement) {
+            document.querySelectorAll('.nostalgia-btn').forEach(btn => {
+                btn.className = 'nostalgia-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10';
+            });
+
+            btnElement.className = 'nostalgia-btn px-3 py-1.5 rounded-xl text-xs font-bold transition bg-jungle-500 text-jungle-950 border border-jungle-400';
+
+            if (category === 'all') {
+                renderNostalgia(nostalgiaData);
+            } else {
+                const filtered = nostalgiaData.filter(item => item.category === category);
+                renderNostalgia(filtered);
+            }
+        }
+
+        // Render Awal
+        renderNostalgia(nostalgiaData);
+    </script>
+</body>
+</html>
