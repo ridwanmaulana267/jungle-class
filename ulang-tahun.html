@@ -31,6 +31,7 @@
 
     <script>
         const classData = [
+            { name: "Dede Hasan Nurjaman, S.Pd.", dob: "2000-01-01", role: "Wali Kelas" },
             { name: "Aceng Miftah Farid", dob: "2008-12-06" },
             { name: "Ahmad Barokah", dob: null },
             { name: "Asmawa'ati", dob: "2009-06-17" },
@@ -45,7 +46,7 @@
             { name: "Randi Mardiana Rahmat", dob: "2009-01-13" },
             { name: "Rehan Maulana", dob: "2008-02-16" },
             { name: "Revi Febriyani Syapariyah", dob: "2011-02-15" },
-            { name: "Ridwan Mukti Maulana", dob: "2009-06-26" },
+            { name: "Ridwan Mukti Maulana", dob: "2010-06-26" },
             { name: "Rival Maulana", dob: "2009-12-23" },
             { name: "Ulpah Jayin Inayah", dob: "2010-01-01" }
         ];
@@ -66,7 +67,6 @@
                 }
 
                 const [year, month, day] = person.dob.split('-').map(Number);
-                const birthDate = new Date(year, month - 1, day);
                 person.displayDate = `${day.toString().padStart(2, '0')} ${monthNames[month - 1]} ${year}`;
 
                 // Hitung umur saat ini
@@ -112,20 +112,40 @@
             }
 
             // Render Grid Anggota
-            document.getElementById('birthday-grid').innerHTML = classData.map(b => `
-                <div class="bg-jungle-900 p-4 rounded-xl border border-white/10 flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold">
-                            <i class="fa-solid fa-cake-candles"></i>
+            document.getElementById('birthday-grid').innerHTML = classData.map(b => {
+                const isTeacher = b.role === "Wali Kelas";
+                
+                // Styling khusus jika Wali Kelas
+                const cardStyle = isTeacher 
+                    ? 'bg-gradient-to-r from-amber-950/40 to-jungle-900 border-amber-500/50 shadow-md shadow-amber-500/5' 
+                    : 'bg-jungle-900 border-white/10';
+                const iconBg = isTeacher ? 'bg-amber-500/20 text-amber-400' : 'bg-pink-500/20 text-pink-400';
+                const iconClass = isTeacher ? 'fa-user-tie' : 'fa-cake-candles';
+                const ageBadge = isTeacher 
+                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' 
+                    : 'bg-white/5 text-pink-300';
+                const roleTag = isTeacher 
+                    ? `<span class="text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full ml-2">Wali Kelas</span>` 
+                    : '';
+
+                return `
+                    <div class="${cardStyle} p-4 rounded-xl border flex items-center justify-between transition hover:border-amber-400/50">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full ${iconBg} flex items-center justify-center font-bold">
+                                <i class="fa-solid ${iconClass}"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center flex-wrap gap-1">
+                                    <h3 class="font-bold text-white text-sm">${b.name}</h3>
+                                    ${roleTag}
+                                </div>
+                                <p class="text-xs text-slate-400 mt-0.5">${b.displayDate}</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-white text-sm">${b.name}</h3>
-                            <p class="text-xs text-slate-400">${b.displayDate}</p>
-                        </div>
+                        ${b.currentAge !== null ? `<span class="text-xs font-bold ${ageBadge} px-3 py-1 rounded-lg">${b.currentAge} Thn</span>` : ''}
                     </div>
-                    ${b.currentAge !== null ? `<span class="text-xs font-bold bg-white/5 text-pink-300 px-3 py-1 rounded-lg">${b.currentAge} Thn</span>` : ''}
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         initBirthdaySystem();
