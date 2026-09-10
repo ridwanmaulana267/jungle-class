@@ -1,171 +1,417 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JUNGLE CLASS — Home | XI IPS 2</title>
+    <title>JUNGLE CLASS — Basecamp Digital XI IPS 2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { jungle: { 950: '#09130d', 900: '#0f2217', 800: '#163323', 500: '#10b981', 400: '#34d399' } },
-                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+                    colors: {
+                        jungle: {
+                            950: '#060d08',
+                            900: '#0d1f14',
+                            800: '#142e1e',
+                            700: '#1d422c',
+                            500: '#10b981',
+                            400: '#34d399',
+                            300: '#6ee7b7'
+                        }
+                    },
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-6px)' },
+                        }
+                    }
                 }
             }
         }
     </script>
+    <style>
+        .glass-card {
+            background: rgba(13, 31, 20, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(52, 211, 153, 0.35);
+            box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.2);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #6ee7b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
-<body class="bg-jungle-950 text-slate-200 font-sans min-h-screen">
+<body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-jungle-500 selection:text-jungle-950">
 
-    <!-- NAVBAR -->
-    <nav class="sticky top-0 z-50 bg-jungle-900/90 backdrop-blur-md border-b border-white/10 px-6 py-4">
-        <div class="flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3 font-bold text-white text-lg">
-                <div class="w-10 h-10 rounded-xl bg-jungle-500 text-jungle-950 flex items-center justify-center font-black"><i class="fa-solid fa-compass"></i></div>
-                <span>JUNGLE CLASS <span class="text-xs text-jungle-400 block font-normal">XI IPS 2</span></span>
+    <!-- AMBIENT GLOW EFFECTS -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-jungle-500/15 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 right-0 w-[400px] h-[400px] bg-emerald-600/10 blur-[140px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- NAVBAR GLASSMORPHISM -->
+    <nav class="sticky top-0 z-50 bg-jungle-950/80 backdrop-blur-xl border-b border-white/10 px-4 md:px-8 py-3.5 transition-all">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            
+            <!-- Logo Class -->
+            <a href="index.html" class="flex items-center gap-3 font-bold text-white text-lg group">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-jungle-400 to-jungle-500 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-compass text-lg"></i>
+                </div>
+                <div class="leading-tight">
+                    <span class="tracking-wide text-white font-extrabold text-base block">JUNGLE CLASS</span>
+                    <span class="text-[10px] text-jungle-400 font-bold uppercase tracking-widest block -mt-0.5">XI IPS 2 Official</span>
+                </div>
             </a>
 
             <!-- Menu Desktop -->
-            <div class="hidden md:flex gap-6 text-sm font-semibold">
-                <a href="index.html" class="text-jungle-400">Home</a>
-                <a href="anggota.html" class="hover:text-jungle-400 transition">Anggota</a>
-                <a href="jadwal.html" class="hover:text-jungle-400 transition">Jadwal</a>
-                <a href="piket.html" class="hover:text-jungle-400 transition">Piket</a>
-                <a href="misi.html" class="hover:text-jungle-400 transition">Misi</a>
-                <a href="memori.html" class="hover:text-jungle-400 transition">Memori</a>
-                <a href="pengumuman.html" class="hover:text-jungle-400 transition">Berita</a>
-                <a href="prestasi.html" class="hover:text-jungle-400 transition">Prestasi</a>
-                <a href="ulang-tahun.html" class="hover:text-jungle-400 transition">Ultah</a>
+            <div class="hidden lg:flex items-center gap-1 bg-white/5 p-1.5 rounded-2xl border border-white/10 text-xs font-semibold">
+                <a href="index.html" class="px-3.5 py-1.5 rounded-xl bg-jungle-500 text-jungle-950 font-bold shadow">Home</a>
+                <a href="anggota.html" class="px-3.5 py-1.5 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Anggota</a>
+                <a href="jadwal.html" class="px-3.5 py-1.5 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Jadwal</a>
+                <a href="piket.html" class="px-3.5 py-1.5 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Piket</a>
+                <a href="misi.html" class="px-3.5 py-1.5 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Misi</a>
+                <a href="memori.html" class="px-3.5 py-1.5 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Memori</a>
+                <a href="nostalgia.html" class="px-3.5 py-1.5 rounded-xl text-amber-400 hover:bg-amber-500/10 hover:text-amber-300 transition">Nostalgia X</a>
+                <a href="pengumuman.html" class="px-3.5 py-1.5 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Berita</a>
+                <a href="prestasi.html" class="px-3.5 py-1.5 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Prestasi</a>
+                <a href="ulang-tahun.html" class="px-3.5 py-1.5 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Ultah</a>
             </div>
 
-            <!-- Tombol Hamburger (Cuma Muncul di HP) -->
-            <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none p-1">
-                <i class="fa-solid fa-bars"></i>
+            <!-- Hamburger Button HP -->
+            <button id="menu-btn" class="lg:hidden text-slate-200 hover:text-white text-xl p-2 rounded-xl bg-white/5 border border-white/10 focus:outline-none">
+                <i id="menu-icon" class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
 
         <!-- Menu Dropdown HP -->
-        <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 mt-4 pt-4 border-t border-white/10 text-sm font-semibold">
-            <a href="index.html" class="text-jungle-400">Home</a>
-            <a href="anggota.html" class="hover:text-jungle-400 transition">Anggota</a>
-            <a href="jadwal.html" class="hover:text-jungle-400 transition">Jadwal</a>
-            <a href="piket.html" class="hover:text-jungle-400 transition">Piket</a>
-            <a href="misi.html" class="hover:text-jungle-400 transition">Misi</a>
-            <a href="memori.html" class="hover:text-jungle-400 transition">Memori</a>
-            <a href="pengumuman.html" class="hover:text-jungle-400 transition">Berita</a>
-            <a href="prestasi.html" class="hover:text-jungle-400 transition">Prestasi</a>
-            <a href="ulang-tahun.html" class="hover:text-jungle-400 transition">Ultah</a>
+        <div id="mobile-menu" class="hidden lg:hidden flex-col gap-2 mt-3 pt-3 border-t border-white/10 text-xs font-semibold">
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <a href="index.html" class="p-2.5 rounded-xl bg-jungle-500 text-jungle-950 font-bold">Home</a>
+                <a href="anggota.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Anggota</a>
+                <a href="jadwal.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Jadwal</a>
+                <a href="piket.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Piket</a>
+                <a href="misi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Misi</a>
+                <a href="memori.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Memori</a>
+                <a href="nostalgia.html" class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">Nostalgia X</a>
+                <a href="pengumuman.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Berita</a>
+                <a href="prestasi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Prestasi</a>
+                <a href="ulang-tahun.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Ultah</a>
+            </div>
         </div>
     </nav>
 
-    <!-- HERO WITH PHOTO BANNER -->
-    <section class="py-12 text-center px-4 max-w-5xl mx-auto">
-        <span class="px-4 py-1.5 rounded-full bg-jungle-500/20 text-jungle-400 text-xs font-bold border border-jungle-500/30">Dunia Virtual XI IPS 2</span>
-        <h1 class="text-4xl md:text-6xl font-extrabold text-white mt-4">WELCOME TO <br><span class="text-jungle-400">JUNGLE CLASS</span></h1>
-        <p class="text-slate-400 mt-3 max-w-xl mx-auto text-sm">“Grow Together, Make Memories” — Tempat belajar bersama, berbagi informasi, dan menyimpan kenangan.</p>
+    <!-- HERO SECTION -->
+    <section class="pt-8 pb-12 px-4 max-w-5xl mx-auto text-center">
+        
+        <!-- Live Badge Status & Dynamic Greeting -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-jungle-900/90 border border-jungle-500/30 text-xs font-bold mb-6 text-slate-300 shadow-inner">
+            <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-jungle-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-jungle-500"></span>
+            </span>
+            <span id="live-greeting">Selamat Datang, Explorers!</span>
+            <span class="text-white/20">•</span>
+            <span class="text-jungle-400"><i class="fa-solid fa-wifi text-[10px] mr-1"></i> Basecamp Online Active</span>
+        </div>
 
-        <!-- BANNER FOTO KELAS -->
-        <div class="mt-8 relative rounded-3xl overflow-hidden border-2 border-jungle-500/30 shadow-2xl group">
-            <img src="foto-kelas.jpg" alt="Foto Kelas XI IPS 2" class="w-full h-72 md:h-[420px] object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/20 to-transparent"></div>
-            <div class="absolute bottom-4 left-6 right-6 text-left flex justify-between items-end">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.15]">
+            WELCOME TO <br>
+            <span class="text-gradient">JUNGLE CLASS</span>
+        </h1>
+        
+        <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
+            “Grow Together, Make Memories” — Pusat informasi digital, jadwal, kenangan, dan ruang kolaborasi resmi siswa <span class="text-white font-semibold">XI IPS 2</span>.
+        </p>
+
+        <!-- BANNER FOTO KELAS DENGAN FLOATING BADGES -->
+        <div class="mt-10 relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl group bg-jungle-900">
+            <img src="foto-kelas.jpg" alt="Foto Kelas XI IPS 2" class="w-full h-80 sm:h-[460px] object-cover group-hover:scale-105 transition duration-700 ease-out">
+            <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/30 to-transparent"></div>
+            
+            <!-- Badge Pojok Kiri Atas -->
+            <div class="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2">
+                <span class="px-3 py-1.5 rounded-xl bg-jungle-950/80 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white flex items-center gap-1.5 shadow">
+                    <i class="fa-solid fa-shield-halved text-jungle-400"></i> Kelas Unggulan
+                </span>
+            </div>
+
+            <!-- Overlay Content Bawah -->
+            <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-left flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
                 <div>
-                    <span class="text-xs font-bold text-jungle-400 uppercase tracking-wider">Angkatan 2025</span>
-                    <h3 class="text-xl md:text-2xl font-bold text-white">Keluarga Besar XI IPS 2</h3>
+                    <span class="text-[11px] font-extrabold text-jungle-400 uppercase tracking-widest bg-jungle-900/80 px-2.5 py-1 rounded-md border border-jungle-500/30">Angkatan 2025/2026</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1.5">Keluarga Besar XI IPS 2</h3>
+                    <p class="text-xs text-slate-300 hidden sm:block mt-0.5">Wali Kelas: Dede Hasan Nurjaman, S.Pd.</p>
                 </div>
-                <a href="memori.html" class="text-xs bg-jungle-500 hover:bg-jungle-400 text-jungle-950 px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-1">
-                    Galeri <i class="fa-solid fa-arrow-right"></i>
+                <a href="memori.html" class="px-5 py-3 bg-gradient-to-r from-jungle-400 to-jungle-500 hover:from-jungle-300 hover:to-jungle-400 text-jungle-950 font-bold rounded-2xl transition-all shadow-lg shadow-jungle-500/25 flex items-center gap-2 text-xs">
+                    <i class="fa-solid fa-images"></i> Lihat Galeri Kenangan
                 </a>
             </div>
         </div>
 
-        <div class="flex justify-center gap-4 mt-8">
-            <a href="#map" class="px-6 py-3 bg-jungle-500 text-jungle-950 font-bold rounded-xl hover:brightness-110">Jungle Map</a>
-            <a href="anggota.html" class="px-6 py-3 bg-jungle-900 border border-white/10 text-white font-bold rounded-xl hover:bg-jungle-800">Lihat Anggota</a>
+        <!-- QUICK STATS BAR -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
+            <div class="glass-card p-4 rounded-2xl text-center">
+                <span class="text-2xl font-black text-white block">18</span>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Anggota Siswa</span>
+            </div>
+            <div class="glass-card p-4 rounded-2xl text-center">
+                <span class="text-2xl font-black text-jungle-400 block">1</span>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Wali Kelas</span>
+            </div>
+            <div class="glass-card p-4 rounded-2xl text-center">
+                <span class="text-2xl font-black text-amber-400 block">100%</span>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Solid & Kompak</span>
+            </div>
+            <div class="glass-card p-4 rounded-2xl text-center">
+                <span class="text-2xl font-black text-emerald-400 block">IPS 2</span>
+                <span class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Tingkat XI</span>
+            </div>
         </div>
+
     </section>
 
-    <!-- MAP NAVIGASI LENGKAP -->
+    <!-- MAP NAVIGASI LENGKAP (JUNGLE MAP EXPLORER) -->
     <section id="map" class="py-12 max-w-6xl mx-auto px-4">
-        <h2 class="text-2xl font-bold text-white text-center mb-8"><i class="fa-solid fa-map text-jungle-400 mr-2"></i> Jungle Map Explorer</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        
+        <div class="text-center mb-10">
+            <span class="text-xs font-extrabold uppercase text-jungle-400 tracking-widest px-3 py-1 rounded-full bg-jungle-900 border border-jungle-500/30">Navigasi Utama</span>
+            <h2 class="text-3xl font-extrabold text-white mt-2">Jungle Map Explorer</h2>
+            <p class="text-xs text-slate-400 mt-1">Pilih destinasi fitur web kelas yang ingin kamu akses</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             
             <!-- Jadwal Pelajaran -->
-            <a href="jadwal.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-jungle-500 transition text-center group">
-                <i class="fa-solid fa-tree text-3xl text-jungle-400 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-bold text-white">Knowledge Forest</h3>
-                <p class="text-xs text-slate-400 mt-1">Jadwal Pelajaran</p>
+            <a href="jadwal.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-tree"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400">Jadwal Pelajaran</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-jungle-400 transition">Knowledge Forest</h3>
+                <p class="text-xs text-slate-400 mt-1">Cek jadwal pelajaran harian & susunan jam masuk kelas.</p>
+                <div class="mt-4 text-xs font-bold text-emerald-400 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Fitur <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
             </a>
 
             <!-- Piket Kelas -->
-            <a href="piket.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-teal-400 transition text-center group">
-                <i class="fa-solid fa-broom text-3xl text-teal-400 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-bold text-white">Clean Station</h3>
-                <p class="text-xs text-slate-400 mt-1">Jadwal Piket</p>
+            <a href="piket.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-teal-400 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-broom"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-teal-500/10 text-teal-400">Kebersihan</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-teal-300 transition">Clean Station</h3>
+                <p class="text-xs text-slate-400 mt-1">Daftar petugas piket kebersihan harian XI IPS 2.</p>
+                <div class="mt-4 text-xs font-bold text-teal-400 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Fitur <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
             </a>
 
             <!-- Misi/Tugas -->
-            <a href="misi.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-amber-500 transition text-center group">
-                <i class="fa-solid fa-campground text-3xl text-amber-400 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-bold text-white">Mission Camp</h3>
-                <p class="text-xs text-slate-400 mt-1">Tugas & PR</p>
+            <a href="misi.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-amber-400 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-campground"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400">Tugas & PR</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-amber-300 transition">Mission Camp</h3>
+                <p class="text-xs text-slate-400 mt-1">Pantau deadline tugas, proyek kelompok, dan PR sekolah.</p>
+                <div class="mt-4 text-xs font-bold text-amber-400 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Fitur <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
             </a>
 
             <!-- Memori/Galeri -->
-            <a href="memori.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-blue-500 transition text-center group">
-                <i class="fa-solid fa-water text-3xl text-blue-400 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-bold text-white">Memory Lake</h3>
-                <p class="text-xs text-slate-400 mt-1">Galeri Foto</p>
+            <a href="memori.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-water"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-500/10 text-blue-400">Galeri Foto</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-blue-300 transition">Memory Lake</h3>
+                <p class="text-xs text-slate-400 mt-1">Koleksi dokumentasi keseruan dan momen berharga kelas.</p>
+                <div class="mt-4 text-xs font-bold text-blue-400 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Fitur <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
+            </a>
+
+            <!-- Nostalgia Kelas 10 -->
+            <a href="nostalgia.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden border border-amber-500/20">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-amber-400 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-400">Arsip Kelas 10</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-amber-300 transition">Origins & Class X</h3>
+                <p class="text-xs text-slate-400 mt-1">Kilas balik wali kelas Pak Adiyatma & momen kenangan masa kelas 10.</p>
+                <div class="mt-4 text-xs font-bold text-amber-400 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Nostalgia <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
             </a>
 
             <!-- Anggota -->
-            <a href="anggota.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-emerald-500 transition text-center group">
-                <i class="fa-solid fa-users text-3xl text-emerald-400 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-bold text-white">Explorers Hub</h3>
-                <p class="text-xs text-slate-400 mt-1">Anggota Kelas</p>
+            <a href="anggota.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300">Direktori</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-emerald-300 transition">Explorers Hub</h3>
+                <p class="text-xs text-slate-400 mt-1">Profil siswa, kepengurusan, dan struktur organisasi.</p>
+                <div class="mt-4 text-xs font-bold text-emerald-300 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Fitur <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
             </a>
 
             <!-- Ulang Tahun -->
-            <a href="ulang-tahun.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-pink-500 transition text-center group">
-                <i class="fa-solid fa-cake-candles text-3xl text-pink-400 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-bold text-white">Birthday Garden</h3>
-                <p class="text-xs text-slate-400 mt-1">Ulang Tahun</p>
+            <a href="ulang-tahun.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-pink-500 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-cake-candles"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-pink-500/10 text-pink-400">Ultah Siswa</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-pink-300 transition">Birthday Garden</h3>
+                <p class="text-xs text-slate-400 mt-1">Kalender tanggal lahir & ucapan selamat ulang tahun.</p>
+                <div class="mt-4 text-xs font-bold text-pink-400 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Fitur <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
             </a>
 
             <!-- Berita/Pengumuman -->
-            <a href="pengumuman.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-purple-500 transition text-center group">
-                <i class="fa-solid fa-bullhorn text-3xl text-purple-400 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-bold text-white">Echo Canopy</h3>
-                <p class="text-xs text-slate-400 mt-1">Berita & Pengumuman</p>
+            <a href="pengumuman.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-purple-500/10 text-purple-400">Informasi</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-purple-300 transition">Echo Canopy</h3>
+                <p class="text-xs text-slate-400 mt-1">Pengumuman mendadak, info sekolah & berita kelas.</p>
+                <div class="mt-4 text-xs font-bold text-purple-400 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Fitur <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
             </a>
 
             <!-- Prestasi -->
-            <a href="prestasi.html" class="p-6 bg-jungle-900 rounded-2xl border border-white/10 hover:border-yellow-500 transition text-center group">
-                <i class="fa-solid fa-trophy text-3xl text-yellow-400 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-bold text-white">Trophy Peak</h3>
-                <p class="text-xs text-slate-400 mt-1">Prestasi Kelas</p>
+            <a href="prestasi.html" class="glass-card p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-yellow-400 group-hover:text-jungle-950 transition-all duration-300">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-400">Penghargaan</span>
+                <h3 class="font-bold text-white text-lg mt-2 group-hover:text-yellow-300 transition">Trophy Peak</h3>
+                <p class="text-xs text-slate-400 mt-1">Daftar piala, lomba, dan pencapaian bangga XI IPS 2.</p>
+                <div class="mt-4 text-xs font-bold text-yellow-400 flex items-center gap-1 opacity-80 group-hover:opacity-100">
+                    Buka Fitur <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                </div>
             </a>
 
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="text-center py-8 border-t border-white/10 text-xs text-slate-500 mt-20">
-        &copy; 2026 JUNGLE CLASS — XI IPS 2. Grow Together, Make Memories.
+    <!-- SECTION VIBES & SPOTLIGHT -->
+    <section class="py-8 max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Quote / Motto Kelas -->
+            <div class="md:col-span-2 glass-card p-6 sm:p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between border border-jungle-500/20">
+                <div class="absolute -right-6 -bottom-6 text-white/5 text-9xl font-black pointer-events-none">"</div>
+                <div>
+                    <span class="text-xs font-extrabold text-jungle-400 uppercase tracking-widest"><i class="fa-solid fa-quote-left mr-1"></i> Class Motto</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mt-3 italic leading-relaxed">
+                        “Bukan sekadar teman sekelas, tapi satu ikatan keluarga yang tumbuh dan berjuang bersama.”
+                    </h3>
+                </div>
+                <div class="mt-6 flex items-center gap-3 pt-4 border-t border-white/10">
+                    <div class="w-8 h-8 rounded-full bg-jungle-500/20 text-jungle-400 flex items-center justify-center font-bold text-xs">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-300">XI IPS 2 — Jungle Spirit</span>
+                </div>
+            </div>
+
+            <!-- Widget Soundtrack / Vibe Musik -->
+            <div class="glass-card p-6 rounded-3xl flex flex-col justify-between border border-white/10">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-extrabold text-pink-400 uppercase tracking-wider flex items-center gap-1">
+                            <i class="fa-solid fa-compact-disc animate-spin text-sm"></i> Class Anthem
+                        </span>
+                        <span class="text-[10px] bg-white/10 px-2 py-0.5 rounded-full text-slate-300">Vibe 2026</span>
+                    </div>
+                    <div class="flex items-center gap-4 bg-black/30 p-3 rounded-2xl border border-white/5">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-jungle-500 to-teal-400 text-jungle-950 flex items-center justify-center font-black text-xl shadow">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <h4 class="font-bold text-white text-sm truncate">Kita Bikin Romantis</h4>
+                            <p class="text-xs text-slate-400 truncate">Song of XI IPS 2</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+                    <span><i class="fa-solid fa-heart text-pink-500 mr-1"></i> Favorit Bersama</span>
+                    <span class="text-jungle-400 font-bold">100% Enerjik</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER MODERN -->
+    <footer class="border-t border-white/10 bg-jungle-950/90 py-10 text-xs text-slate-400 mt-12">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-lg bg-jungle-500 text-jungle-950 flex items-center justify-center font-bold text-xs">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <span class="font-bold text-white">JUNGLE CLASS — XI IPS 2</span>
+            </div>
+            <p class="text-center sm:text-right text-slate-500">
+                &copy; 2026 XI IPS 2. Designed with <i class="fa-solid fa-heart text-pink-500 mx-0.5"></i> for Jungle Explorers.
+            </p>
+        </div>
     </footer>
 
-    <!-- SCRIPT TOGGLE MENU HP -->
+    <!-- SCRIPT INTERAKTIF -->
     <script>
+        // Toggle Menu Mobile
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
 
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = "fa-solid fa-bars-staggered";
+            } else {
+                menuIcon.className = "fa-solid fa-xmark";
+            }
         });
+
+        // Dynamic Greeting berdasarkan Jam Sesuai Waktu Lokal
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            const greetingEl = document.getElementById('live-greeting');
+            
+            if (hour >= 3 && hour < 11) {
+                greetingEl.innerText = "Selamat Pagi, Explorers! 🌿";
+            } else if (hour >= 11 && hour < 15) {
+                greetingEl.innerText = "Selamat Siang, Explorers! ☀️";
+            } else if (hour >= 15 && hour < 18) {
+                greetingEl.innerText = "Selamat Sore, Explorers! 🍃";
+            } else {
+                greetingEl.innerText = "Selamat Malam, Explorers! 🌙";
+            }
+        }
+        updateGreeting();
     </script>
 </body>
 </html>
