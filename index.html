@@ -78,7 +78,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Hide scrollbars for slick look */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -87,7 +86,6 @@
         ::-webkit-scrollbar-thumb { background: #1c472f; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #10b981; }
 
-        /* Mobile Range Inputs Optimizations */
         input[type="range"]::-webkit-slider-thumb {
             appearance: none;
             width: 18px;
@@ -98,9 +96,70 @@
             box-shadow: 0 0 10px rgba(52, 211, 153, 0.9);
         }
 
-        /* Mobile Safe Area Padding */
         .pb-safe-bottom {
             padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+        }
+
+        /* --- EFEK ANIMASI BINTANG & METEOR YANG DIPERBARUI --- */
+        .star-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -5; 
+            overflow: hidden;
+        }
+
+        /* Bintang Jatuh (Meteor) */
+        .meteor {
+            position: absolute;
+            width: 3px;
+            height: 120px; /* Ekor dibuat lebih panjang */
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(52, 211, 153, 1) 100%);
+            transform: rotate(-45deg);
+            animation: meteor-fall linear infinite;
+            opacity: 0;
+            border-radius: 99px;
+        }
+
+        /* Kepala meteor (Cahaya lebih bersinar) */
+        .meteor::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.9), 0 0 30px 6px rgba(52, 211, 153, 0.8);
+        }
+
+        @keyframes meteor-fall {
+            0% { transform: translate(300px, -300px) rotate(-45deg); opacity: 1; }
+            20% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { transform: translate(-1000px, 1000px) rotate(-45deg); opacity: 0; }
+        }
+
+        /* Posisi dan Variasi Kecepatan Meteor */
+        .meteor:nth-child(1) { top: -10%; left: 30%; animation-duration: 4s; animation-delay: 0.5s; }
+        .meteor:nth-child(2) { top: 5%; left: 75%; animation-duration: 6s; animation-delay: 2.5s; }
+        .meteor:nth-child(3) { top: 20%; left: 110%; animation-duration: 5s; animation-delay: 6s; }
+        .meteor:nth-child(4) { top: -20%; left: 80%; animation-duration: 4.5s; animation-delay: 1.5s; }
+        .meteor:nth-child(5) { top: 40%; left: 120%; animation-duration: 5.5s; animation-delay: 4s; }
+
+        /* Bintang statis yang berkedip */
+        .twinkling-star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle alternate infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.1; transform: scale(0.5); box-shadow: 0 0 2px rgba(255, 255, 255, 0.1); }
+            100% { opacity: 0.9; transform: scale(1.3); box-shadow: 0 0 10px rgba(110, 231, 183, 0.7); }
         }
     </style>
 </head>
@@ -110,6 +169,17 @@
     <div class="fixed -top-24 left-1/2 -translate-x-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[400px] bg-jungle-500/15 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none -z-10 animate-pulse-slow"></div>
     <div class="fixed top-1/2 right-[-100px] w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-emerald-600/10 blur-[120px] sm:blur-[160px] rounded-full pointer-events-none -z-10"></div>
     <div class="fixed bottom-0 left-[-100px] w-[300px] sm:w-[450px] h-[300px] sm:h-[450px] bg-teal-500/10 blur-[120px] sm:blur-[150px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- EFEK BINTANG & METEOR JATUH -->
+    <div class="star-container" id="star-container">
+        <!-- Bintang Jatuh (Meteor) -->
+        <div class="meteor"></div>
+        <div class="meteor"></div>
+        <div class="meteor"></div>
+        <div class="meteor"></div>
+        <div class="meteor"></div>
+        <!-- Catatan: Bintang kecil (twinkling stars) akan di-generate otomatis via JavaScript -->
+    </div>
 
     <!-- NAVBAR GLASSMORPHISM -->
     <nav class="sticky top-0 z-40 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
@@ -331,7 +401,7 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
             
-            <!-- Jadwal Pelajaran -->
+            <!-- (Sisa Navigasi persis sama dengan kode sebelumnya) -->
             <a href="jadwal.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-jungle-950 transition-all">
@@ -346,7 +416,6 @@
                 </div>
             </a>
 
-            <!-- Piket Kelas -->
             <a href="piket.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-teal-400 group-hover:text-jungle-950 transition-all">
@@ -361,7 +430,6 @@
                 </div>
             </a>
 
-            <!-- Misi/Tugas -->
             <a href="misi.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-amber-400 group-hover:text-jungle-950 transition-all">
@@ -376,7 +444,6 @@
                 </div>
             </a>
 
-            <!-- Memori/Galeri -->
             <a href="memori.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-jungle-950 transition-all">
@@ -391,7 +458,6 @@
                 </div>
             </a>
 
-            <!-- Anggota -->
             <a href="anggota.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-emerald-400 group-hover:text-jungle-950 transition-all">
@@ -406,7 +472,6 @@
                 </div>
             </a>
 
-            <!-- Ulang Tahun -->
             <a href="ulang-tahun.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-pink-500 group-hover:text-jungle-950 transition-all">
@@ -421,7 +486,6 @@
                 </div>
             </a>
 
-            <!-- Berita/Pengumuman -->
             <a href="pengumuman.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-jungle-950 transition-all">
@@ -436,7 +500,6 @@
                 </div>
             </a>
 
-            <!-- Prestasi -->
             <a href="prestasi.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-yellow-400 group-hover:text-jungle-950 transition-all">
@@ -451,7 +514,6 @@
                 </div>
             </a>
 
-            <!-- Nostalgia Kelas 10 -->
             <a href="nostalgia.html" class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl transition-all duration-300 active:scale-95 group relative overflow-hidden border border-amber-500/30 col-span-2 sm:col-span-1 flex flex-col justify-between">
                 <div>
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-lg sm:text-xl mb-2 sm:mb-4 group-hover:scale-110 group-hover:bg-amber-400 group-hover:text-jungle-950 transition-all">
@@ -495,7 +557,7 @@
                 </div>
             </div>
 
-            <!-- Widget Soundtrack / Pemutar Musik Touch Friendly -->
+            <!-- Widget Soundtrack -->
             <div class="glass-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/10 relative overflow-hidden">
                 <div>
                     <div class="flex justify-between items-center mb-3 sm:mb-4">
@@ -505,7 +567,6 @@
                         <span id="player-status-badge" class="text-[9px] sm:text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-bold">Siap Diputar</span>
                     </div>
 
-                    <!-- Informasi Lagu & Tombol Utama -->
                     <div class="bg-black/40 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/5 flex flex-col gap-3 backdrop-blur-sm">
                         <div class="flex items-center justify-between gap-3">
                             <div class="flex items-center gap-3 overflow-hidden">
@@ -523,7 +584,6 @@
                             </button>
                         </div>
 
-                        <!-- Touch friendly Seek Bar -->
                         <div class="w-full flex flex-col gap-1">
                             <input id="seek-slider" type="range" min="0" max="100" value="0" aria-label="Progress Musik" class="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-jungle-400 touch-pan-x">
                             <div class="flex justify-between text-[9px] sm:text-[10px] text-slate-400 font-semibold">
@@ -578,7 +638,7 @@
         </div>
     </footer>
 
-    <!-- APP-LIKE FLOATING BOTTOM NAVIGATION BAR (KHUSUS MOBILE/TABLET) -->
+    <!-- APP-LIKE FLOATING BOTTOM NAVIGATION BAR -->
     <div class="fixed bottom-3 left-3 right-3 z-40 lg:hidden">
         <nav class="glass-bottom-bar rounded-2xl p-2 shadow-2xl border border-white/15">
             <div class="grid grid-cols-5 gap-1 text-center">
@@ -614,6 +674,35 @@
 
     <!-- SCRIPT INTERAKTIF NAVIGASI & MUSIC PLAYER -->
     <script>
+        // --- EFEK JAVASCRIPT GENERATOR BINTANG (BARU) ---
+        function createStars() {
+            const container = document.getElementById('star-container');
+            const starCount = 60; // Jumlah bintang berkedip (tingkatkan atau kurangi jika perlu)
+            
+            for(let i=0; i<starCount; i++) {
+                let star = document.createElement('div');
+                star.classList.add('twinkling-star');
+                
+                // Ukuran bintang bervariasi antara 1px hingga 3px
+                let size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posisi di-sebar acak di seluruh layar
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Kecepatan dan jeda berkedip (twinkling) yang acak agar alami
+                star.style.animationDuration = `${Math.random() * 3 + 1.5}s`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                
+                container.appendChild(star);
+            }
+        }
+        // Jalankan pembuat bintang saat halaman di-load
+        document.addEventListener('DOMContentLoaded', createStars);
+        
+        
         // Drawer & Bottom Navigation Elements
         const menuBtn = document.getElementById('menu-btn');
         const bottomMoreBtn = document.getElementById('bottom-more-btn');
