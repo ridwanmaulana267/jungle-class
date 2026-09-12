@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jadwal pelajaran harian XI IPS 2, Senin sampai Sabtu, lengkap dengan jam, guru pengajar, dan ruangan.">
+    <meta name="theme-color" content="#0a1710">
+    <meta property="og:title" content="Jungle Schedule — XI IPS 2">
+    <meta property="og:description" content="Agenda mata pelajaran harian kelas XI IPS 2.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2419'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
     <title>Jungle Schedule — XI IPS 2</title>
     
     <!-- CDN External Script & Fonts -->
@@ -78,6 +84,34 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
+
+        /* Visible keyboard focus, consistent with the jungle accent */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #34d399;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        /* One orchestrated reveal for the page header on load */
+        @keyframes pageReveal {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-reveal {
+            opacity: 0;
+            animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .page-reveal-1 { animation-delay: 0.03s; }
+        .page-reveal-2 { animation-delay: 0.12s; }
+        .page-reveal-3 { animation-delay: 0.22s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .page-reveal { opacity: 1; animation: none; transform: none; }
+            .animate-pulse-slow, .animate-ping, .animate-pulse {
+                animation: none !important;
+            }
+            * { scroll-behavior: auto !important; }
+        }
     </style>
 </head>
 <body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-jungle-500 selection:text-jungle-950 flex flex-col justify-between">
@@ -118,13 +152,13 @@
                 <a href="ulang-tahun.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Ultah</a>
                 
                 <!-- LINK WEB SEKOLAH (DESKTOP) -->
-                <a href="https://sekolahkita.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
+                <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-school text-[10px]"></i> Web Sekolah
                 </a>
             </div>
 
             <!-- Hamburger Button Mobile -->
-            <button id="menu-btn" aria-label="Toggle Menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
+            <button id="menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
                 <i id="menu-icon" class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
@@ -144,7 +178,7 @@
                 <a href="ulang-tahun.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Ultah</a>
                 
                 <!-- LINK WEB SEKOLAH (MOBILE) -->
-                <a href="https://sekolahkita.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
+                <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-school"></i> Web Sekolah
                 </a>
             </div>
@@ -156,11 +190,11 @@
         
         <!-- HEADER & BREADCRUMB -->
         <div class="mb-8 text-center">
-            <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 hover:text-jungle-300 transition mb-4">
+            <a href="index.html" class="page-reveal page-reveal-1 inline-flex items-center gap-2 text-xs font-bold text-jungle-400 hover:text-jungle-300 transition mb-4">
                 <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
             </a>
 
-            <div>
+            <div class="page-reveal page-reveal-2">
                 <span class="text-xs font-extrabold uppercase tracking-widest text-jungle-400 px-3 py-1 rounded-full bg-jungle-900 border border-jungle-500/30 inline-block mb-2">
                     Knowledge Forest
                 </span>
@@ -171,24 +205,27 @@
                 
                 <!-- LIVE TIME BADGE -->
                 <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-jungle-900/80 border border-white/10 text-xs text-slate-300 font-mono backdrop-blur-md shadow-inner">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="flex h-2 w-2 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                    </span>
                     <span id="live-time">Menghubungkan waktu...</span>
                 </div>
             </div>
         </div>
 
         <!-- TAB HARI -->
-        <div class="flex flex-wrap justify-center gap-2 mb-8 bg-jungle-900/60 p-2 rounded-2xl border border-white/10 backdrop-blur-md" id="day-tabs">
-            <button onclick="renderSchedule('senin')" id="btn-senin" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Senin</button>
-            <button onclick="renderSchedule('selasa')" id="btn-selasa" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Selasa</button>
-            <button onclick="renderSchedule('rabu')" id="btn-rabu" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Rabu</button>
-            <button onclick="renderSchedule('kamis')" id="btn-kamis" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Kamis</button>
-            <button onclick="renderSchedule('jumat')" id="btn-jumat" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Jumat</button>
-            <button onclick="renderSchedule('sabtu')" id="btn-sabtu" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Sabtu</button>
+        <div class="page-reveal page-reveal-3 flex flex-wrap justify-center gap-2 mb-8 bg-jungle-900/60 p-2 rounded-2xl border border-white/10 backdrop-blur-md" id="day-tabs" role="tablist" aria-label="Pilih hari">
+            <button onclick="renderSchedule('senin')" id="btn-senin" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Senin</button>
+            <button onclick="renderSchedule('selasa')" id="btn-selasa" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Selasa</button>
+            <button onclick="renderSchedule('rabu')" id="btn-rabu" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Rabu</button>
+            <button onclick="renderSchedule('kamis')" id="btn-kamis" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Kamis</button>
+            <button onclick="renderSchedule('jumat')" id="btn-jumat" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Jumat</button>
+            <button onclick="renderSchedule('sabtu')" id="btn-sabtu" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Sabtu</button>
         </div>
 
         <!-- CONTAINER LIST JADWAL -->
-        <div id="schedule-container" class="space-y-4"></div>
+        <div id="schedule-container" class="page-reveal page-reveal-3 space-y-4" role="tabpanel" aria-live="polite"></div>
 
     </main>
 
@@ -209,7 +246,7 @@
                 <p class="text-center sm:text-right text-slate-500">
                     &copy; 2026 XI IPS 2. Designed with <i class="fa-solid fa-heart text-pink-500 mx-0.5"></i> for Jungle Explorers.
                 </p>
-                <a href="https://instagram.com/username_kelas" target="_blank" rel="noopener noreferrer" aria-label="Instagram Kelas" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 transition">
+                <a href="https://www.instagram.com/victoria_generous2" target="_blank" rel="noopener noreferrer" aria-label="Instagram Kelas" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 transition">
                     <i class="fa-brands fa-instagram text-base"></i>
                 </a>
             </div>
@@ -227,11 +264,9 @@
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
             
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.className = "fa-solid fa-bars-staggered";
-            } else {
-                menuIcon.className = "fa-solid fa-xmark";
-            }
+            const isOpen = mobileMenu.classList.contains('flex');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
         });
 
         // DATA JADWAL
@@ -290,6 +325,12 @@
         const dayNames = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
         let currentActiveDay = 'senin';
 
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
         function checkIsActiveTime(timeRange, dayKey) {
             const now = new Date();
             const todayKey = dayNames[now.getDay()];
@@ -313,7 +354,9 @@
             // Update Style Tombol Tab
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
-                if (btn.id === `btn-${day}`) {
+                const isSelected = btn.id === `btn-${day}`;
+                btn.setAttribute('aria-selected', String(isSelected));
+                if (isSelected) {
                     btn.className = "px-4 py-2 rounded-xl bg-gradient-to-r from-jungle-500 to-emerald-400 text-jungle-950 font-extrabold text-xs tab-btn shadow-md shadow-jungle-500/20";
                 } else {
                     btn.className = "px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/5 font-bold text-xs tab-btn";
@@ -347,18 +390,18 @@
                             <div>
                                 <div class="flex items-center gap-2 mb-1 flex-wrap">
                                     <span class="text-xs font-bold ${isActive ? 'text-jungle-300 font-extrabold' : 'text-jungle-400'}">
-                                        <i class="fa-regular fa-clock mr-1"></i>${s.time}
+                                        <i class="fa-regular fa-clock mr-1"></i>${escapeHtml(s.time)}
                                     </span>
                                     ${isActive ? '<span class="animate-pulse text-[10px] bg-jungle-500 text-jungle-950 px-2.5 py-0.5 rounded-full font-black tracking-wide shadow-sm">SEDANG BERLANGSUNG</span>' : ''}
                                 </div>
-                                <h3 class="font-bold text-white text-base group-hover:text-jungle-400 transition">${s.subject}</h3>
-                                <p class="text-xs text-slate-400 mt-0.5"><i class="fa-solid fa-user-tie text-[10px] mr-1 opacity-70"></i>${s.teacher}</p>
+                                <h3 class="font-bold text-white text-base group-hover:text-jungle-400 transition">${escapeHtml(s.subject)}</h3>
+                                <p class="text-xs text-slate-400 mt-0.5"><i class="fa-solid fa-user-tie text-[10px] mr-1 opacity-70"></i>${escapeHtml(s.teacher)}</p>
                             </div>
                         </div>
 
                         <div class="self-end sm:self-center shrink-0">
                             <span class="text-xs bg-white/5 px-3 py-1.5 rounded-xl text-slate-300 font-semibold border border-white/10 inline-flex items-center gap-1.5">
-                                <i class="fa-solid fa-location-dot text-jungle-400 text-[10px]"></i> ${s.room}
+                                <i class="fa-solid fa-location-dot text-jungle-400 text-[10px]"></i> ${escapeHtml(s.room)}
                             </span>
                         </div>
                     </div>
