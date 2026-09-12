@@ -2,7 +2,13 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Basecamp digital resmi XI IPS 2 — jadwal, piket, misi, galeri memori, dan info kelas dalam satu tempat.">
+    <meta name="theme-color" content="#0a1710">
+    <meta property="og:title" content="JUNGLE CLASS — Basecamp Digital XI IPS 2">
+    <meta property="og:description" content="Grow Together, Make Memories — pusat informasi digital kelas XI IPS 2.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2419'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
     <title>JUNGLE CLASS — Basecamp Digital XI IPS 2</title>
     
     <!-- CDN External Script & Fonts -->
@@ -100,6 +106,23 @@
             padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
         }
 
+        /* One orchestrated reveal for the hero on first load */
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-reveal {
+            opacity: 0;
+            animation: heroReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-reveal-1 { animation-delay: 0.05s; }
+        .hero-reveal-2 { animation-delay: 0.15s; }
+        .hero-reveal-3 { animation-delay: 0.28s; }
+        .hero-reveal-4 { animation-delay: 0.4s; }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-reveal { opacity: 1; animation: none; transform: none; }
+        }
+
         /* --- EFEK ANIMASI BINTANG & METEOR YANG DIPERBARUI --- */
         .star-container {
             position: fixed;
@@ -161,6 +184,23 @@
             0% { opacity: 0.1; transform: scale(0.5); box-shadow: 0 0 2px rgba(255, 255, 255, 0.1); }
             100% { opacity: 0.9; transform: scale(1.3); box-shadow: 0 0 10px rgba(110, 231, 183, 0.7); }
         }
+
+        /* Visible keyboard focus, consistent with the jungle accent */
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px solid #34d399;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        /* Respect reduced-motion preference: stop decorative animation */
+        @media (prefers-reduced-motion: reduce) {
+            .meteor, .twinkling-star, .animate-pulse-slow, .animate-spin-slow, .animate-float {
+                animation: none !important;
+            }
+            * {
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-jungle-500 selection:text-jungle-950 pb-safe-bottom">
@@ -217,7 +257,7 @@
             </div>
 
             <!-- Header Quick Action Toggle Menu (Drawer Trigger) -->
-            <button id="menu-btn" aria-label="Buka Menu" class="lg:hidden text-slate-200 hover:text-white text-base p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition flex items-center gap-2">
+            <button id="menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="drawer-sheet" class="lg:hidden text-slate-200 hover:text-white text-base p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition flex items-center gap-2">
                 <i class="fa-solid fa-bars-staggered text-jungle-400"></i>
                 <span class="text-xs font-bold">Menu</span>
             </button>
@@ -309,7 +349,7 @@
     <section class="pt-6 sm:pt-10 pb-8 px-4 max-w-6xl mx-auto text-center">
         
         <!-- Live Badge Status & Dynamic Greeting -->
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-jungle-900/90 border border-jungle-500/30 text-[11px] sm:text-xs font-bold mb-4 sm:mb-6 text-slate-300 shadow-xl backdrop-blur-md">
+        <div class="hero-reveal hero-reveal-1 inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-jungle-900/90 border border-jungle-500/30 text-[11px] sm:text-xs font-bold mb-4 sm:mb-6 text-slate-300 shadow-xl backdrop-blur-md">
             <span class="flex h-2 w-2 relative">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-jungle-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-jungle-500"></span>
@@ -321,18 +361,18 @@
             </span>
         </div>
 
-        <h1 class="text-3xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight sm:leading-[1.12]">
+        <h1 class="hero-reveal hero-reveal-2 text-3xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight sm:leading-[1.12]">
             WELCOME TO <br>
             <span class="text-gradient drop-shadow-sm">JUNGLE CLASS</span>
         </h1>
         
-        <p class="text-slate-400 mt-3 sm:mt-5 max-w-2xl mx-auto text-xs sm:text-base font-normal leading-relaxed px-2">
+        <p class="hero-reveal hero-reveal-3 text-slate-400 mt-3 sm:mt-5 max-w-2xl mx-auto text-xs sm:text-base font-normal leading-relaxed px-2">
             “<span class="italic text-slate-300">Grow Together, Make Memories</span>” — Pusat informasi digital, jadwal, kenangan, dan ruang kolaborasi resmi siswa <span class="text-white font-semibold">XI IPS 2</span>.
         </p>
 
         <!-- BANNER FOTO KELAS MOBILE OPTIMIZED -->
-        <div class="mt-6 sm:mt-10 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl group bg-jungle-900 transition-all">
-            <img src="foto-kelas.jpg" alt="Foto Kelas XI IPS 2" class="w-full h-64 sm:h-[480px] object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200'">
+        <div class="hero-reveal hero-reveal-4 mt-6 sm:mt-10 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl group bg-jungle-900 transition-all">
+            <img src="foto-kelas.jpg" alt="Foto Kelas XI IPS 2" loading="eager" decoding="async" class="w-full h-64 sm:h-[480px] object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200'">
             <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/50 to-transparent"></div>
             
             <!-- Badge Pojok Kiri Atas -->
@@ -593,7 +633,8 @@
                         </div>
                     </div>
 
-                    <audio id="class-audio" preload="metadata" src="lagu.mp3">
+                    <audio id="class-audio" preload="metadata">
+                        <source src="lagu.mp3" type="audio/mpeg">
                         <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
                     </audio>
                 </div>
@@ -663,8 +704,8 @@
                     <span class="text-[9px]">Misi</span>
                 </a>
 
-                <button id="bottom-more-btn" aria-label="Menu Lainnya" class="flex flex-col items-center py-1.5 px-1 rounded-xl text-slate-400 hover:text-white active:scale-95 transition">
-                    <i class="fa-solid fa-grid-2 text-base mb-0.5 fa-border-all"></i>
+                <button id="bottom-more-btn" aria-label="Menu Lainnya" aria-expanded="false" aria-controls="drawer-sheet" class="flex flex-col items-center py-1.5 px-1 rounded-xl text-slate-400 hover:text-white active:scale-95 transition">
+                    <i class="fa-solid fa-grid-2 text-base mb-0.5"></i>
                     <span class="text-[9px]">Lainnya</span>
                 </button>
 
@@ -715,6 +756,8 @@
             drawerOverlay.classList.add('opacity-100');
             drawerSheet.classList.remove('translate-x-full');
             document.body.style.overflow = 'hidden';
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+            if (bottomMoreBtn) bottomMoreBtn.setAttribute('aria-expanded', 'true');
         }
 
         function closeDrawer() {
@@ -722,7 +765,16 @@
             drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
             drawerSheet.classList.add('translate-x-full');
             document.body.style.overflow = '';
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+            if (bottomMoreBtn) bottomMoreBtn.setAttribute('aria-expanded', 'false');
         }
+
+        // Close drawer with Escape key for keyboard users
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && drawerSheet && !drawerSheet.classList.contains('translate-x-full')) {
+                closeDrawer();
+            }
+        });
 
         if (menuBtn) menuBtn.addEventListener('click', openDrawer);
         if (bottomMoreBtn) bottomMoreBtn.addEventListener('click', openDrawer);
@@ -777,6 +829,8 @@
                         statusBadge.className = "text-[9px] sm:text-[10px] bg-pink-500/20 text-pink-400 border border-pink-500/30 px-2.5 py-0.5 rounded-full font-bold";
                     }).catch(err => {
                         console.log("Audio playback error:", err);
+                        statusBadge.innerText = "Gagal Diputar";
+                        statusBadge.className = "text-[9px] sm:text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 px-2.5 py-0.5 rounded-full font-bold";
                     });
                 } else {
                     audio.pause();
