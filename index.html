@@ -2,7 +2,16 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Basecamp digital resmi XI IPS 2 — jadwal, piket, misi, galeri memori, dan info kelas dalam satu tempat.">
+    <meta name="theme-color" content="#0a1710">
+    <meta property="og:title" content="JUNGLE CLASS — Basecamp Digital XI IPS 2">
+    <meta property="og:description" content="Grow Together, Make Memories — pusat informasi digital kelas XI IPS 2.">
+    <meta property="og:type" content="website">
+    
+    <!-- FAVICON WEB (Ikon Tab Browser) -->
+    <link rel="icon" href="favicon.png" type="image/png">
+    
     <title>JUNGLE CLASS — Basecamp Digital XI IPS 2</title>
     
     <!-- CDN External Script & Fonts -->
@@ -45,13 +54,13 @@
         }
     </script>
     <style>
-        /* Modern Glassmorphism Styles (Optimized) */
+        /* Modern Glassmorphism Styles */
         .glass-card {
-            background: linear-gradient(135deg, rgba(15, 36, 25, 0.85) 0%, rgba(10, 23, 16, 0.95) 100%);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: linear-gradient(135deg, rgba(15, 36, 25, 0.75) 0%, rgba(10, 23, 16, 0.9) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
         
         .glass-card:hover, .glass-card:active {
@@ -60,15 +69,15 @@
         }
 
         .glass-nav {
-            background: rgba(4, 9, 6, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(4, 9, 6, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .glass-bottom-bar {
-            background: rgba(8, 18, 12, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(8, 18, 12, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-top: 1px solid rgba(255, 255, 255, 0.12);
         }
 
@@ -100,7 +109,24 @@
             padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
         }
 
-        /* --- EFEK ANIMASI BINTANG & METEOR --- */
+        /* One orchestrated reveal for the hero on first load */
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-reveal {
+            opacity: 0;
+            animation: heroReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-reveal-1 { animation-delay: 0.05s; }
+        .hero-reveal-2 { animation-delay: 0.15s; }
+        .hero-reveal-3 { animation-delay: 0.28s; }
+        .hero-reveal-4 { animation-delay: 0.4s; }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-reveal { opacity: 1; animation: none; transform: none; }
+        }
+
+        /* --- EFEK ANIMASI BINTANG & METEOR YANG DIPERBARUI --- */
         .star-container {
             position: fixed;
             inset: 0;
@@ -147,26 +173,38 @@
         .meteor:nth-child(4) { top: -20%; left: 80%; animation-duration: 4.5s; animation-delay: 1.5s; }
         .meteor:nth-child(5) { top: 40%; left: 120%; animation-duration: 5.5s; animation-delay: 4s; }
 
-        /* Bintang statis yang berkedip (Optimized Hardware Acceleration) */
         .twinkling-star {
             position: absolute;
             background: #fff;
             border-radius: 50%;
             animation: twinkle alternate infinite;
-            will-change: transform, opacity;
-            transform: translateZ(0);
         }
 
         @keyframes twinkle {
-            0% { opacity: 0.1; transform: scale(0.5) translateZ(0); }
-            100% { opacity: 0.9; transform: scale(1.2) translateZ(0); }
+            0% { opacity: 0.1; transform: scale(0.5); box-shadow: 0 0 2px rgba(255, 255, 255, 0.1); }
+            100% { opacity: 0.9; transform: scale(1.3); box-shadow: 0 0 10px rgba(110, 231, 183, 0.7); }
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px solid #34d399;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .meteor, .twinkling-star, .animate-pulse-slow, .animate-spin-slow, .animate-float {
+                animation: none !important;
+            }
+            * {
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
 <body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-jungle-500 selection:text-jungle-950 pb-safe-bottom">
 
-    <!-- AMBIENT GLOW BACKGROUND EFFECTS (Optimized: Hilangkan animate-pulse-slow) -->
-    <div class="fixed -top-24 left-1/2 -translate-x-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[400px] bg-jungle-500/15 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none -z-10"></div>
+    <!-- AMBIENT GLOW BACKGROUND EFFECTS -->
+    <div class="fixed -top-24 left-1/2 -translate-x-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[400px] bg-jungle-500/15 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none -z-10 animate-pulse-slow"></div>
     <div class="fixed top-1/2 right-[-100px] w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-emerald-600/10 blur-[120px] sm:blur-[160px] rounded-full pointer-events-none -z-10"></div>
     <div class="fixed bottom-0 left-[-100px] w-[300px] sm:w-[450px] h-[300px] sm:h-[450px] bg-teal-500/10 blur-[120px] sm:blur-[150px] rounded-full pointer-events-none -z-10"></div>
 
@@ -183,11 +221,9 @@
     <nav class="sticky top-0 z-40 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
-            <!-- Logo Class -->
+            <!-- LOGO KELAS UTAMA (HEADER) -->
             <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 group active:scale-95 transition-transform">
-                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20">
-                    <i class="fa-solid fa-compass text-lg sm:text-xl"></i>
-                </div>
+                <img src="logo.png" alt="Logo XI IPS 2" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl object-cover shadow-lg shadow-jungle-500/20 border border-white/10">
                 <div class="leading-tight">
                     <span class="tracking-wide text-white font-extrabold text-sm sm:text-base block group-hover:text-jungle-400 transition">JUNGLE CLASS</span>
                     <span class="text-[9px] sm:text-[10px] text-jungle-400 font-bold uppercase tracking-widest block -mt-0.5">XI IPS 2 Official</span>
@@ -214,8 +250,8 @@
                 </a>
             </div>
 
-            <!-- Header Quick Action Toggle Menu (Drawer Trigger) -->
-            <button id="menu-btn" aria-label="Buka Menu" class="lg:hidden text-slate-200 hover:text-white text-base p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition flex items-center gap-2">
+            <!-- Header Quick Action Toggle Menu -->
+            <button id="menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="drawer-sheet" class="lg:hidden text-slate-200 hover:text-white text-base p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition flex items-center gap-2">
                 <i class="fa-solid fa-bars-staggered text-jungle-400"></i>
                 <span class="text-xs font-bold">Menu</span>
             </button>
@@ -230,9 +266,8 @@
         <!-- Drawer Header -->
         <div class="p-5 border-b border-white/10 flex items-center justify-between bg-jungle-900/50">
             <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-jungle-500 text-jungle-950 flex items-center justify-center font-bold">
-                    <i class="fa-solid fa-compass"></i>
-                </div>
+                <!-- LOGO KELAS DI DRAWER MOBILE -->
+                <img src="logo.png" alt="Logo XI IPS 2" class="w-9 h-9 rounded-xl object-cover border border-white/10">
                 <div>
                     <h3 class="font-bold text-white text-sm">Menu Utama</h3>
                     <p class="text-[10px] text-jungle-400 font-semibold">Jungle Basecamp XI IPS 2</p>
@@ -306,8 +341,7 @@
     <!-- HERO SECTION -->
     <section class="pt-6 sm:pt-10 pb-8 px-4 max-w-6xl mx-auto text-center">
         
-        <!-- Live Badge Status & Dynamic Greeting -->
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-jungle-900/90 border border-jungle-500/30 text-[11px] sm:text-xs font-bold mb-4 sm:mb-6 text-slate-300 shadow-xl backdrop-blur-md">
+        <div class="hero-reveal hero-reveal-1 inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-jungle-900/90 border border-jungle-500/30 text-[11px] sm:text-xs font-bold mb-4 sm:mb-6 text-slate-300 shadow-xl backdrop-blur-md">
             <span class="flex h-2 w-2 relative">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-jungle-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-jungle-500"></span>
@@ -319,18 +353,18 @@
             </span>
         </div>
 
-        <h1 class="text-3xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight sm:leading-[1.12]">
+        <h1 class="hero-reveal hero-reveal-2 text-3xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight sm:leading-[1.12]">
             WELCOME TO <br>
             <span class="text-gradient drop-shadow-sm">JUNGLE CLASS</span>
         </h1>
         
-        <p class="text-slate-400 mt-3 sm:mt-5 max-w-2xl mx-auto text-xs sm:text-base font-normal leading-relaxed px-2">
+        <p class="hero-reveal hero-reveal-3 text-slate-400 mt-3 sm:mt-5 max-w-2xl mx-auto text-xs sm:text-base font-normal leading-relaxed px-2">
             “<span class="italic text-slate-300">Grow Together, Make Memories</span>” — Pusat informasi digital, jadwal, kenangan, dan ruang kolaborasi resmi siswa <span class="text-white font-semibold">XI IPS 2</span>.
         </p>
 
-        <!-- BANNER FOTO KELAS (Optimized: Ditambahkan loading="lazy") -->
-        <div class="mt-6 sm:mt-10 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl group bg-jungle-900 transition-all">
-            <img src="foto-kelas.jpg" alt="Foto Kelas XI IPS 2" loading="lazy" class="w-full h-64 sm:h-[480px] object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200'">
+        <!-- BANNER FOTO KELAS MOBILE OPTIMIZED -->
+        <div class="hero-reveal hero-reveal-4 mt-6 sm:mt-10 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl group bg-jungle-900 transition-all">
+            <img src="foto-kelas.jpg" alt="Foto Kelas XI IPS 2" loading="eager" decoding="async" class="w-full h-64 sm:h-[480px] object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200'">
             <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/50 to-transparent"></div>
             
             <div class="absolute top-3 left-3 sm:top-6 sm:left-6 flex flex-wrap items-center gap-1.5 sm:gap-2">
@@ -385,7 +419,7 @@
 
     </section>
 
-    <!-- MAP NAVIGASI EXPLORER MOBILE GRID -->
+    <!-- MAP NAVIGASI EXPLORER MOBILE GRID (2 KOLOM DI HP) -->
     <section id="map" class="py-6 sm:py-12 max-w-6xl mx-auto px-4">
         
         <div class="text-center mb-6 sm:mb-10">
@@ -529,7 +563,6 @@
     <section class="py-4 sm:py-8 max-w-6xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-5">
             
-            <!-- Quote / Motto Kelas -->
             <div class="md:col-span-2 glass-card p-5 sm:p-8 rounded-2xl sm:rounded-3xl relative overflow-hidden flex flex-col justify-between border border-jungle-500/20">
                 <div class="absolute -right-2 -bottom-4 sm:-right-4 sm:-bottom-6 text-white/[0.03] text-7xl sm:text-9xl font-black pointer-events-none select-none">"</div>
                 <div>
@@ -551,7 +584,6 @@
                 </div>
             </div>
 
-            <!-- Widget Soundtrack -->
             <div class="glass-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/10 relative overflow-hidden">
                 <div>
                     <div class="flex justify-between items-center mb-3 sm:mb-4">
@@ -587,7 +619,8 @@
                         </div>
                     </div>
 
-                    <audio id="class-audio" preload="metadata" src="lagu.mp3">
+                    <audio id="class-audio" preload="metadata">
+                        <source src="lagu.mp3" type="audio/mpeg">
                         <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
                     </audio>
                 </div>
@@ -612,9 +645,8 @@
     <footer class="border-t border-white/10 bg-jungle-950/90 py-8 text-xs text-slate-400 mt-10 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-jungle-500 to-emerald-400 text-jungle-950 flex items-center justify-center font-bold text-sm shadow">
-                    <i class="fa-solid fa-compass"></i>
-                </div>
+                <!-- LOGO KELAS DI FOOTER -->
+                <img src="logo.png" alt="Logo XI IPS 2" class="w-8 h-8 rounded-xl object-cover shadow border border-white/10">
                 <div>
                     <span class="font-bold text-white block">JUNGLE CLASS</span>
                     <span class="text-[9px] text-slate-500 uppercase tracking-wider block">Basecamp Digital XI IPS 2</span>
@@ -657,8 +689,8 @@
                     <span class="text-[9px]">Misi</span>
                 </a>
 
-                <button id="bottom-more-btn" aria-label="Menu Lainnya" class="flex flex-col items-center py-1.5 px-1 rounded-xl text-slate-400 hover:text-white active:scale-95 transition">
-                    <i class="fa-solid fa-grid-2 text-base mb-0.5 fa-border-all"></i>
+                <button id="bottom-more-btn" aria-label="Menu Lainnya" aria-expanded="false" aria-controls="drawer-sheet" class="flex flex-col items-center py-1.5 px-1 rounded-xl text-slate-400 hover:text-white active:scale-95 transition">
+                    <i class="fa-solid fa-grid-2 text-base mb-0.5"></i>
                     <span class="text-[9px]">Lainnya</span>
                 </button>
 
@@ -668,10 +700,9 @@
 
     <!-- SCRIPT INTERAKTIF NAVIGASI & MUSIC PLAYER -->
     <script>
-        // --- EFEK JAVASCRIPT GENERATOR BINTANG (Optimized) ---
         function createStars() {
             const container = document.getElementById('star-container');
-            const starCount = 20; // Dikurangi dari 60 menjadi 20 agar tidak memberatkan GPU HP
+            const starCount = 60;
             
             for(let i=0; i<starCount; i++) {
                 let star = document.createElement('div');
@@ -692,7 +723,6 @@
         }
         document.addEventListener('DOMContentLoaded', createStars);
         
-        // Drawer & Bottom Navigation Elements
         const menuBtn = document.getElementById('menu-btn');
         const bottomMoreBtn = document.getElementById('bottom-more-btn');
         const drawerClose = document.getElementById('drawer-close');
@@ -704,6 +734,8 @@
             drawerOverlay.classList.add('opacity-100');
             drawerSheet.classList.remove('translate-x-full');
             document.body.style.overflow = 'hidden';
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+            if (bottomMoreBtn) bottomMoreBtn.setAttribute('aria-expanded', 'true');
         }
 
         function closeDrawer() {
@@ -711,14 +743,21 @@
             drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
             drawerSheet.classList.add('translate-x-full');
             document.body.style.overflow = '';
+            if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+            if (bottomMoreBtn) bottomMoreBtn.setAttribute('aria-expanded', 'false');
         }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && drawerSheet && !drawerSheet.classList.contains('translate-x-full')) {
+                closeDrawer();
+            }
+        });
 
         if (menuBtn) menuBtn.addEventListener('click', openDrawer);
         if (bottomMoreBtn) bottomMoreBtn.addEventListener('click', openDrawer);
         if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
         if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
-        // Dynamic Time Greeting Logic
         function updateGreeting() {
             const hour = new Date().getHours();
             const greetingEl = document.getElementById('live-greeting');
@@ -736,7 +775,6 @@
         }
         updateGreeting();
 
-        // Audio Player Controls Logic
         const audio = document.getElementById('class-audio');
         const playBtn = document.getElementById('play-btn');
         const playIcon = document.getElementById('play-icon');
@@ -766,6 +804,8 @@
                         statusBadge.className = "text-[9px] sm:text-[10px] bg-pink-500/20 text-pink-400 border border-pink-500/30 px-2.5 py-0.5 rounded-full font-bold";
                     }).catch(err => {
                         console.log("Audio playback error:", err);
+                        statusBadge.innerText = "Gagal Diputar";
+                        statusBadge.className = "text-[9px] sm:text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 px-2.5 py-0.5 rounded-full font-bold";
                     });
                 } else {
                     audio.pause();
