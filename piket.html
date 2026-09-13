@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jadwal piket kebersihan kelas XI IPS 2, Senin sampai Sabtu, lengkap dengan daftar anggota tiap hari.">
+    <meta name="theme-color" content="#0a1710">
+    <meta property="og:title" content="Jungle Duty — XI IPS 2">
+    <meta property="og:description" content="Jaga kebersihan kelas demi kenyamanan dan kerapihan bersama!">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2419'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
     <title>Jungle Duty — XI IPS 2</title>
     
     <!-- CDN External Script & Fonts -->
@@ -78,6 +84,34 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
+
+        /* Visible keyboard focus, consistent with the jungle accent */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #34d399;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        /* One orchestrated reveal for the page header on load */
+        @keyframes pageReveal {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-reveal {
+            opacity: 0;
+            animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .page-reveal-1 { animation-delay: 0.03s; }
+        .page-reveal-2 { animation-delay: 0.14s; }
+        .page-reveal-3 { animation-delay: 0.26s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .page-reveal { opacity: 1; animation: none; transform: none; }
+            .animate-pulse-slow, .animate-pulse {
+                animation: none !important;
+            }
+            * { scroll-behavior: auto !important; }
+        }
     </style>
 </head>
 <body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-jungle-500 selection:text-jungle-950 flex flex-col justify-between">
@@ -118,13 +152,13 @@
                 <a href="ulang-tahun.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Ultah</a>
                 
                 <!-- LINK WEB SEKOLAH (DESKTOP) -->
-                <a href="https://sekolahkita.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
+                <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-school text-[10px]"></i> Web Sekolah
                 </a>
             </div>
 
             <!-- Hamburger Button Mobile -->
-            <button id="menu-btn" aria-label="Toggle Menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
+            <button id="menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
                 <i id="menu-icon" class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
@@ -144,7 +178,7 @@
                 <a href="ulang-tahun.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Ultah</a>
                 
                 <!-- LINK WEB SEKOLAH (MOBILE) -->
-                <a href="https://sekolahkita.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
+                <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-school"></i> Web Sekolah
                 </a>
             </div>
@@ -156,11 +190,11 @@
         
         <!-- HEADER & BREADCRUMB -->
         <div class="mb-8 text-center">
-            <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 hover:text-jungle-300 transition mb-4">
+            <a href="index.html" class="page-reveal page-reveal-1 inline-flex items-center gap-2 text-xs font-bold text-jungle-400 hover:text-jungle-300 transition mb-4">
                 <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
             </a>
 
-            <div>
+            <div class="page-reveal page-reveal-2">
                 <span class="text-xs font-extrabold uppercase tracking-widest text-jungle-400 px-3 py-1 rounded-full bg-jungle-900 border border-jungle-500/30 inline-block mb-2">
                     Cleaning Duty Squad
                 </span>
@@ -172,7 +206,7 @@
         </div>
 
         <!-- GRID JADWAL PIKET -->
-        <div id="piket-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5"></div>
+        <div id="piket-grid" class="page-reveal page-reveal-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
 
     </main>
 
@@ -193,7 +227,7 @@
                 <p class="text-center sm:text-right text-slate-500">
                     &copy; 2026 XI IPS 2. Designed with <i class="fa-solid fa-heart text-pink-500 mx-0.5"></i> for Jungle Explorers.
                 </p>
-                <a href="https://instagram.com/username_kelas" target="_blank" rel="noopener noreferrer" aria-label="Instagram Kelas" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 transition">
+                <a href="https://www.instagram.com/victoria_generous2" target="_blank" rel="noopener noreferrer" aria-label="Instagram Kelas" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 transition">
                     <i class="fa-brands fa-instagram text-base"></i>
                 </a>
             </div>
@@ -211,11 +245,9 @@
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
             
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.className = "fa-solid fa-bars-staggered";
-            } else {
-                menuIcon.className = "fa-solid fa-xmark";
-            }
+            const isOpen = mobileMenu.classList.contains('flex');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
         });
 
         // DATA PIKET
@@ -224,64 +256,86 @@
                 dayId: 1, // 1 = Senin
                 dayName: "Senin",
                 icon: "fa-leaf",
-                members: ["Aceng Miftah Farid", "Ahmad Barokah", "Akmal Latif Al-Khoarizmi", "Asmawa'ati"]
+                members: ["Dewi", "Ulpah", "Yasir", "Ahmad"]
             },
             {
                 dayId: 2, // 2 = Selasa
                 dayName: "Selasa",
                 icon: "fa-broom",
-                members: ["Asti Sukmawati", "Dethala Inari Putri", "Dewi Nadariyah", "Ega Odikta Septiani"]
+                members: ["Fikri", "Lutfia", "Rival", "Asma"]
             },
             {
                 dayId: 3, // 3 = Rabu
                 dayName: "Rabu",
                 icon: "fa-sparkles",
-                members: ["Lutfia Septia Ramadhani", "M Fikri Abdul Aziz", "M Yasir Al Munawar", "Puput Putriani"]
+                members: ["Ridwan", "Revi", "Asti", "Ega" , "Rehan"]
             },
             {
                 dayId: 4, // 4 = Kamis
                 dayName: "Kamis",
                 icon: "fa-dumpster",
-                members: ["Randi Mardiana Rahmat", "Rehan Maulana", "Revi Febriyani Syapariyah"]
+                members: ["Dethala", "Randi", "Akmal", "Aceng", "Puput"]
             },
             {
-                dayId: 6, // 6 = Sabtu (Sesuai JS Date getDay: 0=Minggu, 6=Sabtu)
+                dayId: 5, // 5 = Jumat
+                dayName: "Jumat",
+                icon: "fa-laptop-code",
+                members: ["Informatika"]
+            },
+            {
+                dayId: 6, // 6 = Sabtu
                 dayName: "Sabtu",
                 icon: "fa-hand-sparkles",
-                members: ["Ridwan Mukti Maulana", "Rival Maulana", "Ulpah Jain Inayah"]
+                members: ["Opsih"]
             }
         ];
 
         const todayIndex = new Date().getDay(); // 0 = Minggu, 1 = Senin, ..., 6 = Sabtu
 
-        document.getElementById('piket-grid').innerHTML = piketData.map(p => {
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        document.getElementById('piket-grid').innerHTML = [...piketData].sort((a, b) => a.dayId - b.dayId).map(p => {
             const isToday = p.dayId === todayIndex;
+            const isUnfilled = p.members.length === 1 && p.members[0] === "Belum diatur";
+            const isKhusus = p.members.length === 1 && (p.members[0] === "Informatika" || p.members[0] === "Opsih");
 
             return `
-                <div class="${isToday ? 'glass-card-active' : 'glass-card'} p-5 rounded-3xl transition-all duration-300 flex flex-col justify-between group">
+                <div class="${isToday ? 'glass-card-active' : 'glass-card'} p-5 rounded-3xl transition-all duration-300 flex flex-col justify-between group ${isUnfilled ? 'border-dashed border-white/20' : ''}">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <h2 class="font-bold text-lg text-white flex items-center gap-2 group-hover:text-jungle-400 transition">
                                 <i class="fa-solid ${p.icon} ${isToday ? 'text-jungle-400' : 'text-slate-400'}"></i>
-                                ${p.dayName}
+                                ${escapeHtml(p.dayName)}
                             </h2>
                             ${isToday ? '<span class="text-[10px] bg-jungle-500 text-jungle-950 font-black px-2.5 py-0.5 rounded-full shadow-sm animate-pulse">HARI INI</span>' : ''}
                         </div>
 
-                        <ul class="space-y-3">
-                            ${p.members.map(m => `
-                                <li class="text-xs text-slate-300 flex items-center gap-2.5">
-                                    <div class="w-5 h-5 rounded-lg ${isToday ? 'bg-jungle-500/20 text-jungle-400 border border-jungle-500/30' : 'bg-white/5 text-slate-500 border border-white/5'} flex items-center justify-center text-[10px] shrink-0">
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-                                    <span class="font-medium">${m}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
+                        ${isUnfilled ? `
+                            <p class="text-xs text-slate-500 italic flex items-center gap-2">
+                                <i class="fa-regular fa-circle-question"></i> Nama anggota belum diisi
+                            </p>
+                        ` : `
+                            <ul class="space-y-3">
+                                ${p.members.map(m => `
+                                    <li class="text-xs text-slate-300 flex items-center gap-2.5">
+                                        <div class="w-5 h-5 rounded-lg ${isToday ? 'bg-jungle-500/20 text-jungle-400 border border-jungle-500/30' : 'bg-white/5 text-slate-500 border border-white/5'} flex items-center justify-center text-[10px] shrink-0">
+                                            <i class="fa-solid fa-check"></i>
+                                        </div>
+                                        <span class="font-medium">${escapeHtml(m)}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        `}
                     </div>
 
                     <div class="mt-6 pt-3 border-t border-white/5 text-[11px] text-slate-400 text-center font-semibold">
-                        <i class="fa-solid fa-users text-[10px] mr-1 opacity-70"></i> ${p.members.length} Anggota
+                        ${isUnfilled ? '<i class="fa-solid fa-users text-[10px] mr-1 opacity-70"></i> 0 Anggota' : 
+                          (isKhusus ? '<i class="fa-solid fa-calendar-check text-[10px] mr-1 opacity-70"></i> Jadwal Khusus' : 
+                          '<i class="fa-solid fa-users text-[10px] mr-1 opacity-70"></i> ' + p.members.length + ' Anggota')}
                     </div>
                 </div>
             `;
