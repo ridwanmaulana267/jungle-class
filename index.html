@@ -8,10 +8,7 @@
     <meta property="og:title" content="JUNGLE CLASS — Basecamp Digital XI IPS 2">
     <meta property="og:description" content="Grow Together, Make Memories — pusat informasi digital kelas XI IPS 2.">
     <meta property="og:type" content="website">
-    
-    <!-- FAVICON WEB (Ikon Tab Browser) -->
-    <link rel="icon" href="favicon.png" type="image/png">
-    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2419'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
     <title>JUNGLE CLASS — Basecamp Digital XI IPS 2</title>
     
     <!-- CDN External Script & Fonts -->
@@ -147,6 +144,7 @@
             border-radius: 99px;
         }
 
+        /* Kepala meteor */
         .meteor::before {
             content: '';
             position: absolute;
@@ -173,6 +171,7 @@
         .meteor:nth-child(4) { top: -20%; left: 80%; animation-duration: 4.5s; animation-delay: 1.5s; }
         .meteor:nth-child(5) { top: 40%; left: 120%; animation-duration: 5.5s; animation-delay: 4s; }
 
+        /* Bintang statis yang berkedip */
         .twinkling-star {
             position: absolute;
             background: #fff;
@@ -221,9 +220,11 @@
     <nav class="sticky top-0 z-40 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
-            <!-- LOGO KELAS UTAMA (HEADER) -->
+            <!-- Logo Class -->
             <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 group active:scale-95 transition-transform">
-                <img src="logo.png" alt="Logo XI IPS 2" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl object-cover shadow-lg shadow-jungle-500/20 border border-white/10">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20">
+                    <i class="fa-solid fa-compass text-lg sm:text-xl"></i>
+                </div>
                 <div class="leading-tight">
                     <span class="tracking-wide text-white font-extrabold text-sm sm:text-base block group-hover:text-jungle-400 transition">JUNGLE CLASS</span>
                     <span class="text-[9px] sm:text-[10px] text-jungle-400 font-bold uppercase tracking-widest block -mt-0.5">XI IPS 2 Official</span>
@@ -250,7 +251,7 @@
                 </a>
             </div>
 
-            <!-- Header Quick Action Toggle Menu -->
+            <!-- Header Quick Action Toggle Menu (Drawer Trigger) -->
             <button id="menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="drawer-sheet" class="lg:hidden text-slate-200 hover:text-white text-base p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition flex items-center gap-2">
                 <i class="fa-solid fa-bars-staggered text-jungle-400"></i>
                 <span class="text-xs font-bold">Menu</span>
@@ -266,8 +267,9 @@
         <!-- Drawer Header -->
         <div class="p-5 border-b border-white/10 flex items-center justify-between bg-jungle-900/50">
             <div class="flex items-center gap-3">
-                <!-- LOGO KELAS DI DRAWER MOBILE -->
-                <img src="logo.png" alt="Logo XI IPS 2" class="w-9 h-9 rounded-xl object-cover border border-white/10">
+                <div class="w-9 h-9 rounded-xl bg-jungle-500 text-jungle-950 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
                 <div>
                     <h3 class="font-bold text-white text-sm">Menu Utama</h3>
                     <p class="text-[10px] text-jungle-400 font-semibold">Jungle Basecamp XI IPS 2</p>
@@ -339,8 +341,9 @@
     </div>
 
     <!-- HERO SECTION -->
-    <section class="pt-6 sm:pt-10 pb-8 px-4 max-w-6xl mx-auto text-center">
+    <section class="pt-6 sm:pt-10 pb-6 px-4 max-w-6xl mx-auto text-center">
         
+        <!-- Live Badge Status & Dynamic Greeting -->
         <div class="hero-reveal hero-reveal-1 inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-jungle-900/90 border border-jungle-500/30 text-[11px] sm:text-xs font-bold mb-4 sm:mb-6 text-slate-300 shadow-xl backdrop-blur-md">
             <span class="flex h-2 w-2 relative">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-jungle-400 opacity-75"></span>
@@ -367,6 +370,7 @@
             <img src="foto-kelas.jpg" alt="Foto Kelas XI IPS 2" loading="eager" decoding="async" class="w-full h-64 sm:h-[480px] object-cover group-hover:scale-105 transition duration-700 ease-out" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200'">
             <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/50 to-transparent"></div>
             
+            <!-- Badge Pojok Kiri Atas -->
             <div class="absolute top-3 left-3 sm:top-6 sm:left-6 flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <span class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-jungle-950/80 backdrop-blur-md border border-white/15 text-[10px] sm:text-[11px] font-bold text-white flex items-center gap-1.5 shadow-lg">
                     <i class="fa-solid fa-shield-halved text-jungle-400"></i> Kelas Unggulan
@@ -377,6 +381,7 @@
                 </a>
             </div>
 
+            <!-- Overlay Content Bawah Mobile Ready -->
             <div class="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 text-left flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 sm:gap-4">
                 <div class="space-y-0.5 sm:space-y-1">
                     <span class="text-[9px] sm:text-[11px] font-extrabold text-jungle-400 uppercase tracking-widest bg-jungle-900/90 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md border border-jungle-500/30 inline-block backdrop-blur-md">
@@ -386,6 +391,7 @@
                     <p class="text-[11px] sm:text-sm text-slate-300 font-medium">Wali Kelas: <span class="text-white font-semibold">Dede Hasan Nurjaman, S.Pd.</span></p>
                 </div>
                 
+                <!-- Action Buttons Thumb-friendly -->
                 <div class="flex items-center gap-2 w-full sm:w-auto pt-1 sm:pt-0">
                     <a href="https://www.instagram.com/victoria_generous2" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none justify-center px-3 py-2.5 sm:px-4 sm:py-3 bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-400 hover:to-rose-500 text-white font-bold rounded-xl sm:rounded-2xl transition-all shadow-lg shadow-pink-500/25 flex items-center gap-1.5 text-xs active:scale-95">
                         <i class="fa-brands fa-instagram text-sm"></i> Instagram
@@ -417,6 +423,60 @@
             </div>
         </div>
 
+    </section>
+
+    <!-- WIDGET REAL-TIME HARI INI (JADWAL & PIKET QUICK-VIEW) -->
+    <section class="py-4 max-w-6xl mx-auto px-4">
+        <div class="glass-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-jungle-500/30 bg-gradient-to-r from-jungle-900/90 via-jungle-850 to-jungle-900 shadow-xl">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                
+                <!-- Info Hari Ini -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-jungle-500/20 border border-jungle-500/40 text-jungle-400 flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-inner">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-jungle-500/20 text-jungle-300 border border-jungle-500/30" id="today-name">Hari Ini</span>
+                            <span class="text-xs text-slate-400 font-medium" id="today-date">--/--/----</span>
+                            <span class="text-white/20">•</span>
+                            <span class="text-xs text-jungle-400 font-mono font-bold" id="live-clock">00:00:00 WIB</span>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-extrabold text-white mt-0.5" id="today-status-title">Jadwal & Piket Hari Ini</h3>
+                    </div>
+                </div>
+
+                <!-- Quick Info Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 max-w-3xl">
+                    <!-- Mini Jadwal -->
+                    <div class="bg-black/40 p-3.5 rounded-2xl border border-white/5 flex items-center justify-between gap-2 hover:border-emerald-500/30 transition group">
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block flex items-center gap-1">
+                                <i class="fa-solid fa-book-open text-emerald-400"></i> Mapel Hari Ini
+                            </span>
+                            <span class="text-xs sm:text-sm font-bold text-emerald-300 block truncate mt-0.5" id="today-lessons">Memuat jadwal...</span>
+                        </div>
+                        <a href="jadwal.html" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 text-[10px] font-bold group-hover:bg-emerald-500 group-hover:text-jungle-950 transition flex-shrink-0 flex items-center gap-1">
+                            Detail <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                        </a>
+                    </div>
+
+                    <!-- Mini Piket -->
+                    <div class="bg-black/40 p-3.5 rounded-2xl border border-white/5 flex items-center justify-between gap-2 hover:border-teal-500/30 transition group">
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block flex items-center gap-1">
+                                <i class="fa-solid fa-broom text-teal-400"></i> Petugas Piket
+                            </span>
+                            <span class="text-xs sm:text-sm font-bold text-teal-300 block truncate mt-0.5" id="today-piket">Memuat piket...</span>
+                        </div>
+                        <a href="piket.html" class="px-2.5 py-1.5 rounded-xl bg-teal-500/10 text-teal-400 text-[10px] font-bold group-hover:bg-teal-400 group-hover:text-jungle-950 transition flex-shrink-0 flex items-center gap-1">
+                            Detail <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <!-- MAP NAVIGASI EXPLORER MOBILE GRID (2 KOLOM DI HP) -->
@@ -563,6 +623,7 @@
     <section class="py-4 sm:py-8 max-w-6xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-5">
             
+            <!-- Quote / Motto Kelas -->
             <div class="md:col-span-2 glass-card p-5 sm:p-8 rounded-2xl sm:rounded-3xl relative overflow-hidden flex flex-col justify-between border border-jungle-500/20">
                 <div class="absolute -right-2 -bottom-4 sm:-right-4 sm:-bottom-6 text-white/[0.03] text-7xl sm:text-9xl font-black pointer-events-none select-none">"</div>
                 <div>
@@ -584,6 +645,7 @@
                 </div>
             </div>
 
+            <!-- Widget Soundtrack -->
             <div class="glass-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-white/10 relative overflow-hidden">
                 <div>
                     <div class="flex justify-between items-center mb-3 sm:mb-4">
@@ -645,8 +707,9 @@
     <footer class="border-t border-white/10 bg-jungle-950/90 py-8 text-xs text-slate-400 mt-10 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
             <div class="flex items-center gap-3">
-                <!-- LOGO KELAS DI FOOTER -->
-                <img src="logo.png" alt="Logo XI IPS 2" class="w-8 h-8 rounded-xl object-cover shadow border border-white/10">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-jungle-500 to-emerald-400 text-jungle-950 flex items-center justify-center font-bold text-sm shadow">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
                 <div>
                     <span class="font-bold text-white block">JUNGLE CLASS</span>
                     <span class="text-[9px] text-slate-500 uppercase tracking-wider block">Basecamp Digital XI IPS 2</span>
@@ -698,10 +761,12 @@
         </nav>
     </div>
 
-    <!-- SCRIPT INTERAKTIF NAVIGASI & MUSIC PLAYER -->
+    <!-- SCRIPT INTERAKTIF NAVIGASI & MUSIC PLAYER & LIVE REAL-TIME WIDGET -->
     <script>
+        // --- EFEK JAVASCRIPT GENERATOR BINTANG ---
         function createStars() {
             const container = document.getElementById('star-container');
+            if(!container) return;
             const starCount = 60;
             
             for(let i=0; i<starCount; i++) {
@@ -721,8 +786,67 @@
                 container.appendChild(star);
             }
         }
-        document.addEventListener('DOMContentLoaded', createStars);
         
+        // --- DETEKSI REAL-TIME JADWAL & PIKET HARI INI ---
+        function updateTodayWidget() {
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const now = new Date();
+            const dayName = days[now.getDay()];
+            
+            const dayEl = document.getElementById('today-name');
+            const dateEl = document.getElementById('today-date');
+            
+            if(dayEl) dayEl.innerText = dayName;
+            if(dateEl) dateEl.innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+
+            // Peta Jadwal Pelajaran XI IPS 2
+            const lessonsMap = {
+                'Senin': 'Sosiologi, Bahasa Sunda, Matematika, Ekonomi, ASWJ, Bahasa Arab',
+                'Selasa': 'Akidah, Kimia, Bahasa Indonesia, Bahasa Arab, Matematika',
+                'Rabu': 'Ekonomi, Bahasa Inggris, PJOK',
+                'Kamis': 'Geografi, Bahasa Inggris, Seni Budaya, Al-Quran hadis, Sosiologi, Bahasa Arab',
+                'Jumat': 'Informatika',
+                'Sabtu': 'Sejarah TL, Bahasa Indonesia, Ski, Prakarya, Fisika',
+                'Minggu': 'Libur Akhir Pekan 🌴'
+            };
+
+            // Peta Petugas Piket Kebersihan XI IPS 2
+            const piketMap = {
+                'Senin': 'Dewi, Ulpah, Yasir, Ahmad',
+                'Selasa': 'Fikri, Lutfia, RIval, Asma',
+                'Rabu': 'RIdwan, Revi, Asti, Ega, Rehan',
+                'Kamis': 'Dethala, Randi, Akmal, Aceng, Puput',
+                'Jumat': 'Informatika',
+                'Sabtu': 'Opsih',
+                'Minggu': 'Bebas Piket (Libur)'
+            };
+
+            const lessonsEl = document.getElementById('today-lessons');
+            const piketEl = document.getElementById('today-piket');
+
+            if (lessonsEl && lessonsMap[dayName]) lessonsEl.innerText = lessonsMap[dayName];
+            if (piketEl && piketMap[dayName]) piketEl.innerText = piketMap[dayName];
+        }
+
+        // Live Digital Clock
+        function updateClock() {
+            const clockEl = document.getElementById('live-clock');
+            if(!clockEl) return;
+            const now = new Date();
+            const hrs = String(now.getHours()).padStart(2, '0');
+            const mins = String(now.getMinutes()).padStart(2, '0');
+            const secs = String(now.getSeconds()).padStart(2, '0');
+            clockEl.innerText = `${hrs}:${mins}:${secs} WIB`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            updateTodayWidget();
+            updateClock();
+            setInterval(updateClock, 1000);
+        });
+        
+        // Drawer & Bottom Navigation Elements
         const menuBtn = document.getElementById('menu-btn');
         const bottomMoreBtn = document.getElementById('bottom-more-btn');
         const drawerClose = document.getElementById('drawer-close');
@@ -758,6 +882,7 @@
         if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
         if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
+        // Dynamic Time Greeting Logic
         function updateGreeting() {
             const hour = new Date().getHours();
             const greetingEl = document.getElementById('live-greeting');
@@ -775,6 +900,7 @@
         }
         updateGreeting();
 
+        // Audio Player Controls Logic
         const audio = document.getElementById('class-audio');
         const playBtn = document.getElementById('play-btn');
         const playIcon = document.getElementById('play-icon');
