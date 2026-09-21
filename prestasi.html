@@ -3,12 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hall of fame trofi dan penghargaan yang diraih kelas XI IPS 2.">
-    <meta name="theme-color" content="#0a1710">
-    <meta property="og:title" content="Jungle Achievements — XI IPS 2">
-    <meta property="og:description" content="Rekam jejak kebanggaan, trofi, dan penghargaan yang diraih oleh talenta XI IPS 2.">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2419'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
     <title>Jungle Achievements — XI IPS 2</title>
     
     <!-- CDN External Script & Fonts -->
@@ -76,32 +70,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
-
-        /* Visible keyboard focus, consistent with the jungle accent */
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid #34d399;
-            outline-offset: 2px;
-            border-radius: 6px;
-        }
-
-        /* One orchestrated reveal for the page header on load */
-        @keyframes pageReveal {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .page-reveal {
-            opacity: 0;
-            animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        .page-reveal-1 { animation-delay: 0.03s; }
-        .page-reveal-2 { animation-delay: 0.14s; }
-        .page-reveal-3 { animation-delay: 0.26s; }
-
-        @media (prefers-reduced-motion: reduce) {
-            .page-reveal { opacity: 1; animation: none; transform: none; }
-            .animate-pulse-slow { animation: none !important; }
-            * { scroll-behavior: auto !important; }
-        }
     </style>
 </head>
 <body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-amber-500 selection:text-jungle-950 flex flex-col justify-between">
@@ -148,7 +116,7 @@
             </div>
 
             <!-- Hamburger Button Mobile -->
-            <button id="menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
+            <button id="menu-btn" aria-label="Toggle Menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
                 <i id="menu-icon" class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
@@ -179,7 +147,7 @@
     <main class="max-w-5xl mx-auto px-4 py-8 w-full">
         
         <!-- HEADER & BREADCRUMB -->
-        <div class="page-reveal page-reveal-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
             <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 hover:text-jungle-300 transition">
                 <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
             </a>
@@ -189,7 +157,7 @@
         </div>
 
         <!-- SECTION TITLE -->
-        <div class="page-reveal page-reveal-2 text-center mb-12">
+        <div class="text-center mb-12">
             <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
                 HALL OF FAME <br><span class="text-gradient">PRESTASI KELAS</span>
             </h1>
@@ -199,9 +167,9 @@
         </div>
 
         <!-- STATS BANNER -->
-        <div class="page-reveal page-reveal-2 grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
             <div class="glass-card p-4 rounded-2xl text-center border-amber-500/20">
-                <div id="stat-juara1" class="text-2xl sm:text-3xl font-black text-amber-400">0</div>
+                <div class="text-2xl sm:text-3xl font-black text-amber-400">3</div>
                 <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mt-1">Total Trofi Juara 1</div>
             </div>
             <div class="glass-card p-4 rounded-2xl text-center border-amber-500/20">
@@ -215,7 +183,7 @@
         </div>
 
         <!-- ACHIEVEMENTS GRID CONTAINER -->
-        <div id="achievements-grid" class="page-reveal page-reveal-3 grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        <div id="achievements-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
 
     </main>
 
@@ -254,9 +222,11 @@
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
             
-            const isOpen = mobileMenu.classList.contains('flex');
-            menuBtn.setAttribute('aria-expanded', String(isOpen));
-            menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = "fa-solid fa-bars-staggered";
+            } else {
+                menuIcon.className = "fa-solid fa-xmark";
+            }
         });
 
         // DATA PRESTASI
@@ -286,19 +256,8 @@
             ]
         };
 
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
         function renderAchievements() {
             const grid = document.getElementById('achievements-grid');
-
-            const juara1Count = classData.achievements.filter(a =>
-                a.title.toLowerCase().includes('juara 1')
-            ).length;
-            document.getElementById('stat-juara1').textContent = juara1Count;
 
             grid.innerHTML = classData.achievements.map(a => `
                 <div class="glass-card p-6 rounded-3xl border border-amber-500/20 hover:border-amber-500/50 transition duration-300 flex flex-col justify-between group relative overflow-hidden">
@@ -313,13 +272,13 @@
                         <!-- Category & Date Badge -->
                         <div class="text-center mb-3">
                             <span class="text-[10px] font-extrabold text-amber-400 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
-                                ${escapeHtml(a.cat)} • ${escapeHtml(a.date)}
+                                ${a.cat} • ${a.date}
                             </span>
                         </div>
 
                         <!-- Title & Description -->
-                        <h3 class="font-extrabold text-white text-lg text-center mb-2 group-hover:text-amber-300 transition">${escapeHtml(a.title)}</h3>
-                        <p class="text-xs text-slate-300 text-center leading-relaxed">${escapeHtml(a.desc)}</p>
+                        <h3 class="font-extrabold text-white text-lg text-center mb-2 group-hover:text-amber-300 transition">${a.title}</h3>
+                        <p class="text-xs text-slate-300 text-center leading-relaxed">${a.desc}</p>
                     </div>
 
                     <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-center gap-1.5 text-xs font-bold text-amber-400">
