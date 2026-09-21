@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jadwal pelajaran harian XI IPS 2, Senin sampai Sabtu, lengkap dengan jam, guru pengajar, dan ruangan.">
+    <meta name="description" content="Galeri foto momen dan kenangan kelas XI IPS 2 — classmeeting, acara sekolah, dan keseharian.">
     <meta name="theme-color" content="#0a1710">
-    <meta property="og:title" content="Jungle Schedule — XI IPS 2">
-    <meta property="og:description" content="Agenda mata pelajaran harian kelas XI IPS 2.">
+    <meta property="og:title" content="Jungle Memories — XI IPS 2">
+    <meta property="og:description" content="Dokumentasi momen indah dan keseruan perjalanan XI IPS 2.">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2419'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
-    <title>Jungle Schedule — XI IPS 2</title>
+    <title>Jungle Memories — XI IPS 2</title>
     
     <!-- CDN External Script & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -49,14 +49,6 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-        
-        .glass-card-active {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(10, 23, 16, 0.9) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(52, 211, 153, 0.4);
-            box-shadow: 0 12px 35px -5px rgba(16, 185, 129, 0.3);
         }
 
         .glass-nav {
@@ -105,9 +97,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             .page-reveal { opacity: 1; animation: none; transform: none; }
-            .animate-pulse-slow, .animate-ping, .animate-pulse {
-                animation: none !important;
-            }
+            .animate-pulse-slow { animation: none !important; }
             * { scroll-behavior: auto !important; }
         }
     </style>
@@ -123,6 +113,7 @@
     <nav class="sticky top-0 z-50 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
+            <!-- Logo Class -->
             <a href="index.html" class="flex items-center gap-3 group">
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20 group-hover:scale-105 group-hover:rotate-3 transition duration-300">
                     <i class="fa-solid fa-compass text-xl"></i>
@@ -137,16 +128,17 @@
             <div class="hidden lg:flex items-center gap-1 bg-white/[0.03] p-1.5 rounded-2xl border border-white/10 text-xs font-semibold backdrop-blur-md">
                 <a href="index.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Home</a>
                 <a href="anggota.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Anggota</a>
-                <a href="jadwal.html" class="px-4 py-2 rounded-xl bg-gradient-to-r from-jungle-500 to-emerald-400 text-jungle-950 font-bold shadow-md shadow-jungle-500/20">Jadwal</a>
+                <a href="jadwal.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Jadwal</a>
                 <a href="piket.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Piket</a>
                 <a href="misi.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Misi</a>
-                <a href="memori.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Memori</a>
+                <a href="memori.html" class="px-4 py-2 rounded-xl bg-gradient-to-r from-jungle-500 to-emerald-400 text-jungle-950 font-bold shadow-md shadow-jungle-500/20">Memori</a>
                 <a href="nostalgia.html" class="px-3.5 py-2 rounded-xl text-amber-400 hover:bg-amber-500/10 hover:text-amber-300 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-clock-rotate-left text-[10px]"></i> Nostalgia X
                 </a>
                 <a href="pengumuman.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Berita</a>
                 <a href="prestasi.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Prestasi</a>
                 <a href="ulang-tahun.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Ultah</a>
+                
                 <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-school text-[10px]"></i> Web Sekolah
                 </a>
@@ -163,14 +155,15 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-center">
                 <a href="index.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Home</a>
                 <a href="anggota.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Anggota</a>
-                <a href="jadwal.html" class="p-2.5 rounded-xl bg-jungle-500 text-jungle-950 font-bold">Jadwal</a>
+                <a href="jadwal.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Jadwal</a>
                 <a href="piket.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Piket</a>
                 <a href="misi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Misi</a>
-                <a href="memori.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Memori</a>
+                <a href="memori.html" class="p-2.5 rounded-xl bg-jungle-500 text-jungle-950 font-bold">Memori</a>
                 <a href="nostalgia.html" class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">Nostalgia X</a>
                 <a href="pengumuman.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Berita</a>
                 <a href="prestasi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Prestasi</a>
                 <a href="ulang-tahun.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Ultah</a>
+                
                 <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-school"></i> Web Sekolah
                 </a>
@@ -179,48 +172,77 @@
     </nav>
 
     <!-- MAIN CONTENT -->
-    <main class="max-w-4xl mx-auto px-4 py-8 w-full">
+    <main class="max-w-6xl mx-auto px-4 py-8 w-full">
         
         <!-- HEADER & BREADCRUMB -->
-        <div class="mb-8 text-center">
-            <a href="index.html" class="page-reveal page-reveal-1 inline-flex items-center gap-2 text-xs font-bold text-jungle-400 hover:text-jungle-300 transition mb-4">
+        <div class="page-reveal page-reveal-1 mb-8">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 hover:text-jungle-300 transition mb-4">
                 <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
             </a>
 
-            <div class="page-reveal page-reveal-2">
-                <span class="text-xs font-extrabold uppercase tracking-widest text-jungle-400 px-3 py-1 rounded-full bg-jungle-900 border border-jungle-500/30 inline-block mb-2">
-                    Knowledge Forest
+            <div>
+                <span class="text-xs font-extrabold uppercase tracking-widest text-sky-400 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 inline-block mb-2">
+                    Memory Lake
                 </span>
                 <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-                    JUNGLE <span class="text-gradient">SCHEDULE</span>
+                    JUNGLE <span class="text-gradient">MEMORIES</span>
                 </h1>
-                <p class="text-xs sm:text-sm text-slate-400 mt-2">Agenda mata pelajaran harian kelas XI IPS 2.</p>
-                
-                <!-- LIVE TIME BADGE -->
-                <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-jungle-900/80 border border-white/10 text-xs text-slate-300 font-mono backdrop-blur-md shadow-inner">
-                    <span class="flex h-2 w-2 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                    </span>
-                    <span id="live-time">Menghubungkan waktu...</span>
-                </div>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2">Dokumentasi momen indah dan keseruan perjalanan XI IPS 2.</p>
             </div>
         </div>
 
-        <!-- TAB HARI -->
-        <div class="page-reveal page-reveal-3 flex flex-wrap justify-center gap-2 mb-8 bg-jungle-900/60 p-2 rounded-2xl border border-white/10 backdrop-blur-md" id="day-tabs" role="tablist" aria-label="Pilih hari">
-            <button onclick="renderSchedule('senin')" id="btn-senin" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Senin</button>
-            <button onclick="renderSchedule('selasa')" id="btn-selasa" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Selasa</button>
-            <button onclick="renderSchedule('rabu')" id="btn-rabu" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Rabu</button>
-            <button onclick="renderSchedule('kamis')" id="btn-kamis" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Kamis</button>
-            <button onclick="renderSchedule('jumat')" id="btn-jumat" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Jumat</button>
-            <button onclick="renderSchedule('sabtu')" id="btn-sabtu" role="tab" aria-selected="false" aria-controls="schedule-container" class="px-4 py-2 rounded-xl font-bold text-xs tab-btn transition duration-300">Sabtu</button>
+        <!-- BANNER LINK NOSTALGIA -->
+        <div class="page-reveal page-reveal-2 glass-card p-5 sm:p-6 rounded-3xl mb-8 flex flex-col sm:flex-row justify-between items-center gap-4 border border-amber-500/30 bg-amber-500/5">
+            <div class="flex items-center gap-4 text-center sm:text-left">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-box-archive"></i>
+                </div>
+                <div>
+                    <h2 class="text-base font-extrabold text-white">Kangen Momen Kelas 10?</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Lihat foto-foto jadul dan kisah bimbingan bareng Pak Adiyatma Nur Hidayat.</p>
+                </div>
+            </div>
+            <a href="nostalgia.html" class="w-full sm:w-auto px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-400 text-jungle-950 text-xs font-extrabold rounded-2xl hover:scale-105 transition duration-300 shadow-lg shadow-amber-500/20 text-center whitespace-nowrap">
+                Buka Nostalgia X <i class="fa-solid fa-arrow-right ml-1.5"></i>
+            </a>
         </div>
 
-        <!-- CONTAINER LIST JADWAL -->
-        <div id="schedule-container" class="page-reveal page-reveal-3 space-y-4" role="tabpanel" aria-live="polite"></div>
+        <!-- FILTER TAB BUTTONS -->
+        <div class="page-reveal page-reveal-3 flex flex-wrap gap-2 mb-8 bg-jungle-900/60 p-2 rounded-2xl border border-white/10 backdrop-blur-md">
+            <button onclick="filterGallery('all', this)" aria-pressed="true" class="filter-btn px-4 py-2 rounded-xl text-xs font-extrabold transition duration-300 bg-gradient-to-r from-jungle-500 to-emerald-400 text-jungle-950 shadow-md shadow-jungle-500/20">
+                <i class="fa-solid fa-border-all mr-1.5"></i> Semua Foto
+            </button>
+            <button onclick="filterGallery('classmeeting', this)" aria-pressed="false" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-300 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/5">
+                <i class="fa-solid fa-trophy mr-1.5 text-amber-400"></i> Classmeeting
+            </button>
+            <button onclick="filterGallery('acara', this)" aria-pressed="false" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-300 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/5">
+                <i class="fa-solid fa-calendar-star mr-1.5 text-purple-400"></i> Acara Sekolah
+            </button>
+            <button onclick="filterGallery('sehari-hari', this)" aria-pressed="false" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-300 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/5">
+                <i class="fa-solid fa-mug-hot mr-1.5 text-sky-400"></i> Sehari-hari
+            </button>
+        </div>
+
+        <!-- GALLERY GRID -->
+        <div id="gallery-grid" class="page-reveal page-reveal-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5"></div>
 
     </main>
+
+    <!-- LIGHTBOX MODAL UNTUK PREVIEW FOTO -->
+    <div id="image-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" onclick="closeImageModal()" role="dialog" aria-modal="true" aria-label="Preview foto">
+        <div class="max-w-3xl w-full relative" onclick="event.stopPropagation()">
+            <button onclick="closeImageModal()" class="absolute -top-12 right-0 text-white text-xl w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="glass-card p-2 rounded-3xl overflow-hidden">
+                <img id="modal-img" src="" alt="Preview Foto" class="w-full max-h-[75vh] object-contain rounded-2xl">
+                <div class="p-4 text-center">
+                    <span id="modal-badge" class="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full mb-2 inline-block"></span>
+                    <h3 id="modal-title" class="text-base font-extrabold text-white"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER MODERN -->
     <footer class="border-t border-white/10 bg-jungle-950/90 py-8 text-xs text-slate-400 mt-16 backdrop-blur-md">
@@ -248,6 +270,7 @@
 
     <!-- SCRIPT INTERAKTIF -->
     <script>
+        // TOGGLE MOBILE MENU
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -261,60 +284,51 @@
             menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
         });
 
+        // DATA GALERI
         const classData = {
-            schedules: {
-                senin: [
-                    { time: "07:00 - 07:30", subject: "Upacara Bendera", teacher: "Seluruh Siswa", room: "Lap. Upacara" },
-                    { time: "07:30 - 08:00", subject: "Sosiologi", teacher: "Pak Dehas", room: "Ruang XI-2" },
-                    { time: "08:30 - 09:00", subject: "Bahasa Sunda", teacher: "Bu Ai", room: "Ruang XI-2" },
-                    { time: "09:00 - 10:30", subject: "Matematika", teacher: "Bu Rini", room: "Ruang XI-2" },
-                    { time: "10:30 - 11:30", subject: "Ekonomi", teacher: "Pak Dehas", room: "Ruang XI-2" },
-                    { time: "12:15 - 12:45", subject: "Sosiologi", teacher: "Pak Dehas", room: "Ruang XI-2" },
-                    { time: "12:45 - 13:15", subject: "ASWJ", teacher: "Pak Ilham", room: "Ruang XI-2" },
-                    { time: "13:15 - 13:45", subject: "Bahasa Inggris", teacher: "Bu Ulpah", room: "Ruang XI-2" }
-                ],
-                selasa: [
-                    { time: "07:00 - 07:30", subject: "Aqidah Akhlak", teacher: "Pak Erik", room: "Ruang XI-2" },
-                    { time: "07:30 - 08:00", subject: "Aqidah Akhlak", teacher: "Pak Erik", room: "Ruang XI-2" },
-                    { time: "08:30 - 09:30", subject: "Kimia", teacher: "Pak Irfan", room: "Ruang XI-2" },
-                    { time: "10:00 - 11:00", subject: "Bahasa Indonesia", teacher: "Pak Adit", room: "Ruang XI-2" },
-                    { time: "11:00 - 12:45", subject: "Bahasa Arab", teacher: "Bu Ulpah", room: "Ruang XI-2" },
-                    { time: "12:45 - 13:45", subject: "Matematika", teacher: "Bu Rini", room: "Ruang XI-2" }
-                ],
-                rabu: [
-                    { time: "07:00 - 08:00", subject: "Geografi", teacher: "Bu Andin", room: "Ruang XI-2" },
-                    { time: "08:30 - 09:30", subject: "Bahasa Inggris", teacher: "Bu Ulpah", room: "Ruang XI-2" },
-                    { time: "10:00 - 11:00", subject: "Seni Budaya", teacher: "Bu Rani", room: "Ruang XI-2" },
-                    { time: "11:00 - 11:30", subject: "Al-Qur'an Hadits", teacher: "Pak Ilham", room: "Ruang XI-2" },
-                    { time: "12:15 - 12:45", subject: "Al-Qur'an Hadits", teacher: "Pak Ilham", room: "Ruang XI-2" },
-                    { time: "12:45 - 13:15", subject: "Sosiologi", teacher: "Pak Dehas", room: "Ruang XI-2" },
-                    { time: "13:15 - 13:45", subject: "Bahasa Arab", teacher: "Bu Ulpah", room: "Ruang XI-2" }
-                ],
-                kamis: [
-                    { time: "07:00 - 08:00", subject: "Ekonomi", teacher: "Pak Dehas", room: "Ruang XI-2" },
-                    { time: "08:30 - 09:30", subject: "Bahasa Inggris", teacher: "Bu Ulpah", room: "Ruang XI-2" },
-                    { time: "10:00 - 11:00", subject: "PJOK / Olahraga", teacher: "Pak Dian", room: "Lap. Olahraga" },
-                    { time: "11:00 - 12:45", subject: "Fiqih", teacher: "Bu Ai", room: "Ruang XI-2" },
-                    { time: "12:45 - 13:45", subject: "PPKn", teacher: "Pak Dera", room: "Ruang XI-2" }
-                ],
-                jumat: [
-                    { time: "07:00 - 08:00", subject: "Yasin & Istigosah", teacher: "Seluruh Siswa", room: "Masjid Al-Mukhtar" },
-                    { time: "08:00 - 08:30", subject: "Pendalaman Materi TIK", teacher: "Pengajar TIK", room: "Lab Komputer" },
-                    { time: "08:30 - 09:30", subject: "Pendalaman Materi Jurusan", teacher: "Guru Jurusan", room: "Ruang Jurusan" },
-                    { time: "10:10 - 11:10", subject: "Praktek Jurusan", teacher: "Guru Jurusan", room: "Ruang Jurusan" }
-                ],
-                sabtu: [
-                    { time: "07:00 - 08:00", subject: "Sejarah Tingkat Lanjut", teacher: "Pak Deni", room: "Ruang XI-2" },
-                    { time: "08:30 - 09:30", subject: "Bahasa Indonesia", teacher: "Pak Adit", room: "Ruang XI-2" },
-                    { time: "10:00 - 11:00", subject: "Sejarah Kebudayaan Islam (SKI)", teacher: "Bu Ai", room: "Ruang XI-2" },
-                    { time: "11:00 - 12:45", subject: "Prakarya & KWU", teacher: "Pak Sahrul", room: "Ruang XI-2" },
-                    { time: "12:45 - 13:45", subject: "Fisika", teacher: "Bu Sisi", room: "Ruang XI-2" }
-                ]
-            }
+            gallery: [
+                { 
+                    img: "https://files.catbox.moe/gr5e7z.jpeg", 
+                    title: "Foto Bareng Angkatan 20", 
+                    category: "acara" 
+                },
+                { 
+                    img: "https://files.catbox.moe/0odn9r.jpeg", 
+                    title: "Perpisahan Sareng Mang Teguh", 
+                    category: "sehari-hari" 
+                },
+                { 
+                    img: "https://files.catbox.moe/ybtvqd.jpeg", 
+                    title: "Foto Sama Wali Kelas", 
+                    category: "sehari-hari" 
+                },
+                { 
+                    img: "https://files.catbox.moe/6qrppr.jpeg", 
+                    title: "Gangster 11 2", 
+                    category: "sehari-hari" 
+                },
+                { 
+                    img: "https://files.catbox.moe/qw3e3q.jpeg", 
+                    title: "Futsal XI.2 vs XII", 
+                    category: "classmeeting" 
+                },
+                { 
+                    img: "https://files.catbox.moe/bca4ap.jpeg", 
+                    title: "Bahenol 11 2", 
+                    category: "sehari-hari" 
+                },
+                { 
+                    img: "https://files.catbox.moe/im1zik.jpeg", 
+                    title: "Juara 1 Kebersihan", 
+                    category: "acara" 
+                },
+                { 
+                    img: "https://files.catbox.moe/ei7v5f.jpeg", 
+                    title: "LC 11 1", 
+                    category: "sehari-hari" 
+                }
+            ]
         };
-
-        const dayNames = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'];
-        let currentActiveDay = 'senin';
 
         function escapeHtml(str) {
             const div = document.createElement('div');
@@ -322,103 +336,109 @@
             return div.innerHTML;
         }
 
-        function checkIsActiveTime(timeRange, dayKey) {
-            const now = new Date();
-            const todayKey = dayNames[now.getDay()];
-
-            if (todayKey !== dayKey) return false;
-
-            const [startStr, endStr] = timeRange.split(' - ');
-            const [startH, startM] = startStr.split(':').map(Number);
-            const [endH, endM] = endStr.split(':').map(Number);
-
-            const nowMinutes = now.getHours() * 60 + now.getMinutes();
-            const startMinutes = startH * 60 + startM;
-            const endMinutes = endH * 60 + endM;
-
-            return nowMinutes >= startMinutes && nowMinutes < endMinutes;
+        // BADGE COLORING
+        function getCategoryBadge(category) {
+            switch(category) {
+                case 'classmeeting':
+                    return { name: 'Classmeeting', color: 'bg-amber-500/20 text-amber-400 border border-amber-500/30' };
+                case 'acara':
+                    return { name: 'Acara Sekolah', color: 'bg-purple-500/20 text-purple-400 border border-purple-500/30' };
+                case 'sehari-hari':
+                    return { name: 'Sehari-hari', color: 'bg-sky-500/20 text-sky-400 border border-sky-500/30' };
+                default:
+                    return { name: 'General', color: 'bg-jungle-500/20 text-jungle-400 border border-jungle-500/30' };
+            }
         }
 
-        function renderSchedule(day) {
-            currentActiveDay = day;
-
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                const isSelected = btn.id === `btn-${day}`;
-                btn.setAttribute('aria-selected', String(isSelected));
-                if (isSelected) {
-                    btn.className = "px-4 py-2 rounded-xl bg-gradient-to-r from-jungle-500 to-emerald-400 text-jungle-950 font-extrabold text-xs tab-btn shadow-md shadow-jungle-500/20";
-                } else {
-                    btn.className = "px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/5 font-bold text-xs tab-btn";
-                }
-            });
-
-            const container = document.getElementById('schedule-container');
-            const scheduleList = classData.schedules[day];
-
-            if (!scheduleList || scheduleList.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 glass-card rounded-3xl">
-                        <i class="fa-solid fa-mug-hot text-3xl text-jungle-400 mb-2"></i>
-                        <h3 class="font-bold text-white text-base">Tidak Ada Jadwal</h3>
-                        <p class="text-xs text-slate-400 mt-1">Hari ini libur, selamat beristirahat!</p>
+        // RENDER GALLERY
+        function renderGallery(items) {
+            const grid = document.getElementById('gallery-grid');
+            
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16 glass-card rounded-3xl">
+                        <i class="fa-solid fa-images text-3xl text-jungle-400 mb-2"></i>
+                        <h3 class="font-bold text-white text-base">Tidak Ada Foto</h3>
+                        <p class="text-xs text-slate-400 mt-1">Belum ada koleksi foto untuk kategori ini.</p>
                     </div>
                 `;
                 return;
             }
 
-            container.innerHTML = scheduleList.map(s => {
-                const isActive = checkIsActiveTime(s.time, day);
-
+            grid.innerHTML = items.map((g, index) => {
+                const badge = getCategoryBadge(g.category);
                 return `
-                    <div class="${isActive ? 'glass-card-active' : 'glass-card'} p-5 rounded-3xl transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-2xl ${isActive ? 'bg-jungle-500 text-jungle-950 font-black' : 'bg-jungle-900/80 text-jungle-400 border border-white/10'} flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition duration-300">
-                                <i class="fa-solid fa-book-bookmark"></i>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2 mb-1 flex-wrap">
-                                    <span class="text-xs font-bold ${isActive ? 'text-jungle-300 font-extrabold' : 'text-jungle-400'}">
-                                        <i class="fa-regular fa-clock mr-1"></i>${escapeHtml(s.time)}
-                                    </span>
-                                    ${isActive ? '<span class="animate-pulse text-[10px] bg-jungle-500 text-jungle-950 px-2.5 py-0.5 rounded-full font-black tracking-wide shadow-sm">SEDANG BERLANGSUNG</span>' : ''}
-                                </div>
-                                <h3 class="font-bold text-white text-base group-hover:text-jungle-400 transition">${escapeHtml(s.subject)}</h3>
-                                <p class="text-xs text-slate-400 mt-0.5"><i class="fa-solid fa-user-tie text-[10px] mr-1 opacity-70"></i>${escapeHtml(s.teacher)}</p>
-                            </div>
-                        </div>
-
-                        <div class="self-end sm:self-center shrink-0">
-                            <span class="text-xs bg-white/5 px-3 py-1.5 rounded-xl text-slate-300 font-semibold border border-white/10 inline-flex items-center gap-1.5">
-                                <i class="fa-solid fa-location-dot text-jungle-400 text-[10px]"></i> ${escapeHtml(s.room)}
+                    <div data-index="${index}" class="gallery-item glass-card rounded-3xl overflow-hidden group cursor-pointer hover:border-jungle-400/50 transition duration-300 flex flex-col justify-between" tabindex="0" role="button" aria-label="Lihat foto: ${escapeHtml(g.title)}">
+                        <div class="h-52 overflow-hidden relative">
+                            <img src="${g.img}" alt="${escapeHtml(g.title)}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-jungle-950 via-jungle-950/20 to-transparent opacity-90"></div>
+                            
+                            <span class="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-xl backdrop-blur-md ${badge.color}">
+                                ${badge.name}
                             </span>
+
+                            <p class="absolute bottom-3 left-3 right-3 text-xs font-bold text-white group-hover:text-jungle-300 transition line-clamp-2">${escapeHtml(g.title)}</p>
                         </div>
                     </div>
                 `;
             }).join('');
+
+            grid.querySelectorAll('.gallery-item').forEach(el => {
+                const item = items[Number(el.dataset.index)];
+                const trigger = () => openImageModal(item.img, item.title, item.category);
+                el.addEventListener('click', trigger);
+                el.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        trigger();
+                    }
+                });
+            });
         }
 
-        function initSchedulePage() {
-            const todayIndex = new Date().getDay();
-            const todayKey = dayNames[todayIndex];
+        // FILTER GALLERY
+        function filterGallery(category, btnElement) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-300 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/5';
+                btn.setAttribute('aria-pressed', 'false');
+            });
 
-            setInterval(() => {
-                const now = new Date();
-                document.getElementById('live-time').innerText = `${now.toLocaleTimeString('id-ID')} WIB`;
-            }, 1000);
+            btnElement.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-extrabold transition duration-300 bg-gradient-to-r from-jungle-500 to-emerald-400 text-jungle-950 shadow-md shadow-jungle-500/20';
+            btnElement.setAttribute('aria-pressed', 'true');
 
-            if (todayKey !== 'minggu' && classData.schedules[todayKey]) {
-                renderSchedule(todayKey);
+            if (category === 'all') {
+                renderGallery(classData.gallery);
             } else {
-                renderSchedule('senin');
+                const filtered = classData.gallery.filter(item => item.category === category);
+                renderGallery(filtered);
             }
-
-            setInterval(() => {
-                renderSchedule(currentActiveDay);
-            }, 30000);
         }
 
-        initSchedulePage();
+        // LIGHTBOX MODAL FUNCTIONS
+        function openImageModal(imgUrl, title, category) {
+            const badge = getCategoryBadge(category);
+            document.getElementById('modal-img').src = imgUrl;
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-badge').innerText = badge.name;
+            document.getElementById('modal-badge').className = `text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full mb-2 inline-block ${badge.color}`;
+            
+            document.getElementById('image-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal() {
+            document.getElementById('image-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !document.getElementById('image-modal').classList.contains('hidden')) {
+                closeImageModal();
+            }
+        });
+
+        // INITIAL RENDER
+        renderGallery(classData.gallery);
     </script>
 </body>
 </html>
