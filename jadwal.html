@@ -85,14 +85,12 @@
             background: #10b981;
         }
 
-        /* Visible keyboard focus, consistent with the jungle accent */
         a:focus-visible, button:focus-visible {
             outline: 2px solid #34d399;
             outline-offset: 2px;
             border-radius: 6px;
         }
 
-        /* One orchestrated reveal for the page header on load */
         @keyframes pageReveal {
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
@@ -125,7 +123,6 @@
     <nav class="sticky top-0 z-50 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
-            <!-- Logo Class -->
             <a href="index.html" class="flex items-center gap-3 group">
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20 group-hover:scale-105 group-hover:rotate-3 transition duration-300">
                     <i class="fa-solid fa-compass text-xl"></i>
@@ -150,8 +147,6 @@
                 <a href="pengumuman.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Berita</a>
                 <a href="prestasi.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Prestasi</a>
                 <a href="ulang-tahun.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Ultah</a>
-                
-                <!-- LINK WEB SEKOLAH (DESKTOP) -->
                 <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-school text-[10px]"></i> Web Sekolah
                 </a>
@@ -176,8 +171,6 @@
                 <a href="pengumuman.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Berita</a>
                 <a href="prestasi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Prestasi</a>
                 <a href="ulang-tahun.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Ultah</a>
-                
-                <!-- LINK WEB SEKOLAH (MOBILE) -->
                 <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-school"></i> Web Sekolah
                 </a>
@@ -255,7 +248,6 @@
 
     <!-- SCRIPT INTERAKTIF -->
     <script>
-        // TOGGLE MOBILE MENU
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -269,7 +261,6 @@
             menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
         });
 
-        // DATA JADWAL
         const classData = {
             schedules: {
                 senin: [
@@ -351,7 +342,6 @@
         function renderSchedule(day) {
             currentActiveDay = day;
 
-            // Update Style Tombol Tab
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
                 const isSelected = btn.id === `btn-${day}`;
@@ -363,7 +353,6 @@
                 }
             });
 
-            // Render Daftar MATA PELAJARAN
             const container = document.getElementById('schedule-container');
             const scheduleList = classData.schedules[day];
 
@@ -413,20 +402,17 @@
             const todayIndex = new Date().getDay();
             const todayKey = dayNames[todayIndex];
 
-            // Jam Digital
             setInterval(() => {
                 const now = new Date();
                 document.getElementById('live-time').innerText = `${now.toLocaleTimeString('id-ID')} WIB`;
             }, 1000);
 
-            // Buka tab hari ini (default ke Senin jika Minggu)
             if (todayKey !== 'minggu' && classData.schedules[todayKey]) {
                 renderSchedule(todayKey);
             } else {
                 renderSchedule('senin');
             }
 
-            // Auto-refresh indikator aktif setiap 30 detik
             setInterval(() => {
                 renderSchedule(currentActiveDay);
             }, 30000);
