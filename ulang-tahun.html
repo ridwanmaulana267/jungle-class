@@ -18,6 +18,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -77,14 +80,12 @@
             background: #10b981;
         }
 
-        /* Visible keyboard focus, consistent with the jungle accent */
         a:focus-visible, button:focus-visible {
             outline: 2px solid #34d399;
             outline-offset: 2px;
             border-radius: 6px;
         }
 
-        /* One orchestrated reveal for the page header on load */
         @keyframes pageReveal {
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
@@ -106,7 +107,7 @@
 </head>
 <body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-pink-500 selection:text-jungle-950 flex flex-col justify-between">
 
-    <!-- AMBIENT GLOW BACKGROUND EFFECTS (PINK/ROSE THEME) -->
+    <!-- AMBIENT GLOW BACKGROUND EFFECTS -->
     <div class="fixed -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-pink-500/10 blur-[140px] rounded-full pointer-events-none -z-10 animate-pulse-slow"></div>
     <div class="fixed top-1/3 right-[-100px] w-[500px] h-[500px] bg-rose-500/10 blur-[160px] rounded-full pointer-events-none -z-10"></div>
     <div class="fixed bottom-0 left-[-100px] w-[450px] h-[450px] bg-purple-600/10 blur-[150px] rounded-full pointer-events-none -z-10"></div>
@@ -115,7 +116,6 @@
     <nav class="sticky top-0 z-50 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
-            <!-- Logo Class -->
             <a href="index.html" class="flex items-center gap-3 group">
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20 group-hover:scale-105 group-hover:rotate-3 transition duration-300">
                     <i class="fa-solid fa-compass text-xl"></i>
@@ -141,7 +141,6 @@
                     <i class="fa-solid fa-cake-candles text-xs"></i> Ultah
                 </a>
                 
-                <!-- LINK WEB SEKOLAH (DESKTOP) -->
                 <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-school text-[10px]"></i> Web Sekolah
                 </a>
@@ -167,7 +166,6 @@
                 <a href="prestasi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Prestasi</a>
                 <a href="ulang-tahun.html" class="p-2.5 rounded-xl bg-pink-500 text-jungle-950 font-bold">Ultah</a>
                 
-                <!-- LINK WEB SEKOLAH (MOBILE) -->
                 <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-school"></i> Web Sekolah
                 </a>
@@ -189,7 +187,7 @@
         </div>
 
         <!-- SECTION TITLE -->
-        <div class="page-reveal page-reveal-2 text-center mb-10">
+        <div class="page-reveal page-reveal-2 text-center mb-8">
             <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
                 JUNGLE <br><span class="text-gradient">BIRTHDAYS</span>
             </h1>
@@ -200,6 +198,16 @@
 
         <!-- WADAH KARTU ULANG TAHUN TERDEKAT -->
         <div id="closest-card" class="page-reveal page-reveal-3"></div>
+
+        <!-- FILTER BERDASARKAN BULAN -->
+        <div class="page-reveal page-reveal-3 mb-6">
+            <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-xs font-extrabold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                    <i class="fa-solid fa-filter text-pink-400"></i> Filter Bulan:
+                </span>
+            </div>
+            <div id="month-filters" class="flex flex-wrap gap-2 text-xs font-bold"></div>
+        </div>
 
         <!-- GRID SEMUA ANGGOTA -->
         <div id="birthday-grid" class="page-reveal page-reveal-3 grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
@@ -270,6 +278,8 @@
         ];
 
         const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        let selectedMonth = "all";
+        let processedData = [];
 
         function escapeHtml(str) {
             const div = document.createElement('div');
@@ -277,29 +287,60 @@
             return div.innerHTML;
         }
 
+        // FUNGSI ANIMASI KONFETI
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                const duration = 3 * 1000;
+                const end = Date.now() + duration;
+
+                (function frame() {
+                    confetti({
+                        particleCount: 4,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: ['#f472b6', '#fb7185', '#34d399', '#fbbf24']
+                    });
+                    confetti({
+                        particleCount: 4,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: ['#f472b6', '#fb7185', '#34d399', '#fbbf24']
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
+            }
+        }
+
         function initBirthdaySystem() {
             const today = new Date();
             const now = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
             let upcomingList = [];
+            let isSomeoneBirthdayToday = false;
 
-            classData.forEach(person => {
+            processedData = classData.map(person => {
                 if (!person.dob) {
-                    person.displayDate = "Belum Diatur";
-                    person.currentAge = null;
-                    return;
+                    return {
+                        ...person,
+                        displayDate: "Belum Diatur",
+                        currentAge: null,
+                        monthNum: null,
+                        diffDays: null
+                    };
                 }
 
                 const [year, month, day] = person.dob.split('-').map(Number);
-                person.displayDate = `${day.toString().padStart(2, '0')} ${monthNames[month - 1]} ${year}`;
+                const displayDate = `${day.toString().padStart(2, '0')} ${monthNames[month - 1]} ${year}`;
 
-                // Hitung umur saat ini
                 let age = now.getFullYear() - year;
                 const hasHadBdayThisYear = (now.getMonth() > month - 1) || (now.getMonth() === month - 1 && now.getDate() >= day);
                 if (!hasHadBdayThisYear) age--;
-                person.currentAge = age;
 
-                // Hitung tanggal ultah berikutnya
                 let nextBday = new Date(now.getFullYear(), month - 1, day);
                 if (nextBday < now) {
                     nextBday.setFullYear(now.getFullYear() + 1);
@@ -307,28 +348,41 @@
 
                 const diffDays = Math.round((nextBday - now) / (1000 * 60 * 60 * 24));
                 const ageTurning = nextBday.getFullYear() - year;
-                person.diffDays = diffDays;
 
-                upcomingList.push({
-                    name: person.name,
+                if (diffDays === 0) {
+                    isSomeoneBirthdayToday = true;
+                }
+
+                const item = {
+                    ...person,
+                    displayDate: displayDate,
+                    currentAge: age,
+                    monthNum: month,
                     diffDays: diffDays,
                     ageTurning: ageTurning,
                     dateStr: `${day.toString().padStart(2, '0')} ${monthNames[month - 1]}`
-                });
+                };
+
+                upcomingList.push(item);
+                return item;
             });
 
-            // Urutkan berdasarkan jarak hari terdekat
+            // Jalankan konfeti jika ada yang ultah hari ini
+            if (isSomeoneBirthdayToday) {
+                triggerConfetti();
+            }
+
+            // Urutkan terdekat
             upcomingList.sort((a, b) => a.diffDays - b.diffDays);
             const closest = upcomingList[0];
 
-            // Render Kartu Terdekat dengan Efek Spesial
             if (closest) {
                 let statusStr = closest.diffDays === 0 
                     ? `🎂 Selamat Ulang Tahun ke-${closest.ageTurning} Hari Ini!` 
                     : `${closest.dateStr} • Menuju ${closest.ageTurning} Tahun (${closest.diffDays} hari lagi)`;
 
                 document.getElementById('closest-card').innerHTML = `
-                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-pink-500/40 text-center mb-10 relative overflow-hidden group shadow-lg shadow-pink-500/10">
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-pink-500/40 text-center mb-8 relative overflow-hidden group shadow-lg shadow-pink-500/10">
                         <div class="absolute -inset-1 bg-gradient-to-r from-pink-500 to-rose-400 blur opacity-10 group-hover:opacity-20 transition duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <span class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-pink-500/20 text-pink-300 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-pink-500/30">
@@ -341,19 +395,68 @@
                 `;
             }
 
-            // Render Grid Anggota — diurutkan berdasarkan ulang tahun terdekat,
-            // anggota yang tanggal lahirnya belum diatur ditaruh di akhir
-            const sortedForGrid = [...classData].sort((a, b) => {
+            renderFilterButtons();
+            renderGrid();
+        }
+
+        // RENDER BUTTON FILTER BULAN
+        function renderFilterButtons() {
+            const filterContainer = document.getElementById('month-filters');
+            let html = `
+                <button onclick="setMonthFilter('all')" class="px-3.5 py-1.5 rounded-xl border transition ${selectedMonth === 'all' ? 'bg-pink-500 text-jungle-950 border-pink-500 shadow-md shadow-pink-500/20' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'}">
+                    Semua
+                </button>
+            `;
+
+            monthNames.forEach((m, idx) => {
+                const monthNum = idx + 1;
+                const active = selectedMonth === monthNum;
+                html += `
+                    <button onclick="setMonthFilter(${monthNum})" class="px-3.5 py-1.5 rounded-xl border transition ${active ? 'bg-pink-500 text-jungle-950 border-pink-500 shadow-md shadow-pink-500/20' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'}">
+                        ${m}
+                    </button>
+                `;
+            });
+
+            filterContainer.innerHTML = html;
+        }
+
+        function setMonthFilter(month) {
+            selectedMonth = month;
+            renderFilterButtons();
+            renderGrid();
+        }
+
+        // RENDER DAFTAR ANGGOTA
+        function renderGrid() {
+            let filtered = [...processedData];
+
+            if (selectedMonth !== 'all') {
+                filtered = filtered.filter(item => item.monthNum === selectedMonth);
+            }
+
+            filtered.sort((a, b) => {
                 if (a.diffDays == null && b.diffDays == null) return 0;
                 if (a.diffDays == null) return 1;
                 if (b.diffDays == null) return -1;
                 return a.diffDays - b.diffDays;
             });
 
-            document.getElementById('birthday-grid').innerHTML = sortedForGrid.map(b => {
+            const gridContainer = document.getElementById('birthday-grid');
+
+            if (filtered.length === 0) {
+                gridContainer.innerHTML = `
+                    <div class="col-span-1 sm:col-span-2 glass-card p-8 rounded-2xl text-center text-slate-400 text-xs">
+                        <i class="fa-solid fa-calendar-xmark text-2xl text-pink-400 mb-2 block"></i>
+                        Tidak ada anggota yang ulang tahun pada bulan ini.
+                    </div>
+                `;
+                return;
+            }
+
+            gridContainer.innerHTML = filtered.map(b => {
                 const isTeacher = b.role === "Wali Kelas";
                 
-                // Styling khusus jika Wali Kelas vs Siswa Biasa
                 const cardStyle = isTeacher 
                     ? 'bg-gradient-to-r from-amber-950/60 to-jungle-900 border-amber-500/40 hover:border-amber-400/60 shadow-md shadow-amber-500/5' 
                     : 'glass-card hover:border-pink-500/40';
