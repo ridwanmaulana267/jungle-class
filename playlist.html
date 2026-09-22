@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jungle Spotify — Playlist & Musik Favorit Anggota Kelas XI IPS 2">
+    <meta name="theme-color" content="#0a1710">
+    <meta property="og:title" content="Jungle Spotify — XI IPS 2">
+    <meta property="og:description" content="Dengarkan lagu-lagu favorit anak-anak XI IPS 2 untuk menemani belajar dan nongkrong.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2419'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
+    <title>Jungle Playlist — XI IPS 2</title>
+    
+    <!-- CDN External Script & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        jungle: {
+                            950: '#040906',
+                            900: '#0a1710',
+                            850: '#0f2419',
+                            800: '#153322',
+                            700: '#1c472f',
+                            500: '#10b981',
+                            400: '#34d399',
+                            300: '#6ee7b7'
+                        },
+                        spotify: '#1ed760'
+                    },
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 36, 25, 0.7) 0%, rgba(10, 23, 16, 0.85) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-nav {
+            background: rgba(4, 9, 6, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #1ed760 0%, #34d399 50%, #6ee7b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #040906; }
+        ::-webkit-scrollbar-thumb { background: #1c472f; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #1ed760;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        @keyframes pageReveal {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-reveal {
+            opacity: 0;
+            animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .page-reveal-1 { animation-delay: 0.03s; }
+        .page-reveal-2 { animation-delay: 0.12s; }
+        .page-reveal-3 { animation-delay: 0.22s; }
+
+        /* EQUALIZER ANIMATION */
+        .eq-bar {
+            width: 3px;
+            background-color: #1ed760;
+            animation: bounce 1s infinite alternate;
+        }
+        .eq-bar:nth-child(2) { animation-delay: 0.2s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0% { height: 4px; }
+            100% { height: 16px; }
+        }
+    </style>
+</head>
+<body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-spotify selection:text-jungle-950 flex flex-col justify-between">
+
+    <!-- AMBIENT GLOW BACKGROUND EFFECTS -->
+    <div class="fixed -top-24 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-spotify/10 blur-[140px] rounded-full pointer-events-none -z-10 animate-pulse-slow"></div>
+    <div class="fixed top-1/2 right-[-100px] w-[500px] h-[500px] bg-jungle-500/10 blur-[160px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- NAVBAR GLASSMORPHISM -->
+    <nav class="sticky top-0 z-50 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20 group-hover:scale-105 group-hover:rotate-3 transition duration-300">
+                    <i class="fa-solid fa-compass text-xl"></i>
+                </div>
+                <div class="leading-tight">
+                    <span class="tracking-wide text-white font-extrabold text-base block group-hover:text-jungle-400 transition">JUNGLE CLASS</span>
+                    <span class="text-[10px] text-jungle-400 font-bold uppercase tracking-widest block -mt-0.5">XI IPS 2 Official</span>
+                </div>
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="hidden lg:flex items-center gap-1 bg-white/[0.03] p-1.5 rounded-2xl border border-white/10 text-xs font-semibold backdrop-blur-md">
+                <a href="index.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Home</a>
+                <a href="anggota.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Anggota</a>
+                <a href="jadwal.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Jadwal</a>
+                <a href="piket.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Piket</a>
+                <a href="misi.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Misi</a>
+                <a href="memori.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Memori</a>
+                <a href="playlist.html" class="px-4 py-2 rounded-xl bg-spotify text-jungle-950 font-extrabold shadow-md shadow-spotify/20 flex items-center gap-1.5">
+                    <i class="fa-solid fa-music text-xs"></i> Playlist
+                </a>
+                <a href="pengumuman.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Berita</a>
+                <a href="prestasi.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Prestasi</a>
+                <a href="ulang-tahun.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Ultah</a>
+                
+                <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-school text-[10px]"></i> Web Sekolah
+                </a>
+            </div>
+
+            <!-- Hamburger Button Mobile -->
+            <button id="menu-btn" aria-label="Toggle Menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
+                <i id="menu-icon" class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Menu Dropdown Mobile -->
+        <div id="mobile-menu" class="hidden lg:hidden flex-col gap-2 mt-3 pt-3 border-t border-white/10 text-xs font-semibold">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-center">
+                <a href="index.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Home</a>
+                <a href="anggota.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Anggota</a>
+                <a href="jadwal.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Jadwal</a>
+                <a href="piket.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Piket</a>
+                <a href="misi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Misi</a>
+                <a href="memori.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Memori</a>
+                <a href="playlist.html" class="p-2.5 rounded-xl bg-spotify text-jungle-950 font-bold">Playlist</a>
+                <a href="pengumuman.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Berita</a>
+                <a href="prestasi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Prestasi</a>
+                <a href="ulang-tahun.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Ultah</a>
+                
+                <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-school"></i> Web Sekolah
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto px-4 py-12 w-full">
+        
+        <!-- HERO SECTION -->
+        <section class="page-reveal page-reveal-1 text-center py-6 md:py-10 mb-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-spotify/10 border border-spotify/20 text-spotify text-xs font-bold uppercase tracking-widest mb-6">
+                <span class="flex items-end gap-0.5 h-3.5">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </span>
+                Class Vibes & Playlist
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-4">
+                JUNGLE <span class="text-gradient">PLAYLIST</span>
+            </h1>
+            
+            <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                Kumpulan lagu favorit pilihan anak-anak XI IPS 2 untuk menemani waktu belajar, istirahat, dan nongkrong bareng.
+            </p>
+        </section>
+
+        <!-- FEATURED CLASS SONG PLAYER -->
+        <div class="page-reveal page-reveal-2 glass-card p-4 sm:p-6 rounded-3xl mb-12 border border-spotify/30 shadow-xl shadow-spotify/5">
+            <div class="flex items-center justify-between mb-4 px-2">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center">
+                        <i class="fa-solid fa-star text-base"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-white text-base">Lagu Kebanggaan XI IPS 2</h2>
+                        <p class="text-[11px] text-slate-400">Featured Class Song — Diputar Penuh</p>
+                    </div>
+                </div>
+                <span class="text-[10px] font-extrabold uppercase bg-orange-500/10 border border-orange-500/20 text-orange-400 px-3 py-1 rounded-full flex items-center gap-1.5">
+                    <i class="fa-solid fa-fire text-[10px]"></i> Hot Track
+                </span>
+            </div>
+            
+            <div class="rounded-2xl overflow-hidden bg-black/40">
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2395759311&color=%231ed760&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+            </div>
+        </div>
+
+        <!-- REKOMENDASI LAGU DARI SISWA -->
+        <div class="page-reveal page-reveal-3">
+            
+            <!-- HEADER REKOMENDASI + TOMBOL SWITCH LAYOUT -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                        <i class="fa-solid fa-compact-disc text-spotify"></i> Rekomendasi Lagu Siswa
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">Diputar penuh langsung tanpa perlu akun/aplikasi</p>
+                </div>
+
+                <!-- TOMBOL TOGGLE COMPACT / GRID -->
+                <div class="flex items-center gap-2 bg-white/5 p-1 rounded-xl border border-white/10 self-start sm:self-auto">
+                    <button id="btn-grid" onclick="switchLayout('grid')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-spotify text-jungle-950 shadow-sm">
+                        <i class="fa-solid fa-border-all"></i> Grid
+                    </button>
+                    <button id="btn-list" onclick="switchLayout('list')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white">
+                        <i class="fa-solid fa-list"></i> List
+                    </button>
+                </div>
+            </div>
+
+            <!-- CONTAINER LIST/GRID DAFTAR LAGU (Diisi otomatis via Javascript) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 transition-all duration-300" id="song-list">
+                <div class="col-span-full text-center py-12">
+                    <i class="fa-solid fa-circle-notch fa-spin text-2xl text-spotify mb-3"></i>
+                    <p class="text-slate-400 text-xs">Memuat lagu mohon tunggu...</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER MODERN -->
+    <footer class="border-t border-white/10 bg-jungle-950/90 py-8 text-xs text-slate-400 mt-16 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-jungle-500 to-emerald-400 text-jungle-950 flex items-center justify-center font-bold text-sm shadow">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-white block">JUNGLE CLASS</span>
+                    <span class="text-[10px] text-slate-500 uppercase tracking-wider block">Basecamp Digital XI IPS 2</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <p class="text-center sm:text-right text-slate-500">
+                    &copy; 2026 XI IPS 2. Designed with <i class="fa-solid fa-heart text-pink-500 mx-0.5"></i> for Jungle Explorers.
+                </p>
+                <a href="https://www.instagram.com/victoria_generous2" target="_blank" rel="noopener noreferrer" aria-label="Instagram Kelas" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 transition">
+                    <i class="fa-brands fa-instagram text-base"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT INTERAKTIF & FETCH GOOGLE SHEETS -->
+    <script>
+        // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT KAMU DI SINI
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYLE0BijsGvfLbMqlJGcZnQxoKG47DrZGuTlkja2vWXNX0ox17710cLQoceLkqx-lR/exec";
+
+        // TOGGLE MOBILE MENU
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            
+            const isOpen = mobileMenu.classList.contains('flex');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
+        });
+
+        // SWITCH LAYOUT FUNCTION (GRID vs LIST)
+        function switchLayout(mode) {
+            const songList = document.getElementById('song-list');
+            const btnGrid = document.getElementById('btn-grid');
+            const btnList = document.getElementById('btn-list');
+
+            if (mode === 'list') {
+                songList.classList.remove('sm:grid-cols-2');
+                songList.classList.add('grid-cols-1');
+                
+                btnList.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-spotify text-jungle-950 shadow-sm";
+                btnGrid.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white";
+            } else {
+                songList.classList.remove('grid-cols-1');
+                songList.classList.add('sm:grid-cols-2');
+                
+                btnGrid.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-spotify text-jungle-950 shadow-sm";
+                btnList.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-400 hover:text-white";
+            }
+        }
+
+        // FUNGSI UNTUK MENGAMBIL DATA DARI GOOGLE SHEETS
+        async function loadSongs() {
+            const container = document.getElementById('song-list');
+            try {
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
+
+                container.innerHTML = ''; // Bersihkan loader
+
+                data.forEach(item => {
+                    const cardHtml = `
+                        <div class="glass-card p-4 rounded-2xl border border-white/10 hover:border-spotify/40 transition group">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-brands fa-soundcloud text-xl text-orange-500"></i>
+                                    <span class="text-xs font-bold text-white group-hover:text-jungle-300 transition">${item.nama}</span>
+                                </div>
+                                <span class="text-[9px] text-jungle-400 bg-jungle-500/10 border border-jungle-500/20 px-2 py-0.5 rounded-md font-semibold">Req: ${item.panggilan}</span>
+                            </div>
+                            <div class="rounded-xl overflow-hidden mt-2">
+                                <iframe width="100%" height="80" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${item.track_id}&color=%231ed760&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false"></iframe>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += cardHtml;
+                });
+            } catch (error) {
+                console.error("Gagal mengambil data lagu:", error);
+                container.innerHTML = `<p class="text-red-400 text-xs col-span-full text-center py-8">Gagal memuat daftar lagu. Pastikan URL Apps Script sudah benar dan hak akses set ke 'Anyone'.</p>`;
+            }
+        }
+
+        // Jalankan fungsi pengambil data saat halaman siap
+        loadSongs();
+    </script>
+</body>
+</html>
