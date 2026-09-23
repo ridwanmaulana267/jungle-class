@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Papan misi dan tugas kelas XI IPS 2 — status, deadline, dan detail setiap tugas.">
+    <meta name="theme-color" content="#0a1710">
+    <meta property="og:title" content="Mission Board — Jungle Class">
+    <meta property="og:description" content="Papan misi dan tugas kelas XI IPS 2, lengkap dengan status dan batas waktu.">
+    <meta property="og:type" content="website">
+    
+    <!-- FAVICON WEB (MENGGUNAKAN FAVICON.PNG) -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <title>Mission Board — Jungle Class</title>
     
     <!-- CDN External Script & Fonts -->
@@ -70,6 +79,29 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #34d399;
+            outline-offset: 2px;
+            border-radius: 6px;
+        }
+
+        @keyframes pageReveal {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page-reveal {
+            opacity: 0;
+            animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .page-reveal-1 { animation-delay: 0.03s; }
+        .page-reveal-2 { animation-delay: 0.14s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .page-reveal { opacity: 1; animation: none; transform: none; }
+            .animate-pulse-slow { animation: none !important; }
+            * { scroll-behavior: auto !important; }
+        }
     </style>
 </head>
 <body class="bg-jungle-950 text-slate-200 font-sans min-h-screen relative overflow-x-hidden selection:bg-jungle-500 selection:text-jungle-950 flex flex-col justify-between">
@@ -83,10 +115,10 @@
     <nav class="sticky top-0 z-50 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
-            <!-- Logo Class -->
+            <!-- Logo Class (Menggunakan logo.png) -->
             <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20 group-hover:scale-105 group-hover:rotate-3 transition duration-300">
-                    <i class="fa-solid fa-compass text-xl"></i>
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 p-0.5 shadow-lg shadow-jungle-500/20 group-hover:scale-105 group-hover:rotate-3 transition duration-300 overflow-hidden flex items-center justify-center">
+                    <img src="logo.png" alt="Logo XI IPS 2" class="w-full h-full object-cover rounded-2xl" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-compass text-xl text-jungle-950\'></i>';">
                 </div>
                 <div class="leading-tight">
                     <span class="tracking-wide text-white font-extrabold text-base block group-hover:text-jungle-400 transition">JUNGLE CLASS</span>
@@ -109,14 +141,13 @@
                 <a href="prestasi.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Prestasi</a>
                 <a href="ulang-tahun.html" class="px-3.5 py-2 rounded-xl hover:text-jungle-400 hover:bg-white/5 transition">Ultah</a>
                 
-                <!-- LINK WEB SEKOLAH (DESKTOP) -->
-                <a href="https://sekolahkita.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
+                <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-500/10 text-sky-400 hover:bg-sky-500/20 border border-sky-500/20 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-school text-[10px]"></i> Web Sekolah
                 </a>
             </div>
 
             <!-- Hamburger Button Mobile -->
-            <button id="menu-btn" aria-label="Toggle Menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
+            <button id="menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden text-slate-200 hover:text-white text-lg p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition">
                 <i id="menu-icon" class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
@@ -135,8 +166,7 @@
                 <a href="prestasi.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Prestasi</a>
                 <a href="ulang-tahun.html" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200">Ultah</a>
                 
-                <!-- LINK WEB SEKOLAH (MOBILE) -->
-                <a href="https://sekolahkita.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
+                <a href="https://mapkalhikmah.sch.id" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold col-span-2 sm:col-span-1 flex items-center justify-center gap-1.5">
                     <i class="fa-solid fa-school"></i> Web Sekolah
                 </a>
             </div>
@@ -147,7 +177,7 @@
     <main class="max-w-5xl mx-auto px-4 py-8 w-full">
         
         <!-- HEADER & BREADCRUMB -->
-        <div class="mb-8 text-center sm:text-left flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div class="page-reveal page-reveal-1 mb-8 text-center sm:text-left flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
                 <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-jungle-400 hover:text-jungle-300 transition mb-4">
                     <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
@@ -165,19 +195,19 @@
             <!-- COUNTER BADGE -->
             <div>
                 <span id="mission-count" class="text-xs font-bold bg-jungle-900 px-4 py-2 rounded-2xl border border-white/10 text-slate-300 backdrop-blur-md inline-block">
-                    <i class="fa-solid fa-list-check text-jungle-400 mr-1.5"></i> 3 Misi Aktif
+                    <i class="fa-solid fa-list-check text-jungle-400 mr-1.5"></i> <span id="mission-count-number">0</span> Misi Aktif
                 </span>
             </div>
         </div>
 
         <!-- LIST MISI GRID -->
-        <div id="misi-list" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        <div id="misi-list" class="page-reveal page-reveal-2 grid grid-cols-1 md:grid-cols-3 gap-6"></div>
 
     </main>
 
     <!-- MODAL DETAIL MISI -->
-    <div id="mission-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card max-w-lg w-full p-6 sm:p-8 rounded-3xl relative border border-white/10">
+    <div id="mission-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Detail misi">
+        <div class="glass-card max-w-lg w-full p-6 sm:p-8 rounded-3xl relative border border-white/10" onclick="event.stopPropagation()">
             <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg w-8 h-8 rounded-full bg-white/5 flex items-center justify-center transition">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -206,8 +236,8 @@
     <footer class="border-t border-white/10 bg-jungle-950/90 py-8 text-xs text-slate-400 mt-16 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-jungle-500 to-emerald-400 text-jungle-950 flex items-center justify-center font-bold text-sm shadow">
-                    <i class="fa-solid fa-compass"></i>
+                <div class="w-8 h-8 rounded-xl bg-jungle-500/20 border border-jungle-500/30 p-0.5 flex items-center justify-center overflow-hidden">
+                    <img src="logo.png" alt="Logo XI IPS 2" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-compass text-jungle-400\'></i>';">
                 </div>
                 <div>
                     <span class="font-bold text-white block">JUNGLE CLASS</span>
@@ -219,7 +249,7 @@
                 <p class="text-center sm:text-right text-slate-500">
                     &copy; 2026 XI IPS 2. Designed with <i class="fa-solid fa-heart text-pink-500 mx-0.5"></i> for Jungle Explorers.
                 </p>
-                <a href="https://instagram.com/username_kelas" target="_blank" rel="noopener noreferrer" aria-label="Instagram Kelas" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 transition">
+                <a href="https://www.instagram.com/victoria_generous2" target="_blank" rel="noopener noreferrer" aria-label="Instagram Kelas" class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 transition">
                     <i class="fa-brands fa-instagram text-base"></i>
                 </a>
             </div>
@@ -237,11 +267,9 @@
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
             
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.className = "fa-solid fa-bars-staggered";
-            } else {
-                menuIcon.className = "fa-solid fa-xmark";
-            }
+            const isOpen = mobileMenu.classList.contains('flex');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
         });
 
         // DATA MISI
@@ -259,6 +287,15 @@
             emerald: "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
         };
 
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        const activeCount = classData.missions.filter(m => m.status !== 'Completed').length;
+        document.getElementById('mission-count-number').textContent = activeCount;
+
         // RENDER LIST MISI
         document.getElementById('misi-list').innerHTML = classData.missions.map(m => {
             const badgeStyle = statusStyles[m.statusType] || statusStyles.amber;
@@ -267,14 +304,14 @@
                 <div class="glass-card p-6 rounded-3xl flex flex-col justify-between group hover:border-jungle-500/40 transition duration-300">
                     <div>
                         <div class="flex justify-between items-center mb-4 gap-2">
-                            <span class="text-[11px] font-extrabold px-3 py-1 rounded-xl ${badgeStyle}">${m.status}</span>
-                            <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i>${m.deadline}</span>
+                            <span class="text-[11px] font-extrabold px-3 py-1 rounded-xl ${badgeStyle}">${escapeHtml(m.status)}</span>
+                            <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i>${escapeHtml(m.deadline)}</span>
                         </div>
-                        <h3 class="font-extrabold text-white text-lg group-hover:text-jungle-300 transition line-clamp-2">${m.title}</h3>
+                        <h3 class="font-extrabold text-white text-lg group-hover:text-jungle-300 transition line-clamp-2">${escapeHtml(m.title)}</h3>
                         <p class="text-xs text-jungle-400 font-bold mt-1.5 flex items-center gap-1.5">
-                            <i class="fa-solid fa-book-open text-[10px]"></i> Mapel: ${m.subject}
+                            <i class="fa-solid fa-book-open text-[10px]"></i> Mapel: ${escapeHtml(m.subject)}
                         </p>
-                        <p class="text-xs text-slate-300 mt-3 leading-relaxed line-clamp-3">${m.desc}</p>
+                        <p class="text-xs text-slate-300 mt-3 leading-relaxed line-clamp-3">${escapeHtml(m.desc)}</p>
                     </div>
 
                     <button onclick="openModal(${m.id})" class="mt-6 w-full py-2.5 bg-white/5 hover:bg-jungle-500 hover:text-jungle-950 border border-white/10 text-xs font-bold rounded-2xl transition-all duration-300 flex items-center justify-center gap-2">
@@ -299,11 +336,19 @@
             document.getElementById('modal-desc').innerText = mission.desc;
 
             document.getElementById('mission-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             document.getElementById('mission-modal').classList.add('hidden');
+            document.body.style.overflow = '';
         }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !document.getElementById('mission-modal').classList.contains('hidden')) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
