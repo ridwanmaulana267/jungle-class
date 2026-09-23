@@ -123,7 +123,7 @@
             .hero-reveal { opacity: 1; animation: none; transform: none; }
         }
 
-        /* --- EFEK ANIMASI BINTANG & METEOR YANG DIPERBARUI --- */
+        /* --- EFEK ANIMASI BINTANG & METEOR --- */
         .star-container {
             position: fixed;
             inset: 0;
@@ -144,7 +144,6 @@
             border-radius: 99px;
         }
 
-        /* Kepala meteor */
         .meteor::before {
             content: '';
             position: absolute;
@@ -171,7 +170,6 @@
         .meteor:nth-child(4) { top: -20%; left: 80%; animation-duration: 4.5s; animation-delay: 1.5s; }
         .meteor:nth-child(5) { top: 40%; left: 120%; animation-duration: 5.5s; animation-delay: 4s; }
 
-        /* Bintang statis yang berkedip */
         .twinkling-star {
             position: absolute;
             background: #fff;
@@ -182,6 +180,24 @@
         @keyframes twinkle {
             0% { opacity: 0.1; transform: scale(0.5); box-shadow: 0 0 2px rgba(255, 255, 255, 0.1); }
             100% { opacity: 0.9; transform: scale(1.3); box-shadow: 0 0 10px rgba(110, 231, 183, 0.7); }
+        }
+
+        /* --- STYLES UNTUK LOW PERFORMANCE MODE --- */
+        .reduce-fx .blur-\[100px\],
+        .reduce-fx .blur-\[120px\],
+        .reduce-fx .blur-\[140px\],
+        .reduce-fx .blur-\[150px\],
+        .reduce-fx .blur-\[160px\] {
+            filter: none !important;
+            opacity: 0.15 !important;
+        }
+
+        .reduce-fx .glass-card, 
+        .reduce-fx .glass-nav, 
+        .reduce-fx .glass-bottom-bar {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: #0f2419 !important;
         }
 
         a:focus-visible, button:focus-visible, input:focus-visible {
@@ -254,11 +270,19 @@
                 </a>
             </div>
 
-            <!-- Header Quick Action Toggle Menu (Drawer Trigger) -->
-            <button id="menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="drawer-sheet" class="lg:hidden text-slate-200 hover:text-white text-base p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition flex items-center gap-2">
-                <i class="fa-solid fa-bars-staggered text-jungle-400"></i>
-                <span class="text-xs font-bold">Menu</span>
-            </button>
+            <div class="flex items-center gap-2">
+                <!-- Toggle Performance Mode Button -->
+                <button id="perf-toggle" aria-label="Toggle Performa" title="Mode Hemat Daya" class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-amber-400 active:scale-95 transition flex items-center gap-1.5 text-xs font-semibold">
+                    <i id="perf-icon" class="fa-solid fa-bolt text-amber-400"></i>
+                    <span class="hidden sm:inline" id="perf-text">FX On</span>
+                </button>
+
+                <!-- Header Quick Action Toggle Menu (Drawer Trigger) -->
+                <button id="menu-btn" aria-label="Buka Menu" aria-expanded="false" aria-controls="drawer-sheet" class="lg:hidden text-slate-200 hover:text-white text-base p-2.5 rounded-xl bg-white/5 border border-white/10 active:scale-95 transition flex items-center gap-2">
+                    <i class="fa-solid fa-bars-staggered text-jungle-400"></i>
+                    <span class="text-xs font-bold">Menu</span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -285,9 +309,15 @@
 
         <!-- Drawer Content Grid -->
         <div class="p-5 space-y-4 flex-1">
+            <!-- Search Bar Filter Cepat -->
+            <div class="relative mb-3">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" id="drawer-search" placeholder="Cari menu / halaman..." class="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-jungle-400">
+            </div>
+
             <div class="text-[11px] font-extrabold uppercase tracking-widest text-slate-400">Navigasi Halaman</div>
             
-            <div class="grid grid-cols-2 gap-2 text-xs font-medium">
+            <div class="grid grid-cols-2 gap-2 text-xs font-medium" id="drawer-menu-list">
                 <a href="index.html" class="p-3 rounded-xl bg-gradient-to-r from-jungle-500 to-emerald-400 text-jungle-950 font-bold flex items-center gap-2.5">
                     <i class="fa-solid fa-house"></i> Home
                 </a>
@@ -783,6 +813,54 @@
 
     <!-- SCRIPT INTERAKTIF NAVIGASI & MUSIC PLAYER & LIVE REAL-TIME WIDGET -->
     <script>
+        // --- LOGIKA LOW PERFORMANCE MODE (BATTERY SAVER) ---
+        const perfBtn = document.getElementById('perf-toggle');
+        const perfIcon = document.getElementById('perf-icon');
+        const perfText = document.getElementById('perf-text');
+        const starContainer = document.getElementById('star-container');
+
+        let lowPerfMode = localStorage.getItem('lowPerfMode') === 'true';
+
+        function applyPerformanceMode() {
+            if (lowPerfMode) {
+                if (starContainer) starContainer.style.display = 'none';
+                document.body.classList.add('reduce-fx');
+                if (perfIcon) perfIcon.className = "fa-solid fa-leaf text-emerald-400";
+                if (perfText) perfText.innerText = "Lite";
+            } else {
+                if (starContainer) starContainer.style.display = 'block';
+                document.body.classList.remove('reduce-fx');
+                if (perfIcon) perfIcon.className = "fa-solid fa-bolt text-amber-400";
+                if (perfText) perfText.innerText = "FX On";
+            }
+        }
+
+        if (perfBtn) {
+            perfBtn.addEventListener('click', () => {
+                lowPerfMode = !lowPerfMode;
+                localStorage.setItem('lowPerfMode', lowPerfMode);
+                applyPerformanceMode();
+            });
+        }
+
+        // --- FILTER PENCARIAN CEPAT DI DRAWER MOBILE ---
+        const drawerSearch = document.getElementById('drawer-search');
+        if (drawerSearch) {
+            drawerSearch.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const menuItems = document.querySelectorAll('#drawer-menu-list a');
+                
+                menuItems.forEach(item => {
+                    const text = item.innerText.toLowerCase();
+                    if (text.includes(query)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+
         // --- EFEK JAVASCRIPT GENERATOR BINTANG ---
         function createStars() {
             const container = document.getElementById('star-container');
@@ -819,7 +897,6 @@
             if(dayEl) dayEl.innerText = dayName;
             if(dateEl) dateEl.innerText = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 
-            // Peta Jadwal Pelajaran XI IPS 2
             const lessonsMap = {
                 'Senin': 'Sosiologi, Bahasa Sunda, Matematika, Ekonomi, ASWJ, Bahasa Arab',
                 'Selasa': 'Akidah, Kimia, Bahasa Indonesia, Bahasa Arab, Matematika',
@@ -830,7 +907,6 @@
                 'Minggu': 'Libur Akhir Pekan 🌴'
             };
 
-            // Peta Petugas Piket Kebersihan XI IPS 2
             const piketMap = {
                 'Senin': 'Dewi, Ulpah, Yasir, Ahmad',
                 'Selasa': 'Fikri, Lutfia, RIval, Asma',
@@ -860,6 +936,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            applyPerformanceMode();
             createStars();
             updateTodayWidget();
             updateClock();
@@ -902,7 +979,7 @@
         if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
         if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
-        // Dynamic Time Greeting Logic
+        // Dynamic Time Greeting
         function updateGreeting() {
             const hour = new Date().getHours();
             const greetingEl = document.getElementById('live-greeting');
