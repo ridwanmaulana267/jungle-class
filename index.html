@@ -8,15 +8,24 @@
     <meta property="og:title" content="JUNGLE CLASS — Basecamp Digital XI IPS 2">
     <meta property="og:description" content="Grow Together, Make Memories — pusat informasi digital kelas XI IPS 2.">
     <meta property="og:type" content="website">
-    
+    <meta property="og:image" content="foto-kelas.jpg">
+    <link rel="canonical" href="index.html">
+
     <!-- FAVICON WEB (MENGGUNAKAN FAVICON.PNG) -->
     <link rel="icon" type="image/png" href="favicon.png">
-    
+
     <title>JUNGLE CLASS — Basecamp Digital XI IPS 2</title>
-    
+
+    <!-- PRECONNECT & PRELOAD UNTUK PERFORMA (LCP) -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="image" href="foto-kelas.jpg" fetchpriority="high">
+
     <!-- CDN External Script & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome dimuat non-blocking supaya tidak menahan render halaman -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -66,6 +75,11 @@
         .glass-card:hover, .glass-card:active {
             border-color: rgba(52, 211, 153, 0.35);
             box-shadow: 0 12px 36px -10px rgba(16, 185, 129, 0.25);
+            transform: translateY(-3px);
+        }
+
+        @media (hover: none) {
+            .glass-card:hover { transform: none; }
         }
 
         .glass-nav {
@@ -82,9 +96,19 @@
         }
 
         .text-gradient {
-            background: linear-gradient(135deg, #6ee7b7 0%, #34d399 40%, #10b981 100%);
+            background: linear-gradient(115deg, #6ee7b7 0%, #34d399 30%, #10b981 60%, #6ee7b7 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shimmer 6s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .text-gradient { animation: none; }
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -215,6 +239,17 @@
             }
             * {
                 scroll-behavior: auto !important;
+            }
+        }
+
+        /* --- OPTIMASI PERFORMA MOBILE: blur lebih ringan di layar kecil --- */
+        @media (max-width: 640px) {
+            .glass-card, .glass-nav, .glass-bottom-bar {
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+            }
+            .meteor:nth-child(4), .meteor:nth-child(5) {
+                display: none;
             }
         }
     </style>
@@ -868,7 +903,7 @@
         function createStars() {
             const container = document.getElementById('star-container');
             if(!container) return;
-            const starCount = 60;
+            const starCount = window.innerWidth < 640 ? 25 : 60;
             
             for(let i=0; i<starCount; i++) {
                 let star = document.createElement('div');
