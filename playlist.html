@@ -64,11 +64,9 @@
         .is-playing .eq-bar { animation-play-state: running; }
 
         /* Tampilan grid & list */
-        .song-info { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-bottom: .625rem; }
         #song-list.list-mode { grid-template-columns: 1fr; }
         @media (min-width: 640px) {
-            #song-list.list-mode .song { display: grid; grid-template-columns: minmax(0, 13rem) 1fr; align-items: center; gap: 1rem; }
-            #song-list.list-mode .song-info { flex-direction: column; align-items: flex-start; margin: 0; }
+            #song-list.list-mode .song { display: grid; grid-template-columns: minmax(0, 16rem) 1fr; align-items: center; gap: 1rem; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -215,8 +213,10 @@
     </footer>
 
     <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYLE0BijsGvfLbMqlJGcZnQxoKG47DrZGuTlkja2vWXNX0ox17710cLQoceLkqx-lR/exec";
-        const CACHE_KEY = "jc_songs_v1", LAYOUT_KEY = "jc_layout";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzm2ZU7dv38eIgjauorFd3Z1_6EjzINpOchLhK5y8ht4KXupkjyTBsSMjzumae9Yxh9/exec";
+        const CACHE_KEY = "jc_songs_v2", LAYOUT_KEY = "jc_layout";
+        const DEFAULT_COVER = "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=300&q=80";
+
         const $ = id => document.getElementById(id);
         const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
         const store = {
@@ -316,16 +316,22 @@
                 return;
             }
             container.innerHTML = items.map(item => {
-                const nama = esc(item.nama || "Tanpa judul"), pan = esc(item.panggilan || "-"), id = String(item.track_id).trim();
-                return `<article class="song glass-panel glass-card-hover p-4 rounded-2xl group" data-q="${esc((item.nama + " " + item.panggilan).toLowerCase())}">
-                    <div class="song-info">
-                        <div class="flex items-center gap-2 min-w-0">
-                            <i class="fa-brands fa-soundcloud text-xl text-orange-400 shrink-0"></i>
-                            <h3 class="text-sm font-bold text-white truncate group-hover:text-spotify transition">${nama}</h3>
+                const nama = esc(item.nama || "Tanpa judul");
+                const pan = esc(item.panggilan || "-");
+                const id = String(item.track_id).trim();
+                const foto = item.foto ? esc(item.foto) : DEFAULT_COVER;
+
+                return `<article class="song glass-panel glass-card-hover p-4 rounded-2xl group flex flex-col justify-between" data-q="${esc((item.nama + " " + item.panggilan).toLowerCase())}">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <img src="${foto}" alt="${nama}" class="w-12 h-12 rounded-xl object-cover border border-white/10 shrink-0 shadow-md" onerror="this.src='${DEFAULT_COVER}'">
+                            <div class="min-w-0 flex-1">
+                                <h3 class="text-sm font-bold text-white truncate group-hover:text-spotify transition">${nama}</h3>
+                                <span class="text-[11px] text-spotify bg-spotify/10 border border-spotify/20 px-2.5 py-0.5 rounded-full font-semibold inline-block mt-1">Req: ${pan}</span>
+                            </div>
                         </div>
-                        <span class="text-xs text-spotify bg-spotify/10 border border-spotify/20 px-2.5 py-0.5 rounded-full font-semibold whitespace-nowrap">Req: ${pan}</span>
                     </div>
-                    <div class="rounded-xl overflow-hidden border border-white/5">
+                    <div class="rounded-xl overflow-hidden border border-white/5 mt-1">
                         <iframe data-sc data-title="${nama}" title="Pemutar SoundCloud: ${nama}" width="100%" height="80" style="border:0" loading="lazy" allow="autoplay; encrypted-media" src="${scUrl(id)}"></iframe>
                     </div>
                 </article>`;
