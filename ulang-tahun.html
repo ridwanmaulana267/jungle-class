@@ -8,7 +8,10 @@
     <meta property="og:title" content="Jungle Birthday — XI IPS 2">
     <meta property="og:description" content="Agenda perayaan hari spesial seluruh anggota keluarga besar XI IPS 2.">
     <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f2419'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
+    
+    <!-- FAVICON WEB (MENGGUNAKAN FAVICON.PNG) -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <title>Jungle Birthday — XI IPS 2</title>
     
     <!-- CDN External Script & Fonts -->
@@ -116,9 +119,10 @@
     <nav class="sticky top-0 z-50 glass-nav border-b border-white/10 px-4 md:px-8 py-3 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             
+            <!-- Logo Class (Menggunakan logo.png) -->
             <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 text-jungle-950 flex items-center justify-center font-black shadow-lg shadow-jungle-500/20 group-hover:scale-105 group-hover:rotate-3 transition duration-300">
-                    <i class="fa-solid fa-compass text-xl"></i>
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-jungle-500 via-jungle-400 to-emerald-300 p-0.5 shadow-lg shadow-jungle-500/20 group-hover:scale-105 group-hover:rotate-3 transition duration-300 overflow-hidden flex items-center justify-center">
+                    <img src="logo.png" alt="Logo XI IPS 2" class="w-full h-full object-cover rounded-2xl" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-compass text-xl text-jungle-950\'></i>';">
                 </div>
                 <div class="leading-tight">
                     <span class="tracking-wide text-white font-extrabold text-base block group-hover:text-jungle-400 transition">JUNGLE CLASS</span>
@@ -218,8 +222,8 @@
     <footer class="border-t border-white/10 bg-jungle-950/90 py-8 text-xs text-slate-400 mt-16 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-jungle-500 to-emerald-400 text-jungle-950 flex items-center justify-center font-bold text-sm shadow">
-                    <i class="fa-solid fa-compass"></i>
+                <div class="w-8 h-8 rounded-xl bg-jungle-500/20 border border-jungle-500/30 p-0.5 flex items-center justify-center overflow-hidden">
+                    <img src="logo.png" alt="Logo XI IPS 2" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-compass text-jungle-400\'></i>';">
                 </div>
                 <div>
                     <span class="font-bold text-white block">JUNGLE CLASS</span>
@@ -240,7 +244,6 @@
 
     <!-- SCRIPT INTERAKTIF & LOGIKA ULANG TAHUN -->
     <script>
-        // TOGGLE MOBILE MENU
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -254,7 +257,6 @@
             menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
         });
 
-        // DATA ANGGOTA KELAS
         const classData = [
             { name: "Dede Hasan Nurjaman, S.Pd.", dob: "2000-01-01" , role: "Wali Kelas" },
             { name: "Aceng Miftah Farid", dob: "2008-12-06" },
@@ -287,7 +289,6 @@
             return div.innerHTML;
         }
 
-        // FUNGSI ANIMASI KONFETI
         function triggerConfetti() {
             if (typeof confetti === 'function') {
                 const duration = 3 * 1000;
@@ -367,12 +368,10 @@
                 return item;
             });
 
-            // Jalankan konfeti jika ada yang ultah hari ini
             if (isSomeoneBirthdayToday) {
                 triggerConfetti();
             }
 
-            // Urutkan terdekat
             upcomingList.sort((a, b) => a.diffDays - b.diffDays);
             const closest = upcomingList[0];
 
@@ -399,7 +398,6 @@
             renderGrid();
         }
 
-        // RENDER BUTTON FILTER BULAN
         function renderFilterButtons() {
             const filterContainer = document.getElementById('month-filters');
             let html = `
@@ -427,7 +425,6 @@
             renderGrid();
         }
 
-        // RENDER DAFTAR ANGGOTA
         function renderGrid() {
             let filtered = [...processedData];
 
@@ -492,7 +489,6 @@
             }).join('');
         }
 
-        // RENDER INITIAL
         initBirthdaySystem();
     </script>
 </body>
