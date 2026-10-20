@@ -227,7 +227,12 @@
         </div>
 
         <!-- GALLERY GRID -->
-        <div id="gallery-grid" class="page-reveal page-reveal-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5"></div>
+        <div id="gallery-grid" class="page-reveal page-reveal-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+            <div class="col-span-full text-center py-16 glass-card rounded-3xl">
+                <i class="fa-solid fa-spinner fa-spin text-3xl text-jungle-400 mb-2"></i>
+                <p class="text-xs text-slate-400">Memuat memori dari Google Sheets...</p>
+            </div>
+        </div>
 
     </main>
 
@@ -271,8 +276,16 @@
         </div>
     </footer>
 
-    <!-- SCRIPT INTERAKTIF -->
+    <!-- SCRIPT INTERAKTIF & GOOGLE SHEETS INTEGRATION -->
     <script>
+        // -------------------------------------------------------------
+        // PASTEKAN LINK CSV DARI GOOGLE SHEETS KAMU DI BAWAH INI
+        // -------------------------------------------------------------
+        const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRfii6Vm1UqrrlbJfraN204OMniiLgLomRMnwe7fOo1xNEaRjA8mV_-9VgHiblwfXrWtPS0J5-Obm5p/pub?gid=0&single=true&output=csv';
+
+        let galleryData = [];
+        let currentFilter = 'all';
+
         // TOGGLE MOBILE MENU
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -287,51 +300,54 @@
             menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars-staggered";
         });
 
-        // DATA GALERI
-        const classData = {
-            gallery: [
-                { 
-                    img: "https://files.catbox.moe/gr5e7z.jpeg", 
-                    title: "Foto Bareng Angkatan 20", 
-                    category: "acara" 
-                },
-                { 
-                    img: "https://files.catbox.moe/0odn9r.jpeg", 
-                    title: "Perpisahan Sareng Mang Teguh", 
-                    category: "sehari-hari" 
-                },
-                { 
-                    img: "https://files.catbox.moe/ybtvqd.jpeg", 
-                    title: "Foto Sama Wali Kelas", 
-                    category: "sehari-hari" 
-                },
-                { 
-                    img: "https://files.catbox.moe/6qrppr.jpeg", 
-                    title: "Gangster 11 2", 
-                    category: "sehari-hari" 
-                },
-                { 
-                    img: "https://files.catbox.moe/qw3e3q.jpeg", 
-                    title: "Futsal XI.2 vs XII", 
-                    category: "classmeeting" 
-                },
-                { 
-                    img: "https://files.catbox.moe/bca4ap.jpeg", 
-                    title: "Bahenol 11 2", 
-                    category: "sehari-hari" 
-                },
-                { 
-                    img: "https://files.catbox.moe/im1zik.jpeg", 
-                    title: "Juara 1 Kebersihan", 
-                    category: "acara" 
-                },
-                { 
-                    img: "https://files.catbox.moe/ei7v5f.jpeg", 
-                    title: "LC 11 1", 
-                    category: "sehari-hari" 
-                }
-            ]
-        };
+        // FUNGSI FETCH DATA GOOGLE SHEETS
+        async function loadGalleryFromSpreadsheet() {
+            try {
+                const response = await fetch(SPREADSHEET_CSV_URL);
+                if (!response.ok) throw new Error('Gagal mengakses data Spreadsheet');
+
+                const csvText = await response.text();
+                const rows = csvText.trim().split('\n');
+
+                // Abaikan baris header (A1:img, B1:title, C1:category)
+                const dataRows = rows.slice(1);
+
+                galleryData = dataRows.map(row => {
+                    const cols = row.split(',').map(col => col.trim().replace(/^"|"$/g, ''));
+                    
+                    // Pembersihan & pemastian kategori agar tidak keliru
+                    let rawCat = (cols[2] || '').toLowerCase().trim().replace(/\s+/g, '');
+
+                    // Pencocokan kategori fleksibel
+                    let cat = 'sehari-hari';
+                    if (rawCat.includes('classmeeting') || rawCat.includes('class') || rawCat.includes('lomba')) {
+                        cat = 'classmeeting';
+                    } else if (rawCat.includes('acara') || rawCat.includes('event')) {
+                        cat = 'acara';
+                    } else if (rawCat.includes('sehari') || rawCat.includes('harian')) {
+                        cat = 'sehari-hari';
+                    }
+
+                    return {
+                        img: cols[0] || '',
+                        title: cols[1] || 'Momen Tanpa Judul',
+                        category: cat
+                    };
+                }).filter(item => item.img !== '');
+
+                renderGallery(galleryData);
+
+            } catch (error) {
+                console.error('Error Google Sheets:', error);
+                document.getElementById('gallery-grid').innerHTML = `
+                    <div class="col-span-full text-center py-16 glass-card rounded-3xl">
+                        <i class="fa-solid fa-triangle-exclamation text-3xl text-jungle-400 mb-2"></i>
+                        <h3 class="font-bold text-white text-base">Gagal Memuat Galeri</h3>
+                        <p class="text-xs text-slate-400 mt-1">Pastikan link CSV Google Sheets sudah benar dan terpublikasi.</p>
+                    </div>
+                `;
+            }
+        }
 
         function escapeHtml(str) {
             const div = document.createElement('div');
@@ -401,6 +417,8 @@
 
         // FILTER GALLERY
         function filterGallery(category, btnElement) {
+            currentFilter = category;
+
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-300 bg-white/5 text-slate-300 hover:bg-white/10 border border-white/5';
                 btn.setAttribute('aria-pressed', 'false');
@@ -410,9 +428,9 @@
             btnElement.setAttribute('aria-pressed', 'true');
 
             if (category === 'all') {
-                renderGallery(classData.gallery);
+                renderGallery(galleryData);
             } else {
-                const filtered = classData.gallery.filter(item => item.category === category);
+                const filtered = galleryData.filter(item => item.category === category);
                 renderGallery(filtered);
             }
         }
@@ -440,8 +458,8 @@
             }
         });
 
-        // INITIAL RENDER
-        renderGallery(classData.gallery);
+        // JALANKAN PEMANGGILAN DATA
+        loadGalleryFromSpreadsheet();
     </script>
 </body>
 </html>
